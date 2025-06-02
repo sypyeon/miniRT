@@ -6,23 +6,28 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/05/26 22:36:31 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/03 00:59:31 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_STRUCT_H
 # define RT_STRUCT_H
 
-typedef struct s_vec t_vec;
 typedef struct s_vec t_point;
-typedef struct s_vec t_color;
 
-struct s_vec
+typedef struct s_vec
 {
     double x;
     double y;
     double z;
 }	t_vec;
+
+typedef struct s_color
+{
+    double r;
+    double g;
+    double b;
+}	t_color;
 
 typedef struct s_ambient
 {
@@ -30,12 +35,15 @@ typedef struct s_ambient
 	int		color;
 }	t_ambient;
 
-typedef struct s_camera
+typedef struct  s_camera
 {
-	double	x;
-	double	y;
-	double	z;
-	char	fov;
+	t_point		orig; 
+	double		viewport_h;
+	double		viewport_w;
+	t_vec		horizontal;
+	t_vec		vertical;
+	double		focal_len;
+	t_point		left_bottom;
 }	t_camera;
 
 typedef struct s_light
