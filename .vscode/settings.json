@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"rt_utils.h": "c",
+		"rt_minirt.h": "c",
+		"rt_parse.h": "c",
+		"stdio.h": "c",
+		"unistd.h": "c",
+		"rt_struct.h": "c",
+		"libft.h": "c"
+	},
+	"C_Cpp.dimInactiveRegions": false
+}

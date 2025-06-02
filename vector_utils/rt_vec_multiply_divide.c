@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_parse.h                                         :+:      :+:    :+:   */
+/*   rt_vec_multiply_divide.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:15:44 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/03 04:34:34 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/03 04:34:52 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_PARSE_H
-# define RT_PARSE_H
+#include "rt_vec_utils.h"
 
-# define SPHERE		1
-# define PLANE		2
-# define CYLINDER	3
+t_vec	rt_vec_multiply(t_vec vec, double t)
+{
+	vec.x *= t;
+	vec.y *= t;
+	vec.z *= t;
+	return (vec);
+}
 
-# include "rt_struct.h"
-# include <stdio.h>
-# include <unistd.h>
+t_vec	rt_vec_times_vec(t_vec vec_1, t_vec vec_2)
+{
+	vec_1.x *= vec_2.x;
+	vec_1.y *= vec_2.y;
+	vec_1.z *= vec_2.z;
+	return (vec_1);
+}
 
-double	rt_strtod(char *str);
+t_vec	rt_vec_divide(t_vec vec, double t)
+{
+	vec.x *= 1 / t;
+	vec.y *= 1 / t;
+	vec.z *= 1 / t;
 
-int		rt_valid_file_format(char *file);
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
-
-#endif
+	return vec;
+}

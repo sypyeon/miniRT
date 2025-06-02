@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_parse.h                                         :+:      :+:    :+:   */
+/*   rt_min_vec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:15:44 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/03 00:57:08 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/03 04:39:23 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_PARSE_H
-# define RT_PARSE_H
+#include "rt_utils.h"
 
-# define SPHERE		1
-# define PLANE		2
-# define CYLINDER	3
-
-# include "rt_struct.h"
-# include <stdio.h>
-# include <unistd.h>
-
-double	rt_strtod(char *str);
-
-int		rt_valid_file_format(char *file);
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
-
-#endif
+t_vec	rt_vec_min(t_vec vec_1, t_vec vec_2)
+{
+	if (vec_1.x > vec_2.x)
+		vec_1.x = vec_2.x;
+	if (vec_1.y > vec_2.y)
+		vec_1.y = vec_2.y;
+	if (vec_1.z > vec_2.z)
+		vec_1.z = vec_2.z;
+	return (vec_1);
+}

@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_parse.h                                         :+:      :+:    :+:   */
+/*   rt_file_format.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:15:44 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/03 04:11:37 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_PARSE_H
-# define RT_PARSE_H
+#include "rt_parse.h"
 
-# define SPHERE		1
-# define PLANE		2
-# define CYLINDER	3
+static int	rt_str_is_rt(char *format)
+{
+	if (*format != 'r')
+		return (0);
+	format++;
+	if (*format != 't')
+		return (0);
+	format++;
+	if (*format == '\0')
+		return (1);
+	return (0);
+}
 
-# include "rt_struct.h"
-# include <stdio.h>
-# include <unistd.h>
-
-double	rt_strtod(char *str);
-
-int		rt_valid_file_format(char *file);
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
-
-#endif
+int	rt_valid_file_format(char *file)
+{
+	if (!file)
+		return (0);
+	if (*file == '.')
+		return (0);
+	while (*file && *file != '.')
+		file++;
+	if (!*file)
+		return (0);
+	return (rt_str_is_rt(file));
+}

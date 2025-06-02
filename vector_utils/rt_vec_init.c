@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_parse.h                                         :+:      :+:    :+:   */
+/*   rt_vec_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:15:44 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/03 04:31:14 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/03 04:31:28 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_PARSE_H
-# define RT_PARSE_H
+#include "rt_vec_utils.h"
 
-# define SPHERE		1
-# define PLANE		2
-# define CYLINDER	3
+t_vec	rt_init_vec(double x, double y, double z)
+{
+	t_vec vec;
 
-# include "rt_struct.h"
-# include <stdio.h>
-# include <unistd.h>
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
+}
 
-double	rt_strtod(char *str);
+t_point	rt_init_point(double x, double y, double z)
+{
+	t_point point;
 
-int		rt_valid_file_format(char *file);
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
+	point.x = x;
+	point.y = y;
+	point.z = z;
+	return (point);
+}
 
-#endif
+t_color	rt_init_color(double r, double g, double b)
+{
+	t_color color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	return (color);
+}

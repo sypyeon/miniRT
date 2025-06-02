@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_struct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 00:59:31 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/03 06:24:09 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_color
 typedef struct s_ambient
 {
 	double	amb_ratio;
-	int		color;
+	t_color	color;
 }	t_ambient;
 
 typedef struct  s_camera
@@ -48,30 +48,33 @@ typedef struct  s_camera
 
 typedef struct s_light
 {
-	double	x;
-	double	y;
-	double	z;
 	double	bright;
-	int		color;
+	t_point	orig;
+	t_color	color;
 }	t_light;
 
-typedef struct s_object
+typedef struct s_ray
+{
+	t_point	origin;
+	t_vec	direction;
+}	t_ray;
+
+typedef struct s_obj
 {
 	int				identifier;
-	double			x;
-	double			y;
-	double			z;
+	t_point			center;
 	double			diameter;
+	t_vec			vector;
 	double			height;
-	int				color;
+	t_color			color;
 	struct s_object	*next;
-}	t_object;
+}	t_obj;
 
 typedef struct s_obj_list
 {
-	int			size;
-	t_object	*head;
-	t_object	*tail;
+	int		size;
+	t_obj	*head;
+	t_obj	*tail;
 }	t_obj_list;
 
 
@@ -80,7 +83,7 @@ typedef struct s_rt_info
 	t_ambient	amb;
 	t_camera	cam;
 	t_light		light;
-	t_obj_list	objects;
+	t_obj_list	obj;
 }	t_rt_info;
 
 typedef struct s_data
