@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:15:44 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/06 18:38:40 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 double	rt_strtod(char *str);
 
 int		rt_valid_file_format(char *file);
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
+void	rt_file_validate_and_save_data(char *file, t_rt_info *info);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_struct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 06:24:09 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/06 23:51:27 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ typedef struct s_ambient
 
 typedef struct  s_camera
 {
-	t_point		orig; 
+	t_point		orig;
 	double		viewport_h;
 	double		viewport_w;
+	t_vec		direction;
 	t_vec		horizontal;
 	t_vec		vertical;
 	double		focal_len;
@@ -62,12 +63,12 @@ typedef struct s_ray
 typedef struct s_obj
 {
 	int				identifier;
-	t_point			center;
-	double			diameter;
-	t_vec			vector;
-	double			height;
 	t_color			color;
-	struct s_object	*next;
+	t_point			center;
+	t_vec			vector;
+	double			diameter;
+	double			height;
+	struct s_obj	*next;
 }	t_obj;
 
 typedef struct s_obj_list
