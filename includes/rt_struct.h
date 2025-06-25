@@ -6,12 +6,14 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/25 20:20:47 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:31:18 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_STRUCT_H
 # define RT_STRUCT_H
+
+# define bool	_Bool
 
 typedef struct s_vec t_point;
 
@@ -31,6 +33,7 @@ typedef struct s_color
 
 typedef struct s_ambient
 {
+	bool	exist;
 	double	amb_ratio;
 	t_color	color;
 }	t_ambient;

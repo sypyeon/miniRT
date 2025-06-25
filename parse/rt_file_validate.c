@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/25 16:50:17 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/25 22:08:18 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include <fcntl.h>
  
-int	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
+bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid sphere data."));
@@ -25,7 +25,7 @@ int	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 	return (0);
 }
 
-int	rt_set_plane_data(t_obj *obj, char **param, int param_count)
+bool	rt_set_plane_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid plane data."));
@@ -125,12 +125,13 @@ int	rt_set_light(t_rt_info *info, char **param)
 		return (rt_print_err_msg("invalid light data"));
 	info->light.orig = rt_set_coordinate(param[1]);
 	info->light.bright = rt_strtod(param[2]);
+	info->light.color = rt_set_color(param[3]);
 	return (0);
 }
 
-int	rt_split_and_identify_line(char *line, t_rt_info *info)
+bool	rt_split_and_identify_line(char *line, t_rt_info *info)
 {
-	int		invalid;
+	bool	invalid;
 	char	**split;
 
 	rt_tab_to_space(line);
@@ -150,10 +151,10 @@ int	rt_split_and_identify_line(char *line, t_rt_info *info)
 		invalid = rt_init_object(info, PLANE, split);
 	else if (!rt_strcmp(split[0], "cy"))
 		invalid = rt_init_object(info, CYLINDER, split);
+	else
+		invalid = rt_print_err_msg("Unknown identifier.");
 	rt_free_split(split);
-	if (invalid)
-		return(rt_print_err_msg("Unknown identifier."));
-	return (0);
+	return (invalid);
 }
 
 char	*rt_strjoin_and_free(char *s1, char *s2)
@@ -172,6 +173,33 @@ char	*rt_strjoin_and_free(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (new_string);
+}
+
+int	rt_is_comma_or_period(char c)
+{
+	return (c == '.' || c == ',');
+}
+
+void	rt_check_numbers_in_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (rt_is_comma_or_period(line[i]))
+		{
+			i++;
+			if (line[i] == '-' || line[i] == '+')
+				i++;
+			if (!ft_isdigit(line[i]))
+			{
+				free(line);
+				exit(rt_print_err_msg("Invalid numbers found."));
+			}
+		}
+		i++;
+	}
 }
 
 char	**rt_gnl_and_split(char *file)
@@ -193,6 +221,7 @@ char	**rt_gnl_and_split(char *file)
 		line = rt_strjoin_and_free(line, buf);
 	}
 	rt_tab_to_space(line);
+	rt_check_numbers_in_line(line);
 	split = ft_split(line, '\n');
 	free(line);
 	return (split);
@@ -200,7 +229,7 @@ char	**rt_gnl_and_split(char *file)
 
 void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
 {
-	int		invalid;
+	bool	invalid;
 	int		i;
 	char	**split;
 
@@ -223,4 +252,3 @@ void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
 	}
 	rt_free_split(split);
 }
-//gnl 다 붙이고 개행 단위로 split해서 파싱해보기

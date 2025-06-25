@@ -3,24 +3,37 @@
 void	check_parse_data(t_rt_info *info)
 {
 	printf("amb ratio:\t%f\n", info->amb.amb_ratio);
+
 	printf("amb color r:\t%f\n", info->amb.color.r);
 	printf("amb color g:\t%f\n", info->amb.color.g);
 	printf("amb color b:\t%f\n\n", info->amb.color.b);
+
+
 	printf("cam focal length:\t%f\n", info->cam.focal_len);
+
 	printf("cam horizontal x:\t%f\n", info->cam.horizontal.x);
 	printf("cam horizontal y:\t%f\n", info->cam.horizontal.y);
 	printf("cam horizontal z:\t%f\n", info->cam.horizontal.x);
+
 	printf("cam left bottom x:\t%f\n", info->cam.left_bottom.x);
 	printf("cam left bottom y:\t%f\n", info->cam.left_bottom.y);
 	printf("cam left bottom z:\t%f\n", info->cam.left_bottom.z);
+
+	printf("cam direction x:\t%f\n", info->cam.direction.x);
+	printf("cam direction y:\t%f\n", info->cam.direction.y);
+	printf("cam direction z:\t%f\n", info->cam.direction.z);
+
 	printf("cam origin x:\t%f\n", info->cam.orig.x);
 	printf("cam origin y:\t%f\n", info->cam.orig.y);
 	printf("cam origin z:\t%f\n", info->cam.orig.z);
+
 	printf("cam vertical x:\t%f\n", info->cam.vertical.x);
 	printf("cam vertical y:\t%f\n", info->cam.vertical.y);
 	printf("cam vertical z:\t%f\n", info->cam.vertical.z);
+
 	printf("cam viewpoint width:\t%f\n", info->cam.viewport_w);
 	printf("cam viewpoint height:\t%f\n\n", info->cam.viewport_h);
+
 	printf("light brightness:\t%f\n", info->light.bright);
 	printf("light color r:\t%f\n", info->light.color.r);
 	printf("light color g:\t%f\n", info->light.color.g);
