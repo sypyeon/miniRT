@@ -17,8 +17,8 @@
 # define PLANE		2
 # define CYLINDER	3
 
-# include "libft.h"
-# include "rt_struct.h"
+# include "../libft/libft.h"
+#include "rt_struct.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

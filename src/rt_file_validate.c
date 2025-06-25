@@ -12,7 +12,7 @@
 
 #include "rt_parse.h"
 #include "rt_utils.h"
-#include "libft.h"
+#include "../libft/libft.h"
 #include <fcntl.h>
  
 void	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
@@ -114,7 +114,7 @@ void	rt_set_light(t_rt_info *info, char **param)
 	param_count = 0;
 	while (param[param_count])
 		param_count++;
-	if (param_count != 3 || param_count != 4)
+	if (param_count != 3 && param_count != 4)
 		exit(rt_print_err_msg("invalid light data"));
 	info->light.orig = rt_set_coordinate(param[1]);
 	info->light.bright = rt_strtod(param[2]);

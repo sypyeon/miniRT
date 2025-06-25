@@ -12,7 +12,7 @@
 
 #include "rt_parse.h"
 #include "rt_utils.h"
-#include "libft.h"
+#include "../libft/libft.h"
 
 static double	rt_strtod_integer(char *str)
 {

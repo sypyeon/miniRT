@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "rt_minirt.h"
-#include "mlx.h"
+#include "../minilibx-linux/mlx.h"
 
 void	check_parse_data(t_rt_info *info);
 

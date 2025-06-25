@@ -17,7 +17,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "rt_struct.h"
+#include "rt_struct.h"
 
 t_vec	rt_init_vec(double x, double y, double z);
 t_point	rt_init_point(double x, double y, double z);

@@ -14,9 +14,9 @@
 #ifndef RT_MINIRT_H
 # define RT_MINIRT_H
 
-# include "rt_struct.h"
-# include "rt_parse.h"
-# include "rt_utils.h"
-# include "rt_vec_utils.h"
+#include "rt_struct.h"
+#include "rt_parse.h"
+#include "rt_utils.h"
+#include "rt_vec_utils.h"
 
 #endif

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="miniRT" targetName="minilibx-linux" />
+      <config projectName="miniRT" targetName="libft" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ceb69e42-11f3-4d62-aa85-b784422b8ccb" name="Changes" comment="add mlx submodule">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/42_minirt.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libft/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/rt_minirt.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_minirt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/rt_parse.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_parse.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/rt_struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_struct.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/rt_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/rt_vec_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse/check_parse.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/check_parse.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse/rt_file_format.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_file_format.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse/rt_file_validate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_file_validate.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse/rt_set_vector.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_set_vector.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rt_err_msg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_err_msg.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rt_free_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_free_utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rt_strcmp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_strcmp.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rt_strtod.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_strtod.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rt_tab_to_space.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_tab_to_space.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_min_vec.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_min_vec.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_set_vec.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_set_vec.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_calculate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_calculate.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_length.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_length.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_multiply_divide.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_multiply_divide.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_plus_minus.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_plus_minus.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DavidLee18&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sypyeon/42_minirt.git&quot;,
+    &quot;accountId&quot;: &quot;0d5e5cf6-1afe-49c8-8ca2-4db2d9b8fdd6&quot;
+  }
+}</component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="1.3" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2yztOsGsrmow8K4JDuE5gqOqGxl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "CMake Application.miniRT.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "cmake",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CPPToolchains"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.miniRT">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="libft" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="miniRT" TARGET_NAME="libft" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="miniRT" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="example.rt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$FileDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="miniRT" RUN_TARGET_NAME="miniRT" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="minilibx-linux" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="miniRT" TARGET_NAME="minilibx-linux" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.minilibx-linux" />
+      <item itemvalue="CMake Application.miniRT" />
+      <item itemvalue="CMake Application.libft" />
+    </list>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ceb69e42-11f3-4d62-aa85-b784422b8ccb" name="Changes" comment="" />
+      <created>1750849202046</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750849202046</updated>
+      <workItem from="1750849204281" duration="5859000" />
+      <workItem from="1750856961903" duration="131000" />
+      <workItem from="1750857096631" duration="135000" />
+      <workItem from="1750857235020" duration="110000" />
+      <workItem from="1750858682203" duration="62000" />
+      <workItem from="1750858746802" duration="213000" />
+      <workItem from="1750858971767" duration="1815000" />
+      <workItem from="1750860958899" duration="3528000" />
+    </task>
+    <task id="LOCAL-00001" summary="delete void files">
+      <option name="closed" value="true" />
+      <created>1750849851425</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750849851425</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add mlx submodule">
+      <option name="closed" value="true" />
+      <created>1750851713473</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750851713473</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="delete void files" />
+    <MESSAGE value="add mlx submodule" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mlx submodule" />
+  </component>
+</project>
