@@ -14,6 +14,8 @@
 # define RT_UTILS_H
 
 # include <unistd.h>
+# include <stdlib.h>
+# include "rt_struct.h"
 
 void	rt_tab_to_space(char *str);
 int		rt_strcmp(const char *str, const char *cmp);
