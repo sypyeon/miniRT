@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 03:55:02 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 05:38:59 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/25 15:22:35 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int	rt_strcmp(const char *str, const char *cmp)
 {
+	int	i;
+
+	i = 0;
 	if (!str || !cmp)
 		return (0);
-	while (str && cmp)
+	while (str[i] && cmp[i])
 	{
-		if (*str != *cmp)
-			return (*str - *cmp);
-		str++;
-		cmp++;
+		if (str[i] != cmp[i])
+			return (str[i] - cmp[i]);
+		i++;
 	}
-	return (*str - *cmp);
+	return (str[i] - cmp[i]);
 }

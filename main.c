@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/20 16:40:33 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/25 15:28:32 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac != 2)
 		return (rt_print_err_msg("Input argument error."));
+	ft_bzero(&info, sizeof(t_rt_info));
 	rt_file_validate_and_save_data(av[1], &info);
 	check_parse_data(&info);
 	// mlx.mlx = mlx_init();
