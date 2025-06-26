@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/26 18:03:20 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/26 22:49:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef struct s_obj
 	t_color			color;
 	t_point			center;
 	t_vec			vector;
-	double			diameter;
+	double			radius;
+	double			radius2;
 	double			height;
 	struct s_obj	*next;
 }	t_obj;

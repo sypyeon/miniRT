@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/26 17:56:58 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/26 21:27:02 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define RT_MINIRT_H
 
 # define KEY_PRESS		2
-# define KEY_RELEASE	3
 # define ON_DESTROY		17
 
 # define KEY_ESC		65307

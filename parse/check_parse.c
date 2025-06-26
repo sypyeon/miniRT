@@ -60,7 +60,7 @@ void	check_parse_data(t_rt_info *info)
 		printf("%s vector.x\t%f\n", id, object->vector.x);
 		printf("%s vector.y\t%f\n", id, object->vector.y);
 		printf("%s vector.z\t%f\n", id, object->vector.z);
-		printf("%s diameter\t%f\n", id, object->diameter);
+		printf("%s radius\t%f\n", id, object->radius);
 		printf("%s height\t%f\n\n", id, object->height);
 		object = object->next;
 	}

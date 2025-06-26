@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/25 22:08:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/26 22:50:37 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid sphere data."));
 	obj->center = rt_set_coordinate(param[1]);
-	obj->diameter = rt_strtod(param[2]);
+	obj->radius = rt_strtod(param[2]) / 2;
+	obj->radius2 = obj->radius * obj->radius;
 	obj->color = rt_set_color(param[3]);
 	return (0);
 }
@@ -41,7 +42,8 @@ int	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
 		return(rt_print_err_msg("invalid cylinder data."));
 	obj->center = rt_set_coordinate(param[1]);
 	obj->vector = rt_set_vector(param[2]);
-	obj->diameter = rt_strtod(param[3]);
+	obj->radius = rt_strtod(param[3]) / 2;
+	obj->radius2 = obj->radius * obj->radius;
 	obj->height = rt_strtod(param[4]);
 	obj->color = rt_set_color(param[5]);
 	return (0);
