@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/25 20:31:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/26 18:03:20 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,19 @@ typedef struct s_rt_info
 
 typedef struct s_data
 {
-	void	*img;
+	void	*ptr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }	t_data;
 
-typedef struct s_mlx
+typedef struct s_mrt
 {
 	void		*mlx;
 	void		*win;
-	t_data		img_data;
+	t_data		img;
 	t_rt_info	info;
-}	t_mlx;
+}	t_mrt;
 
 #endif
