@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/26 22:49:24 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/27 22:01:32 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_ambient
 
 typedef struct  s_camera
 {
-	t_point		orig;
+	t_point		origin;
 	double		viewport_h;
 	double		viewport_w;
 	t_vec		direction;
@@ -49,6 +49,13 @@ typedef struct  s_camera
 	double		focal_len;
 	t_point		left_bottom;
 }	t_camera;
+
+typedef struct  s_canvas
+{
+    int     width;
+    int     height;
+    double  aspect_ratio;
+}	t_canvas;
 
 typedef struct s_light
 {

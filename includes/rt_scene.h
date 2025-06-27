@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_minirt.h                                        :+:      :+:    :+:   */
+/*   rt_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 21:08:32 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/27 21:59:29 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RT_SCENE_H
+# define RT_SCENE_H
 
-#ifndef RT_MINIRT_H
-# define RT_MINIRT_H
-
-# define KEY_PRESS	2
-# define ON_DESTROY	17
-
-# define WIN_WIDTH	1920
-# define WIN_HEIGHT	1080
-
-# include <X11/keysym.h>
+# include "libft.h"
 # include "rt_struct.h"
-# include "rt_parse.h"
-# include "rt_utils.h"
 # include "rt_vec_utils.h"
+
+t_canvas    rt_init_canvas(int  width, int height);
+t_camera    rt_init_camera(t_canvas *canvas, t_point origin);
 
 #endif

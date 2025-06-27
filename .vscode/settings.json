@@ -8,7 +8,10 @@
 		"rt_struct.h": "c",
 		"libft.h": "c",
 		"rt_vec_utils.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"keysymdef.h": "c",
+		"keysym.h": "c",
+		"rt_trace.h": "c"
 	},
 	"C_Cpp.dimInactiveRegions": false
 }

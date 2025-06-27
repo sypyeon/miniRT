@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_minirt.h                                        :+:      :+:    :+:   */
+/*   rt_trace.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 21:08:32 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/27 21:44:48 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/27 22:06:47 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RT_TRACE_H
+# define RT_TRACE_H
 
-#ifndef RT_MINIRT_H
-# define RT_MINIRT_H
-
-# define KEY_PRESS	2
-# define ON_DESTROY	17
-
-# define WIN_WIDTH	1920
-# define WIN_HEIGHT	1080
-
-# include <X11/keysym.h>
+# include "libft.h"
 # include "rt_struct.h"
-# include "rt_parse.h"
-# include "rt_utils.h"
 # include "rt_vec_utils.h"
+
+t_ray	rt_init_ray(t_point orig, t_vec dir);
+t_point	rt_ray_at(t_ray *ray, double t);
+t_ray	rt_ray_primary(t_camera *cam, double u, double v);
+t_color	rt_ray_color(t_ray *r);
 
 #endif
