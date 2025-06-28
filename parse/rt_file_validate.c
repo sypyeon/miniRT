@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/26 22:50:37 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:03 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid sphere data."));
-	obj->center = rt_set_coordinate(param[1]);
+	obj->center = rt_parse_coordinate(param[1]);
 	obj->radius = rt_strtod(param[2]) / 2;
 	obj->radius2 = obj->radius * obj->radius;
-	obj->color = rt_set_color(param[3]);
+	obj->color = rt_parse_color(param[3]);
 	return (0);
 }
 
@@ -30,9 +30,9 @@ bool	rt_set_plane_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid plane data."));
-	obj->center = rt_set_coordinate(param[1]);
-	obj->vector = rt_set_vector(param[2]);
-	obj->color = rt_set_color(param[3]);
+	obj->center = rt_parse_coordinate(param[1]);
+	obj->vector = rt_parse_vector(param[2]);
+	obj->color = rt_parse_color(param[3]);
 	return (0);
 }
 
@@ -40,12 +40,12 @@ int	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 6)
 		return(rt_print_err_msg("invalid cylinder data."));
-	obj->center = rt_set_coordinate(param[1]);
-	obj->vector = rt_set_vector(param[2]);
+	obj->center = rt_parse_coordinate(param[1]);
+	obj->vector = rt_parse_vector(param[2]);
 	obj->radius = rt_strtod(param[3]) / 2;
 	obj->radius2 = obj->radius * obj->radius;
 	obj->height = rt_strtod(param[4]);
-	obj->color = rt_set_color(param[5]);
+	obj->color = rt_parse_color(param[5]);
 	return (0);
 }
 
@@ -77,7 +77,7 @@ int	rt_init_object(t_rt_info *info, int identifier, char **param)
 	while (param[param_count])
 		param_count++;
 	obj->identifier = identifier;
-	obj->center = rt_set_coordinate(param[1]);
+	obj->center = rt_parse_coordinate(param[1]);
 	if (identifier == SPHERE)
 		valid = rt_set_sphere_data(obj, param, param_count);
 	else if (identifier == PLANE)
@@ -98,7 +98,7 @@ int	rt_set_ambient(t_rt_info *info, char **param)
 	if (param_count != 3)
 		return(rt_print_err_msg("invalid ambient data"));
 	info->amb.amb_ratio = rt_strtod(param[1]);
-	info->amb.color = rt_set_color(param[2]);
+	info->amb.color = rt_parse_color(param[2]);
 	return (0);
 }
 
@@ -111,8 +111,9 @@ int	rt_set_camera(t_rt_info *info, char **param)
 		param_count++;
 	if (param_count != 4)
 		return (rt_print_err_msg("invalid camera data"));
-	info->cam.orig = rt_set_coordinate(param[1]);
-	info->cam.direction = rt_set_vector(param[2]);
+	info->cam.origin = rt_parse_coordinate(param[1]);
+	info->cam.direction = rt_parse_vector(param[2]);
+	info->cam.fov = ft_atoi(param[3]);
 	return (0);
 }
 
@@ -125,9 +126,9 @@ int	rt_set_light(t_rt_info *info, char **param)
 		param_count++;
 	if (param_count != 3 && param_count != 4)
 		return (rt_print_err_msg("invalid light data"));
-	info->light.orig = rt_set_coordinate(param[1]);
+	info->light.orig = rt_parse_coordinate(param[1]);
 	info->light.bright = rt_strtod(param[2]);
-	info->light.color = rt_set_color(param[3]);
+	info->light.color = rt_parse_color(param[3]);
 	return (0);
 }
 

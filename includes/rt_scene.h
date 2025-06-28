@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 21:59:29 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 15:57:57 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "rt_struct.h"
-# include "rt_vec_utils.h"
+# include "rt_utils_vector.h"
 
 t_canvas    rt_init_canvas(int  width, int height);
 t_camera    rt_init_camera(t_canvas *canvas, t_point origin);

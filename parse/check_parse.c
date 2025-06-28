@@ -23,9 +23,9 @@ void	check_parse_data(t_rt_info *info)
 	printf("cam direction y:\t%f\n", info->cam.direction.y);
 	printf("cam direction z:\t%f\n", info->cam.direction.z);
 
-	printf("cam origin x:\t%f\n", info->cam.orig.x);
-	printf("cam origin y:\t%f\n", info->cam.orig.y);
-	printf("cam origin z:\t%f\n", info->cam.orig.z);
+	printf("cam origin x:\t%f\n", info->cam.origin.x);
+	printf("cam origin y:\t%f\n", info->cam.origin.y);
+	printf("cam origin z:\t%f\n", info->cam.origin.z);
 
 	printf("cam vertical x:\t%f\n", info->cam.vertical.x);
 	printf("cam vertical y:\t%f\n", info->cam.vertical.y);

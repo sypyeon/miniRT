@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_vec_length.c                                    :+:      :+:    :+:   */
+/*   rt_color_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 04:35:54 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 04:36:10 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/28 16:23:20 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/28 16:23:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_vec_utils.h"
+#include "rt_utils_color.h"
 
 
-double	rt_vec_length_sq(t_vec vec)
+double	rt_color_len_sq(t_color color)
 {
-	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	return (color.r * color.r + color.g * color.g + color.b * color.b);
 }
 
-double	rt_vec_length(t_vec vec)
+double	rt_color_len(t_color color)
 {
-	return (sqrt(rt_vec_length_sq(vec)));
+	return (sqrt(rt_color_len_sq(color)));
 }

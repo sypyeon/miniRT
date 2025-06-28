@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rt_vec_calculate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:37:39 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 04:37:54 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 16:18:19 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_vec_utils.h"
+#include "rt_utils_vector.h"
 
 double	rt_vec_inner(t_vec vec_1, t_vec vec_2)
 {
@@ -29,7 +29,7 @@ t_vec	rt_vec_outer(t_vec vec_1, t_vec vec_2)
 
 t_vec	rt_vec_unit(t_vec vec)
 {
-	double len = rt_vec_length(vec);
+	double len = rt_vec_len(vec);
 	if (len == 0)
 	{
 		printf("Error\n:Devider is 0");// 나중에 수정해야됨.

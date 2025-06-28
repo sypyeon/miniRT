@@ -11,7 +11,10 @@
 		"mlx.h": "c",
 		"keysymdef.h": "c",
 		"keysym.h": "c",
-		"rt_trace.h": "c"
+		"rt_trace.h": "c",
+		"stdlib.h": "c",
+		"rt_utils_color": "c",
+		"rt_utils_color.h": "c"
 	},
 	"C_Cpp.dimInactiveRegions": false
 }

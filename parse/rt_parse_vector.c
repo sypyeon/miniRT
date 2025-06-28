@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_set_vector.c                                    :+:      :+:    :+:   */
+/*   rt_parse_vector.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "rt_parse.h"
 #include "rt_utils.h"
 
-t_point	rt_set_coordinate(char *param)
+t_point	rt_parse_coordinate(char *param)
 {
 	char 	**split;
 	int		split_len;
@@ -34,7 +34,7 @@ t_point	rt_set_coordinate(char *param)
 	return (coordinate);
 }
 
-t_vec	rt_set_vector(char *param)
+t_vec	rt_parse_vector(char *param)
 {
 	char 	**split;
 	int		split_len;
@@ -55,7 +55,7 @@ t_vec	rt_set_vector(char *param)
 	return (vector);
 }
 
-t_color	rt_set_color(char *value)
+t_color	rt_parse_color(char *value)
 {
 	char 	**split;
 	int		split_len;

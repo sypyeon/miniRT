@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:44:48 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 22:06:47 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 16:26:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "libft.h"
 # include "rt_struct.h"
-# include "rt_vec_utils.h"
+# include "rt_utils_color.h"
+# include "rt_utils_vector.h"
 
 t_ray	rt_init_ray(t_point orig, t_vec dir);
 t_point	rt_ray_at(t_ray *ray, double t);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_set_vec.c                                       :+:      :+:    :+:   */
+/*   rt_vec_set.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 00:57:08 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 04:38:33 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 16:24:17 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_utils.h"
+#include "rt_utils_vector.h"
 
 void	rt_set_vec(t_vec *vec, double x, double y, double z)
 {

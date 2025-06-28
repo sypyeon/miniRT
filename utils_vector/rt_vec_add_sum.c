@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_vec_plus_minus.c                                :+:      :+:    :+:   */
+/*   rt_vec_add_sum.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:32:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 04:33:11 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 16:05:17 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_vec_utils.h"
+#include "rt_utils_vector.h"
 
 
 t_vec	rt_vec_plus_vec(t_vec vec_1, t_vec vec_2)

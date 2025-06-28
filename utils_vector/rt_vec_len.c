@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_minirt.h                                        :+:      :+:    :+:   */
+/*   rt_vec_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 16:58:56 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/03 04:35:54 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/28 16:05:50 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rt_utils_vector.h"
 
-#ifndef RT_MINIRT_H
-# define RT_MINIRT_H
 
-# define KEY_PRESS	2
-# define ON_DESTROY	17
+double	rt_vec_len_sq(t_vec vec)
+{
+	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+}
 
-# define WIN_WIDTH	1920
-# define WIN_HEIGHT	1080
-
-# include <X11/keysym.h>
-# include "rt_scene.h"
-# include "rt_trace.h"
-# include "rt_struct.h"
-# include "rt_parse.h"
-# include "rt_utils.h"
-# include "rt_utils_vector.h"
-# include "rt_utils_color.h"
-
-#endif
+double	rt_vec_len(t_vec vec)
+{
+	return (sqrt(rt_vec_len_sq(vec)));
+}

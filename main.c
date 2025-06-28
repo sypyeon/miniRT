@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 21:09:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 17:44:18 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,54 @@
 
 void	check_parse_data(t_rt_info *info);
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {
 	return (*(int *)(unsigned char [4]){b, g, r, t});
 }
 
+unsigned int	rt_convert_color(t_color color)
+{
+	unsigned int	converted;
+
+	converted = create_trgb(0, (int)(255.999 * color.r),\
+							(int)(255.999 * color.g), (int)(255.999 * color.b));
+	return (converted);
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, t_color color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = rt_convert_color(color);
+}
+
 void	rt_mrt_drawing(t_mrt *mrt)
 {
-	int     i;
-    int     j;
-    double  r;
-    double  g;
-    double  b;
-	int		color;
+	int     	i;
+    int     	j;
+    double  	u;
+    double  	v;
+	t_color		pixel_color;
+	t_canvas	canvas;
+	t_ray		ray;
 
-	mrt->img.ptr = mlx_new_image(mrt->mlx, WIN_WIDTH, WIN_HEIGHT);
+	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
+	mrt->info.cam = rt_init_camera(&canvas, mrt->info.cam.origin);
+	mrt->img.ptr = mlx_new_image(mrt->mlx, canvas.width, canvas.height);
 	mrt->img.addr = mlx_get_data_addr(mrt->img.ptr, &mrt->img.bits_per_pixel,
 								&mrt->img.line_length, &mrt->img.endian);
-    j = WIN_HEIGHT - 1;
+    j = canvas.height - 1;
     while (j >= 0)
     {
         i = 0;
-        while (i < WIN_WIDTH)
+        while (i < canvas.width)
         {
-            r = (double)i / (WIN_WIDTH - 1);
-            g = (double)j / (WIN_HEIGHT - 1);
-            b = 0.25;
-			color = create_trgb(0, 155, (int)(255.999 * g), 10);
-			my_mlx_pixel_put(&mrt->img, i, j, color);
+            u = (double)i / (canvas.width - 1);
+            v = (double)j / (canvas.height - 1);
+			ray = rt_ray_primary(&mrt->info.cam, u, v);
+			pixel_color = rt_ray_color(&ray);
+			my_mlx_pixel_put(&mrt->img, i, j, pixel_color);
         ++i;
         }
     --j;

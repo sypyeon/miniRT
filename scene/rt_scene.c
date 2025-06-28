@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 22:00:11 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 22:05:22 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 15:49:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_camera    rt_init_camera(t_canvas *canvas, t_point origin)
     cam.focal_len = focal_len;
     cam.horizontal = rt_init_vec(cam.viewport_w, 0, 0);
     cam.vertical = rt_init_vec(0, cam.viewport_h, 0);
-    cam.left_bottom = rt_vec_minus_vec(rt_vec_minus_vec(rt_vec_minus_vec(cam.origin, rt_vec_divide(cam.horizontal, 2)),
-                        rt_vec_divide(cam.vertical, 2)), rt_init_vec(0, 0, focal_len));
+    cam.left_bottom = rt_vec_minus_vec(rt_vec_minus_vec(rt_vec_minus_vec(cam.origin, rt_vec_div(cam.horizontal, 2)),
+                        rt_vec_div(cam.vertical, 2)), rt_init_vec(0, 0, focal_len));
     return (cam);
 }

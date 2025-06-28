@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/27 22:01:32 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 17:42:14 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct  s_camera
 	t_vec		vertical;
 	double		focal_len;
 	t_point		left_bottom;
+	int			fov;
 }	t_camera;
 
 typedef struct  s_canvas

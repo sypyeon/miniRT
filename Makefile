@@ -8,21 +8,38 @@ OBJS_DIR	=	./obj
 OBJS		=	$(SOURCES_OBJ)	\
 				$(PARSE_OBJ)	\
 				$(UTILS_OBJ)	\
-				$(V_UTIL_OBJ)
+				$(C_UTIL_OBJ)	\
+				$(V_UTIL_OBJ)	\
+				$(SCENE_OBJ)	\
+				$(TRACE_OBJ)
 
 SOURCES		= 	main.c
 SOURCES_OBJ =	$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
 
 PARSE_DIR	=	./parse
-PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_set_vector.c		\
+PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c		\
 				check_parse.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
-V_UTIL_DIR	=	./vector_utils
-V_UTIL_SRC	=	rt_min_vec.c	rt_set_vec.c	rt_vec_calculate.c			\
-				rt_vec_init.c	rt_vec_length.c	rt_vec_multiply_divide.c	\
-				rt_vec_plus_minus.c
+SCENE_DIR	=	./scene
+SCENE_SRC	=	rt_scene.c
+SCENE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(SCENE_SRC:.c=.o))
+
+TRACE_DIR	=	./trace
+TRACE_SRC	=	rt_ray.c	rt_hit_sphere.c
+TRACE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(TRACE_SRC:.c=.o))
+
+V_UTIL_DIR	=	./utils_vector
+V_UTIL_SRC	=	rt_vec_add_sum.c	rt_vec_calculate.c	rt_vec_init.c		\
+				rt_vec_len.c		rt_vec_min.c		rt_vec_mult_div.c	\
+				rt_vec_set.c
 V_UTIL_OBJ	=	$(addprefix $(OBJS_DIR)/, $(V_UTIL_SRC:.c=.o))
+
+C_UTIL_DIR	=	./utils_color
+C_UTIL_SRC	=	rt_color_add_sum.c	rt_color_calculate.c	rt_color_init.c	\
+				rt_color_len.c		rt_color_min.c			rt_color_mult_div.c\
+				rt_color_set.c
+C_UTIL_OBJ	=	$(addprefix $(OBJS_DIR)/, $(C_UTIL_SRC:.c=.o))
 
 UTILS_DIR	=	./utils
 UTILS_SRC	=	rt_err_msg.c		rt_free_utils.c		rt_strcmp.c			\
@@ -35,7 +52,8 @@ MLX			=	$(MLXDIR)/libmlx.a
 LIBFTDIR	=	./libft
 LIBFT		=	$(LIBFTDIR)/libft.a
 
-vpath %.c	$(PARSE_DIR) $(UTILS_DIR) $(V_UTIL_DIR)
+vpath %.c	$(PARSE_DIR) $(UTILS_DIR) $(V_UTIL_DIR) $(SCENE_DIR) $(TRACE_DIR) \
+			$(C_UTIL_DIR)
 
 all : $(NAME)
 
