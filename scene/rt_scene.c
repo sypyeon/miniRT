@@ -6,11 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 22:00:11 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 15:49:24 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 19:55:56 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_scene.h"
+#include <math.h>
 
 t_canvas    rt_init_canvas(int  width, int height)
 {
@@ -22,17 +23,17 @@ t_canvas    rt_init_canvas(int  width, int height)
     return (canvas);
 }
 
-t_camera    rt_init_camera(t_canvas *canvas, t_point origin)
+t_camera    rt_init_camera(t_canvas *canvas, t_point origin, double fov)
 {
 	t_camera    cam;
     double      focal_len;
-    double      viewport_height;
+    double      fov_rad;
 
-    viewport_height = 2.0;
     focal_len = 1.0;
     cam.origin = origin;
-    cam.viewport_h = viewport_height;
-    cam.viewport_w = viewport_height * canvas->aspect_ratio;
+    fov_rad = fov * 3.141592 / 180.0;
+    cam.viewport_h = 2.0 * tan(fov_rad / 2.0) * focal_len;
+    cam.viewport_w = cam.viewport_h * canvas->aspect_ratio;
     cam.focal_len = focal_len;
     cam.horizontal = rt_init_vec(cam.viewport_w, 0, 0);
     cam.vertical = rt_init_vec(0, cam.viewport_h, 0);

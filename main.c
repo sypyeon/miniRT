@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 17:44:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 19:57:45 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ unsigned int	rt_convert_color(t_color color)
 	unsigned int	converted;
 
 	converted = create_trgb(0, (int)(255.999 * color.r),\
-							(int)(255.999 * color.g), (int)(255.999 * color.b));
+							(int)(255.999 * color.g),	\
+							(int)(255.999 * color.b));
 	return (converted);
 }
 
@@ -46,9 +47,10 @@ void	rt_mrt_drawing(t_mrt *mrt)
 	t_color		pixel_color;
 	t_canvas	canvas;
 	t_ray		ray;
+	t_obj		*obj = mrt->info.obj.head;
 
 	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
-	mrt->info.cam = rt_init_camera(&canvas, mrt->info.cam.origin);
+	mrt->info.cam = rt_init_camera(&canvas, mrt->info.cam.origin, mrt->info.cam.fov);
 	mrt->img.ptr = mlx_new_image(mrt->mlx, canvas.width, canvas.height);
 	mrt->img.addr = mlx_get_data_addr(mrt->img.ptr, &mrt->img.bits_per_pixel,
 								&mrt->img.line_length, &mrt->img.endian);
@@ -61,7 +63,7 @@ void	rt_mrt_drawing(t_mrt *mrt)
             u = (double)i / (canvas.width - 1);
             v = (double)j / (canvas.height - 1);
 			ray = rt_ray_primary(&mrt->info.cam, u, v);
-			pixel_color = rt_ray_color(&ray);
+			pixel_color = rt_ray_color(&ray, obj);
 			my_mlx_pixel_put(&mrt->img, i, j, pixel_color);
         ++i;
         }

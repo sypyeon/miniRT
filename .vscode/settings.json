@@ -14,7 +14,9 @@
 		"rt_trace.h": "c",
 		"stdlib.h": "c",
 		"rt_utils_color": "c",
-		"rt_utils_color.h": "c"
+		"rt_utils_color.h": "c",
+		"rt_utils_vector.h": "c",
+		"rt_scene.h": "c"
 	},
 	"C_Cpp.dimInactiveRegions": false
 }

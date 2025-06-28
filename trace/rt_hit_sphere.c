@@ -6,14 +6,14 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:39:56 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 16:43:44 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 19:08:38 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_trace.h"
 #include "rt_utils_vector.h"
 
-bool      hit_sphere(t_obj *sp, t_ray *ray)
+bool	rt_hit_sphere(t_obj *sp, t_ray *ray)
 {
 	t_vec	oc; //방향벡터로 나타낸 구의 중심.
 	//a, b, c는 각각 t에 관한 2차 방정식의 계수
