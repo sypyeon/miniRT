@@ -46,6 +46,10 @@ UTILS_SRC	=	rt_err_msg.c		rt_free_utils.c		rt_strcmp.c			\
 				rt_tab_to_space.c	rt_strtod.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
+KEYBIND_DIR	=	./keybind
+KEYBIND_SRC	=	rt_identify_keycode.c	rt_keybind.c
+KEYBIND_OBJ	=	$(addprefix $(OBJS_DIR)/, $(KEYBIND_SRC:.c=.o))
+
 MLXDIR		=	./minilibx-linux
 MLX			=	$(MLXDIR)/libmlx.a
 

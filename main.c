@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 19:57:45 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 22:03:48 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,36 @@ int	close_mrt(t_mrt *mrt)
 	return (0);
 }
 
+bool	rt_rotate_keycodes(int keycode)
+{
+	return (keycode == XK_e || keycode == XK_r || keycode == XK_d	\
+			|| keycode == XK_f || keycode == XK_c || keycode == XK_v);
+}
+
+bool	rt_rotate_keycodes(int keycode)
+{
+	return (keycode == XK_e || keycode == XK_r || keycode == XK_d	\
+			|| keycode == XK_f || keycode == XK_c || keycode == XK_v);
+}
+
+bool	rt_rotate_keycodes(int keycode)
+{
+	return (keycode == XK_e || keycode == XK_r || keycode == XK_d	\
+			|| keycode == XK_f || keycode == XK_c || keycode == XK_v);
+}
+
 int	rt_keybind(int keycode, t_mrt *mrt)
 {
 	if (keycode == XK_Escape)
 		close_mrt(mrt);
+	if (rt_rotate_keycodes(keycode))
+		rt_cam_rotate();
+	if (rt_rotate_keycodes(keycode))
+		rt_cam_rotate();
+	if (rt_rotate_keycodes(keycode))
+		rt_cam_rotate();
+	if (rt_rotate_keycodes(keycode))
+		rt_cam_rotate();
 	return (0);
 }
 

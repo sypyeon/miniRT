@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_utils.h                                         :+:      :+:    :+:   */
+/*   rt_keybind.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/0 00:51:9 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/0 00:55:59 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/06/28 22:06:34 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/06/28 22:46:25 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_UTILS_H
-# define RT_UTILS_H
+#ifndef RT_KEYBIND_H
+# define RT_KEYBIND_H
 
-# include <unistd.h>
-# include <stdlib.h>
+# define CAMERA	1
+# define LIGHT	2
+# define OBJECT	3
+
+# include <X11/keysym.h>
 # include "rt_struct.h"
 
-void	rt_tab_to_space(char *str);
-int		rt_strcmp(const char *str, const char *cmp);
-
-int		rt_print_err_msg(const char *msg);
-
-void	rt_free_split(char **split);
-void	rt_free_obj(t_rt_info *info);
+bool	rt_rotate_keycodes(int keycode);
+bool	rt_moving_keycodes(int keycode);
+bool	rt_size_control_keycodes(int keycode);
+bool	rt_select_keycodes(int keycode);
 
 #endif
