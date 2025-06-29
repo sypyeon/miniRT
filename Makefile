@@ -11,13 +11,14 @@ OBJS		=	$(SOURCES_OBJ)	\
 				$(C_UTIL_OBJ)	\
 				$(V_UTIL_OBJ)	\
 				$(SCENE_OBJ)	\
+				$(KEYBIND_OBJ)	\
 				$(TRACE_OBJ)
 
 SOURCES		= 	main.c
 SOURCES_OBJ =	$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
 
 PARSE_DIR	=	./parse
-PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c		\
+PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c	\
 				check_parse.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
@@ -57,7 +58,7 @@ LIBFTDIR	=	./libft
 LIBFT		=	$(LIBFTDIR)/libft.a
 
 vpath %.c	$(PARSE_DIR) $(UTILS_DIR) $(V_UTIL_DIR) $(SCENE_DIR) $(TRACE_DIR) \
-			$(C_UTIL_DIR)
+			$(C_UTIL_DIR) $(KEYBIND_DIR)
 
 all : $(NAME)
 

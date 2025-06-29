@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 19:54:17 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/29 21:39:01 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include "rt_utils_vector.h"
 
 t_canvas    rt_init_canvas(int  width, int height);
-t_camera    rt_init_camera(t_canvas *canvas, t_point origin, double fov);
+void    rt_init_camera(t_canvas *canvas, t_point orig, double fov, t_camera *cam);
 
 #endif

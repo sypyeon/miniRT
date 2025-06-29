@@ -17,7 +17,8 @@
 		"rt_utils_color.h": "c",
 		"rt_utils_vector.h": "c",
 		"rt_scene.h": "c",
-		"rt_keybind.h": "c"
+		"rt_keybind.h": "c",
+		"math.h": "c"
 	},
 	"C_Cpp.dimInactiveRegions": false
 }
