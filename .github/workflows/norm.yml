@@ -1,0 +1,13 @@
+on:
+  push:
+    branches: [main]
+
+jobs:
+  check-norminette:
+    name: Norminette
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: 42School/norminette@3.3.59
+        # with:
+        #   args: '-RCheckForbiddenSourceHeader'
