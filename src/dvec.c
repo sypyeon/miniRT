@@ -6,12 +6,11 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 03:46:21 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/01 07:28:35 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/01 07:32:24 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-#include <unistd.h>
 
 void	_push_back(t_list **dyn, t_dvec *_Nonnull vec, const double value)
 {
