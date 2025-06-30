@@ -76,7 +76,7 @@ $(LIBFT) :
 	@make -C $(LIBFTDIR) all
 
 clean :
-	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 	@make -C $(MLXDIR) clean
 	@make -C $(LIBFTDIR) clean
 

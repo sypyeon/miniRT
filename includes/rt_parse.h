@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 15:45:45 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:23:02 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define PLANE		2
 # define CYLINDER	3
 
-# include "libft.h"
-# include "rt_struct.h"
+# include "rt_utils.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

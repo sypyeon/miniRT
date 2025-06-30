@@ -6,12 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:03 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:30:00 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_parse.h"
-#include "rt_utils.h"
+#include "rt_struct.h"
 #include "libft.h"
 #include <fcntl.h>
  

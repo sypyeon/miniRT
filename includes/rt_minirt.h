@@ -6,10 +6,9 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 21:44:44 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:16:41 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef RT_MINIRT_H
 # define RT_MINIRT_H

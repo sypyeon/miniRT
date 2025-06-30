@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "rt_parse.h"
-#include "rt_utils.h"
+#include "rt_struct.h"
+#include "libft.h"
 
 t_point	rt_parse_coordinate(char *param)
 {
