@@ -6,21 +6,21 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 03:46:21 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/01 06:52:53 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/01 07:28:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 #include <unistd.h>
 
-void	_push_back(t_list **dyn, t_dvec *vec, const double value)
+void	_push_back(t_list **dyn, t_dvec *_Nonnull vec, const double value)
 {
 	if (vec->len == vec->cap)
 		_vecalloc(dyn, vec);
 	vec->ptr[vec->len++] = value;
 }
 
-void	_push_front(t_list **dyn, t_dvec *vec, const double value)
+void	_push_front(t_list **dyn, t_dvec *_Nonnull vec, const double value)
 {
 	double	*newp;
 	double	*temp;
@@ -43,7 +43,7 @@ void	_push_front(t_list **dyn, t_dvec *vec, const double value)
 	vec->ptr = newp;
 }
 
-double	*_Nullable	_pop_back(t_list **dyn, t_dvec *vec)
+double	*_Nullable	_pop_back(t_list **dyn, t_dvec *_Nullable vec)
 {
 	double	*res;
 
