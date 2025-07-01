@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:33:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 05:41:25 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 07:00:14 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_dmatrix
 	size_t				cap;
 	t_dvec *_Nullable	ptr;
 }	t_dmatrix;
+
+typedef struct s_ray
+{
+	t_dmatrix	orig;
+	t_dmatrix	dir;
+}	t_ray;
 
 void				_push_back(t_list *_Nullable *_Nonnull dyn,
 						t_dvec *_Nonnull vec, const double value);
@@ -95,5 +101,14 @@ t_dmatrix	*_Nullable	_matsub(t_list *_Nullable *_Nonnull dyn,
 						const t_dmatrix *_Nonnull a,
 						const t_dmatrix *_Nonnull b);
 void				matscale(const double k, t_dmatrix *_Nonnull mat);
+double	*_Nullable		norm(t_list *_Nullable *_Nonnull dyn,
+						const t_dmatrix *_Nonnull mat);
+t_dmatrix	*_Nullable	_matunit(t_list *_Nullable *_Nonnull dyn,
+						const t_dmatrix *_Nonnull mat);
+
+t_ray	*_Nullable		ray(t_list *_Nullable *_Nonnull dyn,
+						t_dmatrix *_Nonnull o, t_dmatrix *_Nonnull d);
+t_dmatrix	*_Nullable	ray_at(t_list *_Nullable *_Nonnull dyn,
+						t_ray *_Nonnull ray, const double t);
 
 #endif
