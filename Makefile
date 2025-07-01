@@ -8,7 +8,8 @@ BFLAGS := -Lminilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux \
 
 NAME := miniRT
 
-SRCS := src/main.c src/dvec.c src/dvec2.c
+SRCS := src/main.c src/dvec.c src/dvec2.c src/dmatrix.c src/dmatrix2.c \
+	src/dmatrix3.c src/dmatrix4.c
 
 OBJS := $(patsubst src/%.c,build/%.o,$(SRCS))
 
