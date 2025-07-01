@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 22:41:57 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 01:07:58 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 01:40:03 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,23 @@ t_dmatrix	*_Nullable	_rotate(t_list **dyn, double angx, double angy,
 t_dmatrix	*_Nullable	_get_xrot(t_list **dyn, double angle)
 {
 	t_dmatrix	*rot;
+	t_dmatrix	*temp;
+	t_dvec		*tempv;
 
 	rot = __3d_point_col(dyn, SCALE, 0, 0);
 	if (rot == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, 0, SCALE * cos(angle), SCALE * sin(angle))
-		== NULL || _mat2vec(dyn, __3d_point_col(dyn, 0, SCALE * cos(angle),
-				SCALE * sin(angle))) == NULL || !_add_col(dyn,
-			*_mat2vec(dyn, __3d_point_col(dyn, 0, SCALE * cos(angle),
-					SCALE * sin(angle))), rot))
+	temp = __3d_point_col(dyn, 0, SCALE * cos(angle), SCALE * sin(angle));
+	if (temp == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, 0, -SCALE * sin(angle), SCALE * cos(angle))
-		== NULL || _mat2vec(dyn, __3d_point_col(dyn, 0, -SCALE * sin(angle),
-				SCALE * cos(angle))) == NULL || !_add_col(dyn,
-			*_mat2vec(dyn, __3d_point_col(dyn, 0, -SCALE * sin(angle),
-					SCALE * cos(angle))), rot))
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
+		return (NULL);
+	temp = __3d_point_col(dyn, 0, -SCALE * sin(angle), SCALE * cos(angle));
+	if (temp == NULL)
+		return (NULL);
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
 		return (NULL);
 	return (rot);
 }
@@ -76,20 +78,23 @@ t_dmatrix	*_Nullable	_get_xrot(t_list **dyn, double angle)
 t_dmatrix	*_Nullable	_get_yrot(t_list **dyn, double angle)
 {
 	t_dmatrix	*rot;
+	t_dmatrix	*temp;
+	t_dvec		*tempv;
 
 	rot = __3d_point_col(dyn, SCALE * cos(angle), 0, -SCALE * sin(angle));
 	if (rot == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, 0, SCALE, 0) == NULL
-		|| _mat2vec(dyn, __3d_point_col(dyn, 0, SCALE, 0)) == NULL
-		|| !_add_col(dyn, *_mat2vec(dyn, __3d_point_col(dyn, 0, SCALE, 0)),
-			rot))
+	temp = __3d_point_col(dyn, 0, SCALE, 0);
+	if (temp == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, SCALE * sin(angle), 0, SCALE * cos(angle))
-		== NULL || _mat2vec(dyn, __3d_point_col(dyn, SCALE * sin(angle), 0,
-				SCALE * cos(angle))) == NULL
-		|| !_add_col(dyn, *_mat2vec(dyn, __3d_point_col(dyn, SCALE * sin(angle),
-					0, SCALE * cos(angle))), rot))
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
+		return (NULL);
+	temp = __3d_point_col(dyn, SCALE * sin(angle), 0, SCALE * cos(angle));
+	if (temp == NULL)
+		return (NULL);
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
 		return (NULL);
 	return (rot);
 }
@@ -97,20 +102,23 @@ t_dmatrix	*_Nullable	_get_yrot(t_list **dyn, double angle)
 t_dmatrix	*_Nullable	_get_zrot(t_list **dyn, double angle)
 {
 	t_dmatrix	*rot;
+	t_dmatrix	*temp;
+	t_dvec		*tempv;
 
 	rot = __3d_point_col(dyn, SCALE * cos(angle), SCALE * sin(angle), 0);
 	if (rot == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, -SCALE * sin(angle), SCALE * cos(angle), 0) == NULL
-		|| _mat2vec(dyn, __3d_point_col(dyn, -SCALE * sin(angle),
-				SCALE * cos(angle), 0)) == NULL
-		|| !_add_col(dyn, *_mat2vec(dyn, __3d_point_col(dyn,
-					-SCALE * sin(angle), SCALE * cos(angle), 0)), rot))
+	temp = __3d_point_col(dyn, -SCALE * sin(angle), SCALE * cos(angle), 0);
+	if (temp == NULL)
 		return (NULL);
-	if (__3d_point_col(dyn, 0, 0, SCALE) == NULL
-		|| _mat2vec(dyn, __3d_point_col(dyn, 0, 0, SCALE)) == NULL
-		|| !_add_col(dyn, *_mat2vec(dyn, __3d_point_col(dyn, 0, 0, SCALE)),
-			rot))
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
+		return (NULL);
+	temp = __3d_point_col(dyn, 0, 0, SCALE);
+	if (temp == NULL)
+		return (NULL);
+	tempv = _mat2vec(dyn, temp);
+	if (tempv == NULL || !_add_col(dyn, *tempv, rot))
 		return (NULL);
 	return (rot);
 }
