@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:33:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 01:22:25 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 05:41:25 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ t_dvec	*_Nullable		_veccpy(t_list *_Nullable *_Nonnull dyn,
 						const t_dvec v);
 _Bool				_velem(const double c, const t_dvec v);
 int					_veccmp(const t_dvec v1, const t_dvec v2);
+t_dvec	*_Nullable		vecadd(t_list *_Nullable *_Nonnull dyn,
+						const t_dvec *_Nonnull a, const t_dvec *_Nonnull b);
+t_dvec	*_Nullable		vecsub(t_list *_Nullable *_Nonnull dyn,
+						const t_dvec *_Nonnull a, const t_dvec *_Nonnull b);
+void				vecscale(const double k, t_dvec *_Nonnull v);
 
 void				_matalloc(t_list *_Nullable *_Nonnull dyn,
 						t_dmatrix *_Nonnull mat);
@@ -50,33 +55,45 @@ _Bool				_add_row(t_list *_Nullable *_Nonnull dyn, const t_dvec row,
 _Bool				_add_col(t_list *_Nullable *_Nonnull dyn, const t_dvec col,
 						t_dmatrix *_Nonnull mat);
 t_dmatrix	*_Nullable	_matmul(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull a, t_dmatrix *_Nonnull b);
+						const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b);
 t_dmatrix	*_Nullable	_matmul2(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull c, t_dmatrix *_Nonnull a,
-						t_dmatrix *_Nonnull b);
+						t_dmatrix *_Nonnull c, const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b);
 double	*_Nullable		_dot_prod(t_list *_Nullable *_Nonnull dyn,
-						const t_dvec row, t_dmatrix *_Nonnull mat, size_t col);
-t_dmatrix	*_Nullable	_rotate(t_list *_Nullable *_Nonnull dyn, double angx,
-						double angy, t_dmatrix *_Nonnull mat);
-t_dmatrix	*_Nullable	_rotate2(t_list *_Nullable *_Nonnull dyn, double angz,
-						t_dmatrix *_Nonnull mat);
+						const t_dvec row, const t_dmatrix *_Nonnull mat,
+						const size_t col);
+t_dmatrix	*_Nullable	_rotate(t_list *_Nullable *_Nonnull dyn,
+						const double angx, const double angy,
+						const t_dmatrix *_Nonnull mat);
+t_dmatrix	*_Nullable	_rotate2(t_list *_Nullable *_Nonnull dyn,
+						const double angz,
+						const t_dmatrix *_Nonnull mat);
 t_dmatrix	*_Nullable	_get_xrot(t_list *_Nullable *_Nonnull dyn,
-						double angle);
+						const double angle);
 t_dmatrix	*_Nullable	_get_yrot(t_list *_Nullable *_Nonnull dyn,
-						double angle);
+						const double angle);
 t_dmatrix	*_Nullable	_get_zrot(t_list *_Nullable *_Nonnull dyn,
-						double angle);
+						const double angle);
 t_dmatrix	*_Nullable	_ortho_proj(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull mat);
+						const t_dmatrix *_Nonnull mat);
 t_dmatrix	*_Nullable	__3d_point_col(t_list *_Nullable *_Nonnull dyn,
-						double x, double y, double z);
+						const double x, const double y, const double z);
 t_dvec	*_Nullable		_mat2vec(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull mat);
+						const t_dmatrix *_Nonnull mat);
 t_dmatrix	*_Nullable	_transpose(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull mat);
+						const t_dmatrix *_Nonnull mat);
 t_dmatrix	*_Nullable	_append(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull a, t_dmatrix *_Nonnull b);
+						const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b);
 t_dmatrix	*_Nullable	_matcpy(t_list *_Nullable *_Nonnull dyn,
-						t_dmatrix *_Nonnull mat);
+						const t_dmatrix *_Nonnull mat);
+t_dmatrix	*_Nullable	_matadd(t_list *_Nullable *_Nonnull dyn,
+						const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b);
+t_dmatrix	*_Nullable	_matsub(t_list *_Nullable *_Nonnull dyn,
+						const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b);
+void				matscale(const double k, t_dmatrix *_Nonnull mat);
 
 #endif

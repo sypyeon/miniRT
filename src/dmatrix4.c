@@ -6,14 +6,14 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 23:13:38 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/01 23:20:17 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 05:42:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_dmatrix	*_Nullable	_append(t_list **dyn, t_dmatrix *_Nonnull a,
-						t_dmatrix *_Nonnull b)
+t_dmatrix	*_Nullable	_append(t_list **dyn, const t_dmatrix *_Nonnull a,
+						const t_dmatrix *_Nonnull b)
 {
 	size_t		i;
 	t_dmatrix	*res;
@@ -39,7 +39,7 @@ t_dmatrix	*_Nullable	_append(t_list **dyn, t_dmatrix *_Nonnull a,
 	return (_transpose(dyn, res));
 }
 
-t_dmatrix	*_Nullable	_matcpy(t_list **dyn, t_dmatrix *_Nonnull mat)
+t_dmatrix	*_Nullable	_matcpy(t_list **dyn, const t_dmatrix *_Nonnull mat)
 {
 	t_dmatrix	*cpy;
 	t_dvec		*temp;
@@ -65,4 +65,58 @@ t_dmatrix	*_Nullable	_matcpy(t_list **dyn, t_dmatrix *_Nonnull mat)
 		i++;
 	}
 	return (cpy);
+}
+
+t_dmatrix	*_Nullable	_matadd(t_list *_Nullable *_Nonnull dyn,
+	const t_dmatrix *_Nonnull a, const t_dmatrix *_Nonnull b)
+{
+	size_t		i;
+	t_dmatrix	*res;
+	t_dvec		*temp;
+
+	res = (t_dmatrix *)gc_calloc(dyn, 1, sizeof(t_dmatrix));
+	if (a->col != b->col || a->ptr->len != b->ptr->len || res == NULL)
+		return (NULL);
+	i = 0;
+	while (i < a->col)
+	{
+		temp = vecadd(dyn, a->ptr + i, b->ptr + i);
+		if (temp == NULL || !_add_row(dyn, *temp, res))
+			return (NULL);
+		i++;
+	}
+	return (res);
+}
+
+t_dmatrix	*_Nullable	_matsub(t_list *_Nullable *_Nonnull dyn,
+	const t_dmatrix *_Nonnull a, const t_dmatrix *_Nonnull b)
+{
+	size_t		i;
+	t_dmatrix	*res;
+	t_dvec		*temp;
+
+	res = (t_dmatrix *)gc_calloc(dyn, 1, sizeof(t_dmatrix));
+	if (a->col != b->col || a->ptr->len != b->ptr->len || res == NULL)
+		return (NULL);
+	i = 0;
+	while (i < a->col)
+	{
+		temp = vecsub(dyn, a->ptr + i, b->ptr + i);
+		if (temp == NULL || !_add_row(dyn, *temp, res))
+			return (NULL);
+		i++;
+	}
+	return (res);
+}
+
+void	matscale(const double k, t_dmatrix *_Nonnull mat)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < mat->col)
+	{
+		vecscale(k, mat->ptr + i);
+		i++;
+	}
 }

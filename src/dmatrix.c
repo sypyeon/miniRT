@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 20:04:15 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/01 23:22:50 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 03:44:25 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ _Bool	_add_col(t_list **dyn, const t_dvec col, t_dmatrix *_Nonnull mat)
 	return (1);
 }
 
-t_dmatrix	*_Nullable	_matmul(t_list **dyn, t_dmatrix *_Nonnull a,
-								t_dmatrix *_Nonnull b)
+t_dmatrix	*_Nullable	_matmul(t_list **dyn, const t_dmatrix *_Nonnull a,
+								const t_dmatrix *_Nonnull b)
 {
 	t_dmatrix	*c;
 	size_t		i;
@@ -101,7 +101,7 @@ t_dmatrix	*_Nullable	_matmul(t_list **dyn, t_dmatrix *_Nonnull a,
 }
 
 t_dmatrix	*_Nullable	_matmul2(t_list **dyn, t_dmatrix *_Nonnull c,
-	t_dmatrix *_Nonnull a, t_dmatrix *_Nonnull b)
+	const t_dmatrix *_Nonnull a, const t_dmatrix *_Nonnull b)
 {
 	size_t	i;
 	size_t	j;

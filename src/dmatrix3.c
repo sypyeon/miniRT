@@ -6,14 +6,14 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 22:58:24 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 01:09:20 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 03:46:10 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 t_dmatrix	*_Nullable	_rotate2(t_list **dyn, double angz,
-						t_dmatrix *_Nonnull mat)
+						const t_dmatrix *_Nonnull mat)
 {
 	t_dmatrix	*zrot;
 
@@ -23,7 +23,7 @@ t_dmatrix	*_Nullable	_rotate2(t_list **dyn, double angz,
 	return (_matmul(dyn, zrot, mat));
 }
 
-t_dmatrix	*_Nullable	_ortho_proj(t_list **dyn, t_dmatrix *_Nonnull mat)
+t_dmatrix	*_Nullable	_ortho_proj(t_list **dyn, const t_dmatrix *_Nonnull mat)
 {
 	t_dmatrix	*proj;
 
@@ -65,7 +65,7 @@ t_dmatrix	*_Nullable	__3d_point_col(t_list **dyn, double x, double y,
 	return (p);
 }
 
-t_dvec	*_Nullable	_mat2vec(t_list **dyn, t_dmatrix *_Nonnull mat)
+t_dvec	*_Nullable	_mat2vec(t_list **dyn, const t_dmatrix *_Nonnull mat)
 {
 	t_dvec	v;
 	size_t	i;
@@ -84,7 +84,7 @@ t_dvec	*_Nullable	_mat2vec(t_list **dyn, t_dmatrix *_Nonnull mat)
 	return (_veccpy(dyn, v));
 }
 
-t_dmatrix	*_Nullable	_transpose(t_list **dyn, t_dmatrix *_Nonnull mat)
+t_dmatrix	*_Nullable	_transpose(t_list **dyn, const t_dmatrix *_Nonnull mat)
 {
 	t_dmatrix	*t;
 	size_t		i;

@@ -6,14 +6,14 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 22:41:57 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 01:40:03 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/02 03:45:07 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
 double	*_Nullable	_dot_prod(t_list **dyn, const t_dvec row,
-	t_dmatrix *_Nonnull mat, size_t col)
+	const t_dmatrix *_Nonnull mat, size_t col)
 {
 	double	*res;
 	size_t	k;
@@ -33,7 +33,7 @@ double	*_Nullable	_dot_prod(t_list **dyn, const t_dvec row,
 }
 
 t_dmatrix	*_Nullable	_rotate(t_list **dyn, double angx, double angy,
-						t_dmatrix *_Nonnull mat)
+						const t_dmatrix *_Nonnull mat)
 {
 	t_dmatrix	*yrot;
 	t_dmatrix	*xrot;
