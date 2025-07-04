@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:29:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 16:04:19 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:18:13 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_vec	rt_init_vec(double x, double y, double z);
 t_point	rt_init_point(double x, double y, double z);
 t_color	rt_init_color(double r, double g, double b);
 void	rt_set_vec(t_vec *vec, double x, double y, double z);
+
 double	rt_vec_len_sq(t_vec vec);
 double	rt_vec_len(t_vec vec);
 t_vec	rt_vec_plus_vec(t_vec vec, t_vec vec2);

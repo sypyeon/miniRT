@@ -6,12 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 20:58:54 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 22:07:23 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:17:48 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rt_keybind.h"
-
+#include "rt_keybind.h"
 
 bool	rt_rotate_keycodes(int keycode)
 {
