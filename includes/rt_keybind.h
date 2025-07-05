@@ -6,16 +6,20 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 22:06:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 19:23:09 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/05 18:48:41 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_KEYBIND_H
 # define RT_KEYBIND_H
 
-# define CAMERA	1
-# define LIGHT	2
-# define OBJECT	3
+enum e_current
+{
+	CAMERA,
+	AMBIENT,
+	LIGHT,
+	OBJECT
+};
 
 # include <X11/keysym.h>
 # include "mlx.h"

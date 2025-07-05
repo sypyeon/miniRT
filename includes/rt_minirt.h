@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/30 18:16:41 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/05 18:47:49 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 # define WIN_WIDTH	900
 # define WIN_HEIGHT	600
+
+# define WHITE	0xFFFFFF
+# define BLACK	0x000000
 
 # include <X11/keysym.h>
 # include "rt_struct.h"

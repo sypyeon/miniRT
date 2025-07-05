@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 22:00:11 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 23:46:46 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/05 15:31:26 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void rt_init_camera(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
 	t_vec right;
 	double focal_len;
 	double fov_rad;
-	t_vec world_up = rt_init_vec(0, 0, 1);
+	t_vec world_up = rt_init_vec(0, 1, 0);
 
 	focal_len = 1.0;
 	cam->origin = orig;
@@ -39,7 +39,7 @@ void rt_init_camera(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
 	if (fabs(rt_vec_inner(world_up, cam->direction)) > 0.999) // 거의 평행
 	{ 
 		printf("worldupppppppppppppppppppppppppppppppppppppppppp\n");
-		world_up = rt_init_vec(1, 0, 0); // 다른 업 벡터 시도
+		world_up = rt_init_vec(0, -1, 0); // 다른 업 벡터 시도
 	}
 	right = rt_vec_unit(rt_vec_outer(world_up, cam->direction));
 	cam->horizontal = rt_vec_mult(right, cam->viewport_w);

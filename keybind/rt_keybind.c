@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 23:45:59 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/05 19:35:59 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	rt_cam_rotate(t_camera *cam, int keycode)
 {
 	if (keycode == XK_e)
 	{
-		t_vec axis = rt_init_vec(0, 0, 1);
-		double angle = 0.1;
+		t_vec axis = rt_init_vec(1, 0, 0);
+		double angle = 0.01;
 
 		t_vec v = cam->direction;
 		t_vec k = rt_vec_unit(axis);
@@ -28,8 +28,6 @@ void	rt_cam_rotate(t_camera *cam, int keycode)
 		t_vec term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
 
 		cam->direction = rt_vec_unit(rt_vec_plus_vec(rt_vec_plus_vec(term1, term2), term3));
-
-		printf("%lf %lf %lf\n", cam->direction.x, cam->direction.y, cam->direction.z);
 	}
 	// if (keycode == XK_e)
 	// {
@@ -88,6 +86,21 @@ int	rt_keybind(int keycode, t_mrt *mrt)
 		close_mrt(mrt);
 	else if (rt_rotate_keycodes(keycode))
 		rt_cam_rotate(&mrt->info.cam, keycode);
+	else if (rt_moving_keycodes(keycode))
+	{
+		if (keycode == XK_q)
+			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.direction);
+		else if (keycode == XK_w)
+			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.direction);
+		else if (keycode == XK_a)
+			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, rt_vec_unit(rt_vec_outer(mrt->info.cam.direction, mrt->info.cam.horizontal)));
+		else if (keycode == XK_s)
+			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, rt_vec_unit(rt_vec_outer(mrt->info.cam.direction, mrt->info.cam.horizontal)));
+		else if (keycode == XK_z)
+			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.vertical);
+		else if (keycode == XK_x)
+			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.vertical);
+	}
 	// else if (rt_moving_keycodes(keycode))
 	// 	rt_cam_rotate(mrt);
 	// else if (rt_size_control_keycodes(keycode))
