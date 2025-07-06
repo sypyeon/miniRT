@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:41:27 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/01 03:46:02 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/07 04:26:55 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,36 @@
 
 int	main(void)
 {
+	size_t		i;
+	size_t		j;
+	double		u;
+	double		v;
+	t_dmatrix	*color;
+	t_canvas	*canv;
+	t_camera	*cam;
+	t_ray		*ray;
+	t_list		*dyn;
+
+	dyn = NULL;
+	canv = canvas(&dyn, 400, 300);
+	cam = camera(&dyn, canv, __3d_point_col(&dyn, 0.0, 0.0, 0.0));
+	ft_fprintf(STDOUT_FILENO, "P3\n%d %d\n255\n", canv->width, canv->height);
+	j = canv->height - 1;
+	while (1)
+	{
+		i = 0;
+		while (i < canv->width)
+		{
+			u = (double)i / (canv->width - 1);
+			v = (double)j / (canv->height - 1);
+			ray = ray_primary(&dyn, cam, u, v);
+			color = ray_color(&dyn, ray);
+			write_color(color);
+			i++;
+		}
+		if (j == 0)
+			break ;
+		j--;
+	}
 	return (0);
 }

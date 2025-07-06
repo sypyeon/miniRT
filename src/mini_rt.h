@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:33:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/02 07:00:14 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/07 04:07:52 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ typedef struct s_ray
 	t_dmatrix	orig;
 	t_dmatrix	dir;
 }	t_ray;
+
+typedef struct s_camera
+{
+	t_dmatrix	orig;
+	double		viewport_w;
+	double		viewport_h;
+	t_dmatrix	horizontal;
+	t_dmatrix	vertical;
+	double		focal_len;
+	t_dmatrix	left_bottom;
+}	t_camera;
+
+typedef struct s_canvas
+{
+	size_t	width;
+	size_t	height;
+	double	aspect_ratio;
+}	t_canvas;
 
 void				_push_back(t_list *_Nullable *_Nonnull dyn,
 						t_dvec *_Nonnull vec, const double value);
@@ -110,5 +128,14 @@ t_ray	*_Nullable		ray(t_list *_Nullable *_Nonnull dyn,
 						t_dmatrix *_Nonnull o, t_dmatrix *_Nonnull d);
 t_dmatrix	*_Nullable	ray_at(t_list *_Nullable *_Nonnull dyn,
 						t_ray *_Nonnull ray, const double t);
+t_canvas	*_Nullable	canvas(t_list *_Nullable *_Nonnull dyn,
+						size_t width, size_t height);
+t_camera	*_Nullable	camera(t_list *_Nullable *_Nonnull dyn,
+						t_canvas *_Nonnull canvas, t_dmatrix *_Nonnull orig);
+t_ray	*_Nullable		ray_primary(t_list *_Nullable *_Nonnull dyn,
+						t_camera *_Nonnull cam, double u, double v);
+t_dmatrix	*_Nullable	ray_color(t_list *_Nullable *_Nonnull dyn,
+						t_ray *_Nonnull r);
+void				write_color(t_dmatrix *_Nonnull color);
 
 #endif
