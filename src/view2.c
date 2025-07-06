@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 02:54:36 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/07 04:10:27 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/07 06:34:21 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,4 @@ t_dmatrix	*_Nullable	ray_color(t_list *_Nullable *_Nonnull dyn,
 	blue = __3d_point_col(dyn, 0.5, 0.7, 1.0);
 	matscale(t, blue);
 	return (_matadd(dyn, white, blue));
-}
-
-void	write_color(t_dmatrix *_Nonnull color)
-{
-	ft_fprintf(STDOUT_FILENO, "%d %d %d\n", (int)(255.999 * *color->ptr[0].ptr),
-		(int)(255.999 * *color->ptr[1].ptr),
-		(int)(255.999 * *color->ptr[2].ptr));
 }

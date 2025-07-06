@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:33:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/07 04:07:52 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/07 07:10:08 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <fcntl.h>
 # include "../ft_printf/src/ft_printf.h"
 # include "../minilibx-linux/mlx.h"
+# define PIC_WIDTH 1080
+# define PIC_HEIGHT 1080
 
 typedef struct s_dvec
 {
@@ -53,6 +55,15 @@ typedef struct s_canvas
 	size_t	height;
 	double	aspect_ratio;
 }	t_canvas;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}	t_img;
 
 void				_push_back(t_list *_Nullable *_Nonnull dyn,
 						t_dvec *_Nonnull vec, const double value);
@@ -136,6 +147,8 @@ t_ray	*_Nullable		ray_primary(t_list *_Nullable *_Nonnull dyn,
 						t_camera *_Nonnull cam, double u, double v);
 t_dmatrix	*_Nullable	ray_color(t_list *_Nullable *_Nonnull dyn,
 						t_ray *_Nonnull r);
-void				write_color(t_dmatrix *_Nonnull color);
+_Bool				init_img(t_list *_Nullable *_Nonnull dyn,
+						void *_Nonnull mlx, t_img *_Nullable *_Nonnull img);
+void				put_pixel(t_img *_Nonnull img, int x, int y, int color);
 
 #endif
