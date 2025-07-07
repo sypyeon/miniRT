@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 22:45:17 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/07 19:29:18 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct s_color
     double b;
 }	t_color;
 
+typedef struct s_axis
+{
+	t_vec	x;
+	t_vec	y;
+	t_vec	z;
+}	t_axis;
+
 typedef struct s_ambient
 {
 	bool	exist;
@@ -41,6 +48,7 @@ typedef struct s_ambient
 typedef struct  s_camera
 {
 	t_point		origin;
+	t_axis		axis;
 	double		viewport_h;
 	double		viewport_w;
 	t_vec		direction;
@@ -96,6 +104,7 @@ typedef struct s_rt_info
 	t_camera	cam;
 	t_light		light;
 	t_obj_list	obj;
+	t_obj		*current_obj;
 	int			current;
 }	t_rt_info;
 

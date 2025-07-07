@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/05 18:50:03 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/07 18:58:08 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int	rt_mrt_drawing(t_mrt *mrt)
 	t_ray		ray;
 	t_obj		*obj = mrt->info.obj.head;
 
+	printf("%d\n", mrt->info.obj.size);
 	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
 	rt_init_camera(&canvas, mrt->info.cam.origin, mrt->info.cam.fov, &mrt->info.cam);
 	rt_display_info(mrt, mrt->mlx, mrt->win, mrt->info.current);

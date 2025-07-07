@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/30 18:30:00 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/07 19:40:40 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,4 +254,5 @@ void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
 		i++;
 	}
 	rt_free_split(split);
+	info->current_obj = info->obj.head;
 }
