@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:41:27 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/07 08:02:49 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/08 03:09:51 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,48 @@
 
 int	main(void)
 {
-	size_t		i, j;
-	double		u, v;
-	t_dmatrix	*color;
-	t_canvas	*canv;
-	t_camera	*cam;
-	t_ray		*ray;
+	size_t		i;
+	size_t		j;
 	t_list		*dyn;
+	t_rt		*rt;
 
 	dyn = NULL;
-	canv = canvas(&dyn, 100, 100);
-	cam = camera(&dyn, canv, __3d_point_col(&dyn, 0.0, 0.0, 0.0));
-	ft_fprintf(STDOUT_FILENO, "P3\n%d %d\n255\n", canv->width, canv->height);
-	j = canv->height - 1;
-	while (1)
+	rt = rt_new(&dyn, 0.0, 0.0, 0.0);
+	j = 0;
+	while (++j <= rt->canv->height)
 	{
 		i = 0;
-		while (i < canv->width)
+		while (++i <= rt->canv->width)
 		{
-			u = (double)i / (canv->width - 1);
-			v = (double)j / (canv->height - 1);
-			ray = ray_primary(&dyn, cam, u, v);
-			color = ray_color(&dyn, ray);
-			// write_color(color);
-			i++;
+			ft_fprintf(STDOUT_FILENO, "i: %u, j: %u", i, j);
+			put_pixel(rt->img, i - 1, j - 1, ray_color(&dyn, ray_primary(&dyn,
+						rt->cam,
+						(double)(i - 1) / (rt->canv->width - 1),
+						(double)(rt->canv->height - j + 1)
+						/ (rt->canv->height - 1))));
 		}
-		if (j == 0)
-			return (0);
-		j--;
 	}
+	mlx_put_image_to_window(rt->mlx, rt->win, rt->img, 0, 0);
+	mlx_key_hook(rt->win, on_key, rt);
+	mlx_hook(rt->win, 0x21, 0, cleanup, rt);
+	mlx_loop(rt->mlx);
+	return (0);
+}
+
+int	on_key(int keycode, t_rt *_Nonnull rt)
+{
+	(void)rt;
+	ft_fprintf(STDOUT_FILENO, "keycode: %d\n", keycode);
+	return (0);
+}
+
+int	cleanup(t_rt *_Nonnull rt)
+{
+	mlx_destroy_image(rt->mlx, rt->img);
+	mlx_destroy_window(rt->mlx, rt->win);
+	mlx_destroy_display(rt->mlx);
+	free(rt->mlx);
+	gc_free_all(*rt->dyn);
+	exit(0);
 	return (0);
 }

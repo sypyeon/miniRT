@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:33:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/07 07:10:08 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/08 02:36:45 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,22 @@ typedef struct s_canvas
 
 typedef struct s_img
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
+	void *_Nullable	img;
+	char *_Nullable	addr;
+	int				bits_per_pixel;
+	int				line_len;
+	int				endian;
 }	t_img;
+
+typedef struct s_rt
+{
+	void *_Nullable				mlx;
+	void *_Nullable				win;
+	t_img *_Nullable			img;
+	t_list *_Nullable *_Nonnull	dyn;
+	t_canvas *_Nullable			canv;
+	t_camera *_Nullable			cam;
+}	t_rt;
 
 void				_push_back(t_list *_Nullable *_Nonnull dyn,
 						t_dvec *_Nonnull vec, const double value);
@@ -149,6 +159,12 @@ t_dmatrix	*_Nullable	ray_color(t_list *_Nullable *_Nonnull dyn,
 						t_ray *_Nonnull r);
 _Bool				init_img(t_list *_Nullable *_Nonnull dyn,
 						void *_Nonnull mlx, t_img *_Nullable *_Nonnull img);
-void				put_pixel(t_img *_Nonnull img, int x, int y, int color);
+void				put_pixel(t_img *_Nonnull img, int x, int y,
+						t_dmatrix *_Nonnull color);
+t_rt	*_Nullable		rt_new(t_list *_Nullable *_Nonnull dyn,
+						double cam_x, double cam_y, double cam_z);
+
+int					on_key(int keycode, t_rt *_Nonnull rt);
+int					cleanup(t_rt *_Nonnull rt);
 
 #endif
