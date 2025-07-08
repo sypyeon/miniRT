@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 02:41:27 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/08 03:09:51 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:05:40 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 		i = 0;
 		while (++i <= rt->canv->width)
 		{
-			ft_fprintf(STDOUT_FILENO, "i: %u, j: %u", i, j);
+			ft_fprintf(STDOUT_FILENO, "\ri: %4u, j: %4u", i, j);
 			put_pixel(rt->img, i - 1, j - 1, ray_color(&dyn, ray_primary(&dyn,
 						rt->cam,
 						(double)(i - 1) / (rt->canv->width - 1),
