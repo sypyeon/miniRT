@@ -6,68 +6,106 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/07 19:49:32 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/10 21:25:38 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_keybind.h"
 #include "rt_utils_vector.h"
 
+int	rt_mrt_drawing(t_mrt *mrt);
+
 void	rt_cam_rotate(t_camera *cam, int keycode)
 {
-	if (keycode == XK_e)
+	t_vec axis;
+	t_vec v;
+	t_vec k;
+	t_vec term1;
+	t_vec term2;
+	t_vec term3;
+
+	if (keycode == XK_i)
 	{
-		t_vec axis = rt_init_vec(1, 0, 0);
-		double angle = 0.01;
+		axis = cam->axis.x;
+		double angle = 0.05;
 
-		t_vec v = cam->direction;
-		t_vec k = rt_vec_unit(axis);
+		v = cam->direction;
+		k = rt_vec_unit(axis);
 
-		t_vec term1 = rt_vec_mult(v, cos(angle));
-		t_vec term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
-		t_vec term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
 
 		cam->direction = rt_vec_unit(rt_vec_plus_vec(rt_vec_plus_vec(term1, term2), term3));
 	}
-	// if (keycode == XK_e)
-	// {
-	// 	printf("%lf %lf %lf\n", cam->direction.x, cam->direction.y, cam->direction.z);
-	// 	cam->direction = rt_vec_plus_vec(rt_vec_plus_vec(rt_vec_mult(cam->direction, cos(0.1)), rt_vec_mult(rt_vec_outer(rt_init_vec(1, 0, 0), cam->direction), sin(0.1))), rt_vec_mult(rt_vec_mult(rt_init_vec(1, 0, 0), rt_vec_inner(rt_init_vec(1, 0, 0), cam->direction)), (1 - cos(0.1))));
-	// 	printf("%lf %lf %lf\n", cam->direction.x, cam->direction.y, cam->direction.z);
-	// 	printf("rotating\n");
-	// }
-		
-	// if (keycode == XK_r)
-	// 	cam->direction.x -= 0.1;
-	// if (keycode == XK_d)
-	// 	cam->direction.y += 0.1;
-	// if (keycode == XK_f)
-	// 	cam->direction.y -= 0.1;
-	// if (keycode == XK_c)
-	// 	cam->direction.z += 0.1;
-	// if (keycode == XK_v)
-	// 	cam->direction.z -= 0.1;
+	if (keycode == XK_k)
+	{
+		axis = cam->axis.x;
+		double angle = 0.05;
+
+		v = cam->direction;
+		k = rt_vec_unit(axis);
+
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+
+		cam->direction = rt_vec_unit(rt_vec_minus_vec(rt_vec_minus_vec(term1, term2), term3));
+	}
+	if (keycode == XK_j)
+	{
+		axis = cam->axis.y;
+		double angle = 0.05;
+
+		v = cam->direction;
+		k = rt_vec_unit(axis);
+
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+
+		cam->direction = rt_vec_unit(rt_vec_plus_vec(rt_vec_plus_vec(term1, term2), term3));
+	}
+	if (keycode == XK_l)
+	{
+		axis = cam->axis.y;
+		double angle = 0.05;
+
+		v = cam->direction;
+		k = rt_vec_unit(axis);
+
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+
+		cam->direction = rt_vec_unit(rt_vec_minus_vec(rt_vec_minus_vec(term1, term2), term3));
+	}
+	if (keycode == XK_u)
+	{
+		axis = cam->axis.z;
+		double angle = 0.05;
+
+		v = cam->direction;
+		k = rt_vec_unit(axis);
+
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+
+		cam->direction = rt_vec_unit(rt_vec_plus_vec(rt_vec_plus_vec(term1, term2), term3));
+	}
+	if (keycode == XK_o)
+	{
+		axis = cam->axis.z;
+		double angle = 0.05;
+		v = cam->direction;
+		k = rt_vec_unit(axis);
+		term1 = rt_vec_mult(v, cos(angle));
+		term2 = rt_vec_mult(rt_vec_outer(k, v), sin(angle));
+		term3 = rt_vec_mult(k, rt_vec_inner(k, v) * (1 - cos(angle)));
+		cam->direction = rt_vec_unit(rt_vec_minus_vec(rt_vec_minus_vec(term1, term2), term3));
+	}
 }
-
-// void	rt_rotate(t_rt_info info, int keycode)
-// {
-	
-// }
-
-// void	rt_select_control(t_rt_info *info, int keycode)
-// {
-// 	if ()
-// }
-
-// void	rt_move_coordinate()
-// {
-	
-// }
-
-// void	rt_control_size()
-// {
-	
-// }
 
 int	close_mrt(t_mrt *mrt)
 {
@@ -99,33 +137,40 @@ void	rt_current_control(t_mrt *mrt, int keycode)
 	}
 }
 
+void rt_move_coordinate(t_point *origin, t_axis axis, int keycode)
+{
+	if (keycode == XK_w)
+		*origin = rt_vec_plus_vec(*origin, axis.z);
+	else if (keycode == XK_s)
+		*origin = rt_vec_minus_vec(*origin, axis.z);
+	else if (keycode == XK_d)
+		*origin = rt_vec_minus_vec(*origin, axis.x);
+	else if (keycode == XK_a)
+		*origin = rt_vec_plus_vec(*origin, axis.x);
+	else if (keycode == XK_q)
+		*origin = rt_vec_plus_vec(*origin, axis.y);
+	else if (keycode == XK_e)
+		*origin = rt_vec_minus_vec(*origin, axis.y);
+}
+
 int	rt_keybind(int keycode, t_mrt *mrt)
 {
 	rt_current_control(mrt, keycode);
 	if (keycode == XK_Escape)
 		close_mrt(mrt);
-	else if (rt_rotate_keycodes(keycode))
-		rt_cam_rotate(&mrt->info.cam, keycode);
-	else if (rt_moving_keycodes(keycode))
-	{
-		if (keycode == XK_q)
-			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.z);
-		else if (keycode == XK_w)
-			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.z);
-		else if (keycode == XK_a)
-			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.x);
-		else if (keycode == XK_s)
-			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.x);
-		else if (keycode == XK_z)
-			mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.y);
-		else if (keycode == XK_x)
-			mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.y);
-	}
-	// else if (rt_moving_keycodes(keycode))
-	// 	rt_cam_rotate(mrt);
-	// else if (rt_size_control_keycodes(keycode))
-	// 	rt_cam_rotate(mrt);
-	// else if (rt_select_keycodes(keycode))
-	// 	rt_cam_rotate(mrt);
+	rt_cam_rotate(&mrt->info.cam, keycode);
+	rt_move_coordinate(&mrt->info.cam.origin, mrt->info.cam.axis, keycode);
+	// if (keycode == XK_w)
+	// 	mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.z);
+	// else if (keycode == XK_s)
+	// 	mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.z);
+	// else if (keycode == XK_d)
+	// 	mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.x);
+	// else if (keycode == XK_a)
+	// 	mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.x);
+	// else if (keycode == XK_q)
+	// 	mrt->info.cam.origin = rt_vec_plus_vec(mrt->info.cam.origin, mrt->info.cam.axis.y);
+	// else if (keycode == XK_e)
+	// 	mrt->info.cam.origin = rt_vec_minus_vec(mrt->info.cam.origin, mrt->info.cam.axis.y);
 	return (0);
 }

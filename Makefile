@@ -18,8 +18,7 @@ SOURCES		= 	main.c
 SOURCES_OBJ =	$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
 
 PARSE_DIR	=	./parse
-PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c	\
-				check_parse.c
+PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
 SCENE_DIR	=	./scene
