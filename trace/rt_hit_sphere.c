@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:39:56 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/11 02:22:19 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/15 16:04:05 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
 	double  half_b;
 	double  c;
 	double  discriminant; //판별식
-	double  sqrtd;
+	double  sqrt_d;
 	double  root;
 	oc = rt_vec_minus_vec(ray->origin, sp->center);
 	a = rt_vec_len_sq(ray->direction);
@@ -41,12 +41,12 @@ bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
 	discriminant = half_b * half_b - a * c;
 	if (discriminant < 0)
 		return (FALSE);
-	sqrtd = sqrt(discriminant);
+	sqrt_d = sqrt(discriminant);
 	//두 실근(t) 중 tmin과 tmax 사이에 있는 근이 있는지 체크, 작은 근부터 체크.
-	root = (-half_b - sqrtd) / a;
+	root = (-half_b - sqrt_d) / a;
 	if (root < rec->tmin || rec->tmax < root)
 	{
-		root = (-half_b + sqrtd) / a;
+		root = (-half_b + sqrt_d) / a;
 		if (root < rec->tmin || rec->tmax < root)
 			return (FALSE);
 	}
@@ -57,20 +57,32 @@ bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
 	return (TRUE);
 }
 
-// {
-// 	t_vec	oc;
-// 	double	a;
-// 	double	b;
-// 	double	c;
-// 	double	discriminant;
+bool	rt_hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
+{
+	bool	hit_result;
 
-// 	oc = rt_vec_minus_vec(ray->origin, sp->center);
-// 	a = rt_vec_inner(ray->direction, ray->direction);
-// 	b = 2.0 * rt_vec_inner(oc, ray->direction);
-// 	c = rt_vec_inner(oc, oc) - sp->radius2;
-// 	discriminant = b * b - 4 * a * c;
-// 	if (discriminant <= 0)
-// 		return (-1.0);
-// 	else
-// 		return ((-b - sqrt(discriminant)) / (2.0 * a));
-// }
+	hit_result = FALSE;
+	if (obj->identifier == SPHERE)
+		hit_result = rt_hit_sphere(obj, ray, rec); // hit_sphere의 첫번째 인자도 t_sphere *에서 t_obj *로 수정해주자.
+	return (hit_result);
+}
+
+bool	rt_hit(t_obj *obj, t_ray *ray, t_hit_record *rec)
+{
+	bool			hit_anything;
+	t_hit_record	temp_rec;
+
+	temp_rec = *rec; // temp_rec의 tmin, tmax 값 초기화를 위해.
+	hit_anything = FALSE;
+	while (obj)
+	{
+		if (rt_hit_obj(obj, ray, &temp_rec))
+		{
+			hit_anything = TRUE;
+			temp_rec.tmax = temp_rec.t;
+			*rec = temp_rec;
+		}
+		obj = obj->next;
+	}
+	return (hit_anything);
+}

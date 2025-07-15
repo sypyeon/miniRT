@@ -38,7 +38,7 @@ V_UTIL_OBJ	=	$(addprefix $(OBJS_DIR)/, $(V_UTIL_SRC:.c=.o))
 C_UTIL_DIR	=	./utils_color
 C_UTIL_SRC	=	rt_color_add_sum.c	rt_color_calculate.c	rt_color_init.c	\
 				rt_color_len.c		rt_color_min.c			rt_color_mult_div.c\
-				rt_color_set.c
+				rt_color_set.c		rt_vtoc.c
 C_UTIL_OBJ	=	$(addprefix $(OBJS_DIR)/, $(C_UTIL_SRC:.c=.o))
 
 UTILS_DIR	=	./utils
