@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:39:56 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/15 16:04:05 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/15 17:38:22 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	rt_hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	bool	hit_result;
 
 	hit_result = FALSE;
-	if (obj->identifier == SPHERE)
+	if (obj->type == SPHERE)
 		hit_result = rt_hit_sphere(obj, ray, rec); // hit_sphere의 첫번째 인자도 t_sphere *에서 t_obj *로 수정해주자.
 	return (hit_result);
 }

@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/07 19:40:40 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/15 17:37:23 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	rt_obj_add_back(t_rt_info *info, t_obj *obj)
 	}
 }
 
-int	rt_init_object(t_rt_info *info, int identifier, char **param)
+int	rt_init_object(t_rt_info *info, int type, char **param, t_color albedo)
 {
 	int		valid;
 	int		param_count;
@@ -76,14 +76,15 @@ int	rt_init_object(t_rt_info *info, int identifier, char **param)
 		return (rt_print_err_msg("error: failed allocation."));
 	while (param[param_count])
 		param_count++;
-	obj->identifier = identifier;
+	obj->type = type;
 	obj->center = rt_parse_coordinate(param[1]);
-	if (identifier == SPHERE)
+	if (type == SPHERE)
 		valid = rt_set_sphere_data(obj, param, param_count);
-	else if (identifier == PLANE)
+	else if (type == PLANE)
 		valid = rt_set_plane_data(obj, param, param_count);
-	else if (identifier == CYLINDER)
+	else if (type == CYLINDER)
 		valid = rt_set_cylinder_data(obj, param, param_count);
+	obj->albedo = albedo;
 	rt_obj_add_back(info, obj);
 	return (valid);
 }
@@ -155,7 +156,7 @@ bool	rt_split_and_identify_line(char *line, t_rt_info *info)
 	else if (!rt_strcmp(split[0], "cy"))
 		invalid = rt_init_object(info, CYLINDER, split);
 	else
-		invalid = rt_print_err_msg("Unknown identifier.");
+		invalid = rt_print_err_msg("Unknown type.");
 	rt_free_split(split);
 	return (invalid);
 }
