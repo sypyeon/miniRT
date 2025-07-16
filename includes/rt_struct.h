@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/15 18:29:36 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 15:33:06 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef	struct  s_scene
 typedef struct s_canvas
 {
 	int		width;
-	int		height;
+	int		height;obj
 	double	aspect_ratio;
 }	t_canvas;
 
@@ -123,12 +123,14 @@ typedef struct s_obj_list
 
 typedef struct s_rt_info
 {
-	t_ambient	amb;
-	t_camera	cam;
-	t_light		light;
-	t_obj_list	obj;
-	t_obj		*current_obj;
-	int			current;
+	t_hit_record	rec;
+	t_ray			ray;
+	t_ambient		amb;
+	t_camera		cam;
+	t_light			light;
+	t_obj_list		obj_lst;
+	t_obj			*current_obj;
+	int				current;
 }	t_rt_info;
 
 typedef struct s_data

@@ -6,11 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 22:00:11 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/15 18:46:51 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 14:37:31 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_scene.h"
+#include "rt_parse.h"
 #include <math.h>
 
 t_canvas rt_init_canvas(int width, int height)
@@ -69,9 +70,8 @@ t_scene *scene_init(t_obj obj)
     // malloc 할당 실패 시, 실습에서는 return NULL로 해두었지만, 적절한 에러 처리가 필요하다.
     if(!(scene = (t_scene *)malloc(sizeof(t_scene))))
         return (NULL);
-    scene->canvas = canvas(400, 300);
-    scene->camera = camera(&scene->canvas, point3(0, 0, 0));
-    lights = object(LIGHT_POINT, light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
+    scene->canvas = rt_init_canvas(400, 300);
+    scene->camera = rt_init_camera(&scene->canvas, rt_init_point(0, 0, 0));
     scene->light = lights;
     ka = 0.1; // 8.4 에서 설명
     scene->ambient = vmult(color(1,1,1), ka); // 8.4 에서 설명

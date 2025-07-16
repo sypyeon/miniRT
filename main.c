@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:08:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/10 20:35:30 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 14:40:26 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ int	rt_mrt_drawing(t_mrt *mrt)
     double  	u;
     double  	v;
 	t_canvas	canvas;
-	t_ray		ray;
 	t_obj		*obj = mrt->info.obj.head;
 
 	mrt->info.cam.axis = rt_init_axis(mrt->info.cam.direction);
@@ -167,7 +166,7 @@ int	rt_mrt_drawing(t_mrt *mrt)
 		{
 			u = (double)i / (canvas.width - 1);
 			v = (double)j / (canvas.height - 1);
-			ray = rt_ray_primary(&mrt->info.cam, u, v);
+			mrt->info.ray = rt_ray_primary(&mrt->info.cam, u, v);
 			my_mlx_pixel_put(&mrt->img, i, j, rt_ray_color(&ray, obj));
 		++i;
 		}

@@ -6,12 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/15 17:37:23 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 14:20:35 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_parse.h"
 #include "rt_struct.h"
+#include "rt_utils_color.h"
 #include "libft.h"
 #include <fcntl.h>
  
@@ -150,11 +151,11 @@ bool	rt_split_and_identify_line(char *line, t_rt_info *info)
 	else if (!rt_strcmp(split[0], "L"))
 		invalid = rt_set_light(info, split);
 	else if (!rt_strcmp(split[0], "sp"))
-		invalid = rt_init_object(info, SPHERE, split);
+		invalid = rt_init_object(info, SPHERE, split, rt_init_color(1, 1, 1));
 	else if (!rt_strcmp(split[0], "pl"))
-		invalid = rt_init_object(info, PLANE, split);
+		invalid = rt_init_object(info, PLANE, split, rt_init_color(1, 1, 1));
 	else if (!rt_strcmp(split[0], "cy"))
-		invalid = rt_init_object(info, CYLINDER, split);
+		invalid = rt_init_object(info, CYLINDER, split, rt_init_color(1, 1, 1));
 	else
 		invalid = rt_print_err_msg("Unknown type.");
 	rt_free_split(split);

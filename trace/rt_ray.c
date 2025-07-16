@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:48:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/15 16:07:13 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 15:32:54 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,16 @@ t_ray	rt_ray_primary(t_camera *cam, double u, double v)
     return (ray);
 }
 
-t_color	rt_ray_color(t_ray *ray, t_obj *obj)
+t_color	rt_ray_color(t_rt_info *info)
 {
-    double			t;
-    // t_vec			n;
-    t_hit_record	rec;
+    double	t;
+    t_vec	n;
 
-    rec.tmin = 0;
-    rec.tmax = INFINITY;
-    t = 0.5 * (ray->direction.y + 1.0);
-    if (rt_hit(obj, ray, &rec))
-        return (rt_color_mult(rt_color_plus_color(rt_vtoc(rec.normal), rt_init_color(1, 1, 1)), 0.5));
+    info->rec.tmin = 0;
+    info->rec.tmax = INFINITY;
+    t = 0.5 * (info->ray.direction.y + 1.0);
+    if (rt_hit(&info->obj_lst, &info->ray, &info->rec))
+        return (rt_color_mult(rt_color_plus_color(rt_vtoc(info->rec.normal), rt_init_color(1, 1, 1)), 0.5));
     else
         return (rt_init_color(0, 0, 0));
     return (rt_color_plus_color(rt_color_mult(rt_init_color(1, 1, 1), 1.0 - t),\
