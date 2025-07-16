@@ -1,3 +1,4 @@
+name: Norminette
 on:
   push:
     branches: [main]
