@@ -29,58 +29,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ceb69e42-11f3-4d62-aa85-b784422b8ccb" name="Changes" comment="relocate &amp; setup CMake">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/42_minirt.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libft/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_keybind.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_minirt.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_minirt.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_parse.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_parse.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_scene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_struct.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_struct.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_trace.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_utils_color.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_utils_vector.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/rt_vec_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/rt_vec_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minilibx-linux" beforeDir="false" afterPath="$PROJECT_DIR$/minilibx-linux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse/check_parse.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/check_parse.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse/rt_file_format.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_file_format.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse/rt_file_validate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_file_validate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse/rt_parse_vector.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_set_vector.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parse/rt_set_vector.c" beforeDir="false" afterPath="$PROJECT_DIR$/parse/rt_set_vector.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/rt_err_msg.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_err_msg.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/rt_free_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_free_utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/rt_strcmp.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_strcmp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/rt_strtod.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_strtod.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/rt_tab_to_space.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_tab_to_space.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_add_sum.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_plus_minus.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_calculate.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_calculate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_init.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_len.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_length.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_min.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_min_vec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_mult_div.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_vec_multiply_divide.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_vector/rt_vec_set.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/rt_set_vec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_min_vec.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_min_vec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_set_vec.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_set_vec.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_calculate.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_vec_calculate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_init.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_vec_init.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_length.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_vec_length.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_multiply_divide.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_vec_multiply_divide.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vector_utils/rt_vec_plus_minus.c" beforeDir="false" afterPath="$PROJECT_DIR$/vector_utils/rt_vec_plus_minus.c" afterDir="false" />
-    </list>
+    <list default="true" id="ceb69e42-11f3-4d62-aa85-b784422b8ccb" name="Changes" comment="done learning concepts; return to the source" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +58,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -154,7 +104,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -248,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750869347781</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="done learning concepts; return to the source">
+      <option name="closed" value="true" />
+      <created>1752634273217</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1752634273217</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +232,8 @@
     <MESSAGE value="delete void files" />
     <MESSAGE value="add mlx submodule" />
     <MESSAGE value="relocate &amp; setup CMake" />
-    <option name="LAST_COMMIT_MESSAGE" value="relocate &amp; setup CMake" />
+    <MESSAGE value="done learning concepts; return to the source" />
+    <option name="LAST_COMMIT_MESSAGE" value="done learning concepts; return to the source" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
