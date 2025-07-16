@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/10 21:25:38 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 22:35:51 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,10 +128,10 @@ void	rt_current_control(t_mrt *mrt, int keycode)
 		mrt->info.current = LIGHT;
 	else if (keycode == XK_4)
 		mrt->info.current = OBJECT;
-	else if (keycode == XK_space && mrt->info.current == OBJECT && mrt->info.obj.size > 0)
+	else if (keycode == XK_space && mrt->info.current == OBJECT && mrt->info.obj_lst.size > 0)
 	{
 		if (mrt->info.current_obj->next == NULL)
-			mrt->info.current_obj = mrt->info.obj.head;
+			mrt->info.current_obj = mrt->info.obj_lst.head;
 		else
 			mrt->info.current_obj = mrt->info.current_obj->next;
 	}

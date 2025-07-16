@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 15:33:06 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:05:20 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,10 @@ typedef struct s_camera
 	int		fov;
 }	t_camera;
 
-typedef	struct  s_scene
-{
-    t_canvas		canvas;
-    t_camera		camera;
-    t_obj			*world;
-    t_obj			*light;
-    t_color			ambient; // 8.4에서 설명할 요소
-    t_ray			ray;
-    t_hit_record	rec;
-}	t_scene;
-
 typedef struct s_canvas
 {
 	int		width;
-	int		height;obj
+	int		height;
 	double	aspect_ratio;
 }	t_canvas;
 
@@ -101,7 +90,7 @@ typedef struct s_ray
 	t_vec	direction;
 } t_ray;
 
-typedef struct s_obj
+typedef struct s_object
 {
 	int				type;
 	t_color			color;
@@ -111,15 +100,26 @@ typedef struct s_obj
 	double			radius2;
 	double			height;
     t_color			albedo;
-	struct s_obj	*next;
-}	t_obj;
+	struct s_object	*next;
+}	t_object;
 
 typedef struct s_obj_list
 {
-	int		size;
-	t_obj	*head;
-	t_obj	*tail;
+	int			size;
+	t_object	*head;
+	t_object	*tail;
 } t_obj_list;
+
+typedef	struct  s_scene
+{
+	t_canvas		canvas;
+	t_camera		camera;
+	t_object		*world;
+	t_object		*light;
+	t_color			ambient; // 8.4에서 설명할 요소
+	t_ray			ray;
+	t_hit_record	rec;
+}	t_scene;
 
 typedef struct s_rt_info
 {
@@ -129,7 +129,7 @@ typedef struct s_rt_info
 	t_camera		cam;
 	t_light			light;
 	t_obj_list		obj_lst;
-	t_obj			*current_obj;
+	t_object		*current_obj;
 	int				current;
 }	t_rt_info;
 

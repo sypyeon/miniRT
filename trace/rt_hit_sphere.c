@@ -6,14 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 16:39:56 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 15:31:06 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 22:36:33 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_trace.h"
 #include "rt_utils_vector.h"
 
-#define EPSILON 1e-6
 #define FALSE	0
 #define TRUE	1
 
@@ -25,7 +24,7 @@ void    set_face_normal(t_ray *r, t_hit_record *rec)
     rec->normal = (rec->front_face) ? rec->normal : rt_vec_mult(rec->normal, -1);
 }
 
-bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
+bool	rt_hit_sphere(t_object *sp, t_ray *ray, t_hit_record *rec)
 {
 	t_vec  oc;
 	double  a;
@@ -35,6 +34,7 @@ bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
 	double  discriminant; //판별식
 	double  sqrt_d;
 	double  root;
+
 	oc = rt_vec_minus_vec(ray->origin, sp->center);
 	a = rt_vec_len_sq(ray->direction);
 	half_b = rt_vec_inner(oc, ray->direction);
@@ -58,7 +58,7 @@ bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec)
 	return (TRUE);
 }
 
-bool	rt_hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
+bool	rt_hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec)
 {
 	bool	hit_result;
 
@@ -68,16 +68,7 @@ bool	rt_hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	return (hit_result);
 }
 
-t_hit_record	rt_hit_record_init(void)
-{
-	t_hit_record	rec;
-
-	rec.tmin = EPSILON;
-	rec.tmax = INFINITY;
-	return (rec);
-}
-
-bool	rt_hit(t_obj *obj, t_ray *ray, t_hit_record *rec)
+bool	rt_hit(t_object *obj, t_ray *ray, t_hit_record *rec)
 {
 	bool			hit_anything;
 	t_hit_record	temp_rec;

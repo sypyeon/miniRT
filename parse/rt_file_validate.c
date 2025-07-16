@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 14:20:35 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:30:33 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include <fcntl.h>
  
-bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
+bool	rt_set_sphere_data(t_object *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid sphere data."));
@@ -27,7 +27,7 @@ bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 	return (0);
 }
 
-bool	rt_set_plane_data(t_obj *obj, char **param, int param_count)
+bool	rt_set_plane_data(t_object *obj, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(rt_print_err_msg("invalid plane data."));
@@ -37,7 +37,7 @@ bool	rt_set_plane_data(t_obj *obj, char **param, int param_count)
 	return (0);
 }
 
-int	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
+int	rt_set_cylinder_data(t_object *obj, char **param, int param_count)
 {
 	if (param_count != 6)
 		return(rt_print_err_msg("invalid cylinder data."));
@@ -50,17 +50,17 @@ int	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
 	return (0);
 }
 
-void	rt_obj_add_back(t_rt_info *info, t_obj *obj)
+void	rt_obj_add_back(t_rt_info *info, t_object *obj)
 {
-	if (info->obj.head == NULL)
+	if (info->obj_lst.head == NULL)
 	{
-		info->obj.head = obj;
-		info->obj.tail = obj;
+		info->obj_lst.head = obj;
+		info->obj_lst.tail = obj;
 	}
 	else
 	{
-		info->obj.tail->next = obj;
-		info->obj.tail = obj;
+		info->obj_lst.tail->next = obj;
+		info->obj_lst.tail = obj;
 	}
 }
 
@@ -68,11 +68,11 @@ int	rt_init_object(t_rt_info *info, int type, char **param, t_color albedo)
 {
 	int		valid;
 	int		param_count;
-	t_obj	*obj;
+	t_object	*obj;
 
 	valid = 1;
 	param_count = 0;
-	obj = (t_obj *)ft_calloc(1, sizeof(t_obj));
+	obj = (t_object *)ft_calloc(1, sizeof(t_object));
 	if (!obj)
 		return (rt_print_err_msg("error: failed allocation."));
 	while (param[param_count])
@@ -256,5 +256,5 @@ void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
 		i++;
 	}
 	rt_free_split(split);
-	info->current_obj = info->obj.head;
+	info->current_obj = info->obj_lst.head;
 }

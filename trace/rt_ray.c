@@ -6,11 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:48:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 15:32:54 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 22:37:10 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_trace.h"
+
+#define EPSILON 1e-6
 
 t_ray	rt_init_ray(t_point origin, t_vec direction)
 {
@@ -41,15 +43,24 @@ t_ray	rt_ray_primary(t_camera *cam, double u, double v)
     return (ray);
 }
 
+t_hit_record	rt_hit_record_init(void)
+{
+	t_hit_record	rec;
+
+	rec.tmin = EPSILON;
+	rec.tmax = INFINITY;
+	return (rec);
+}
+
 t_color	rt_ray_color(t_rt_info *info)
 {
     double	t;
-    t_vec	n;
+    // t_vec	n;
 
     info->rec.tmin = 0;
     info->rec.tmax = INFINITY;
     t = 0.5 * (info->ray.direction.y + 1.0);
-    if (rt_hit(&info->obj_lst, &info->ray, &info->rec))
+    if (rt_hit(info->obj_lst.head, &info->ray, &info->rec))
         return (rt_color_mult(rt_color_plus_color(rt_vtoc(info->rec.normal), rt_init_color(1, 1, 1)), 0.5));
     else
         return (rt_init_color(0, 0, 0));

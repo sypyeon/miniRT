@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:44:48 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 15:27:13 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:04:31 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_point	rt_ray_at(t_ray *ray, double t);
 t_ray	rt_ray_primary(t_camera *cam, double u, double v);
 t_color	rt_ray_color(t_rt_info *info);
 
-bool	rt_hit(t_obj *obj, t_ray *ray, t_hit_record *rec);
-bool	rt_hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec);
-bool	rt_hit_sphere(t_obj *sp, t_ray *ray, t_hit_record *rec);
+bool	rt_hit(t_object *obj, t_ray *ray, t_hit_record *rec);
+bool	rt_hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec);
+bool	rt_hit_sphere(t_object *sp, t_ray *ray, t_hit_record *rec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:08:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 14:40:26 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:29:40 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,9 @@ void	rt_display_info(t_mrt *mrt, void *mlx, void *win, int current)
 	else if (current == OBJECT)
 	{
 		mlx_string_put(mlx, win, 10, 10, WHITE, "Object: ");
-		mlx_string_put(mlx, win, 150, 10, WHITE, rt_dtostr(mrt->info.obj.head->center.x));
-		mlx_string_put(mlx, win, 150, 30, WHITE, rt_dtostr(mrt->info.obj.head->center.y));
-		mlx_string_put(mlx, win, 150, 50, WHITE, rt_dtostr(mrt->info.obj.head->center.z));
+		mlx_string_put(mlx, win, 150, 10, WHITE, rt_dtostr(mrt->info.obj_lst.head->center.x));
+		mlx_string_put(mlx, win, 150, 30, WHITE, rt_dtostr(mrt->info.obj_lst.head->center.y));
+		mlx_string_put(mlx, win, 150, 50, WHITE, rt_dtostr(mrt->info.obj_lst.head->center.z));
 	}
 }
 
@@ -147,7 +147,7 @@ int	rt_mrt_drawing(t_mrt *mrt)
     double  	u;
     double  	v;
 	t_canvas	canvas;
-	t_obj		*obj = mrt->info.obj.head;
+	// t_object	*obj = mrt->info.obj_lst.head;
 
 	mrt->info.cam.axis = rt_init_axis(mrt->info.cam.direction);
 	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
@@ -167,7 +167,7 @@ int	rt_mrt_drawing(t_mrt *mrt)
 			u = (double)i / (canvas.width - 1);
 			v = (double)j / (canvas.height - 1);
 			mrt->info.ray = rt_ray_primary(&mrt->info.cam, u, v);
-			my_mlx_pixel_put(&mrt->img, i, j, rt_ray_color(&ray, obj));
+			my_mlx_pixel_put(&mrt->img, i, j, rt_ray_color(&mrt->info));
 		++i;
 		}
 	--j;

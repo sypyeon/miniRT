@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 05:24:52 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/03 05:29:59 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:30:50 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	rt_free_split(char **split)
 
 void	rt_free_obj(t_rt_info *info)
 {
-	t_obj	*obj;
-	t_obj	*to_free;
+	t_object	*obj;
+	t_object	*to_free;
 
-	obj = info->obj.head;
+	obj = info->obj_lst.head;
 	if (obj == NULL)
 		return ;
 	while (obj)

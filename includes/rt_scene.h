@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/10 17:33:34 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/16 20:32:19 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "rt_struct.h"
 # include "rt_utils_vector.h"
+# include "rt_utils_color.h"
 
 t_axis		rt_init_axis(t_vec direction);
 t_canvas	rt_init_canvas(int  width, int height);
