@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_utils_color                                     :+:      :+:    :+:   */
+/*   rt_utils_vector.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,28 +11,30 @@
 /* ************************************************************************** */
 
 
-#ifndef RT_UTILS_COLOR_H
-# define RT_UTILS_COLOR_H
+#ifndef RT_UTILS_VECTOR_H
+# define RT_UTILS_VECTOR_H
 
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "rt_struct.h"
+#include "rt_struct.h"
 
+t_vec	rt_init_vec(double x, double y, double z);
+t_point	rt_init_point(double x, double y, double z);
 t_color	rt_init_color(double r, double g, double b);
-void	rt_set_color(t_color *color, double x, double y, double z);
-double	rt_color_len_sq(t_color color);
-double	rt_color_len(t_color color);
-t_color	rt_color_plus_color(t_color color, t_color color2);
-t_color	rt_color_add(t_color color, double x, double y, double z);
-t_color	rt_color_minus_color(t_color color, t_color color2);
-t_color	rt_color_subtract(t_color color, double x, double y, double z);
-t_color	rt_color_mult(t_color color, double t);
-t_color	rt_color_x_color(t_color color, t_color color2);
-t_color	rt_color_div(t_color color, double t);
-double	rt_color_inner(t_color color, t_color color2);
-t_color	rt_color_outer(t_color color, t_color color2);
-t_color	rt_color_unit(t_color color);
-t_color	rt_color_min(t_color color1, t_color color2);
+void	rt_set_vec(t_vec *vec, double x, double y, double z);
+double	rt_vec_len_sq(t_vec vec);
+double	rt_vec_len(t_vec vec);
+t_vec	rt_vec_plus_vec(t_vec vec, t_vec vec2);
+t_vec	rt_vec_add(t_vec vec, double x, double y, double z);
+t_vec	rt_vec_minus_vec(t_vec vec, t_vec vec2);
+t_vec	rt_vec_subtract(t_vec vec, double x, double y, double z);
+t_vec	rt_vec_mult(t_vec vec, double t);
+t_vec	rt_vec_x_vec(t_vec vec, t_vec vec2);
+t_vec	rt_vec_div(t_vec vec, double t);
+double	rt_vec_inner(t_vec vec, t_vec vec2);
+t_vec	rt_vec_outer(t_vec vec, t_vec vec2);
+t_vec	rt_vec_unit(t_vec vec);
+t_vec	rt_vec_min(t_vec vec1, t_vec vec2);
 
 #endif

@@ -3,55 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   rt_file_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:03 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/20 17:35:07 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_parse.h"
 #include "rt_utils.h"
-#include "libft.h"
+#include "../libft/libft.h"
 #include <fcntl.h>
  
-bool	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
+void	rt_set_sphere_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
-		return(rt_print_err_msg("invalid sphere data."));
-	obj->center = rt_parse_coordinate(param[1]);
-	obj->radius = rt_strtod(param[2]) / 2;
-	obj->radius2 = obj->radius * obj->radius;
-	obj->color = rt_parse_color(param[3]);
-	return (0);
+		rt_print_err_msg("invalid sphere data.");
+	obj->center = rt_set_coordinate(param[1]);
+	obj->diameter = rt_strtod(param[2]);
+	obj->color = rt_set_color(param[3]);
 }
 
-bool	rt_set_plane_data(t_obj *obj, char **param, int param_count)
+void	rt_set_plane_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 4)
-		return(rt_print_err_msg("invalid plane data."));
-	obj->center = rt_parse_coordinate(param[1]);
-	obj->vector = rt_parse_vector(param[2]);
-	obj->color = rt_parse_color(param[3]);
-	return (0);
+		rt_print_err_msg("invalid plane data.");
+	obj->center = rt_set_coordinate(param[1]);
+	obj->vector = rt_set_vector(param[2]);
+	obj->color = rt_set_color(param[3]);
 }
 
-int	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
+void	rt_set_cylinder_data(t_obj *obj, char **param, int param_count)
 {
 	if (param_count != 6)
-		return(rt_print_err_msg("invalid cylinder data."));
-	obj->center = rt_parse_coordinate(param[1]);
-	obj->vector = rt_parse_vector(param[2]);
-	obj->radius = rt_strtod(param[3]) / 2;
-	obj->radius2 = obj->radius * obj->radius;
+		rt_print_err_msg("invalid cylinder data.");
+	obj->center = rt_set_coordinate(param[1]);
+	obj->vector = rt_set_vector(param[2]);
+	obj->diameter = rt_strtod(param[3]);
 	obj->height = rt_strtod(param[4]);
-	obj->color = rt_parse_color(param[5]);
-	return (0);
+	obj->color = rt_set_color(param[5]);
 }
 
 void	rt_obj_add_back(t_rt_info *info, t_obj *obj)
 {
-	if (info->obj.head == NULL)
+	if (!info->obj.head)
 	{
 		info->obj.head = obj;
 		info->obj.tail = obj;
@@ -63,32 +58,29 @@ void	rt_obj_add_back(t_rt_info *info, t_obj *obj)
 	}
 }
 
-int	rt_init_object(t_rt_info *info, int identifier, char **param)
+void	rt_init_object(t_rt_info *info, int identifier, char **param)
 {
-	int		valid;
 	int		param_count;
 	t_obj	*obj;
 
-	valid = 1;
 	param_count = 0;
 	obj = (t_obj *)ft_calloc(1, sizeof(t_obj));
 	if (!obj)
-		return (rt_print_err_msg("error: failed allocation."));
+		exit(rt_print_err_msg("error: failed allocation."));
 	while (param[param_count])
 		param_count++;
 	obj->identifier = identifier;
-	obj->center = rt_parse_coordinate(param[1]);
+	obj->center = rt_set_coordinate(param[1]);
 	if (identifier == SPHERE)
-		valid = rt_set_sphere_data(obj, param, param_count);
+		rt_set_sphere_data(obj, param, param_count);
 	else if (identifier == PLANE)
-		valid = rt_set_plane_data(obj, param, param_count);
+		rt_set_plane_data(obj, param, param_count);
 	else if (identifier == CYLINDER)
-		valid = rt_set_cylinder_data(obj, param, param_count);
+		rt_set_cylinder_data(obj, param, param_count);
 	rt_obj_add_back(info, obj);
-	return (valid);
 }
 
-int	rt_set_ambient(t_rt_info *info, char **param)
+void	rt_set_ambient(t_rt_info *info, char **param)
 {
 	int		param_count;
 
@@ -96,13 +88,12 @@ int	rt_set_ambient(t_rt_info *info, char **param)
 	while (param[param_count])
 		param_count++;
 	if (param_count != 3)
-		return(rt_print_err_msg("invalid ambient data"));
+		exit(rt_print_err_msg("invalid ambient data"));
 	info->amb.amb_ratio = rt_strtod(param[1]);
-	info->amb.color = rt_parse_color(param[2]);
-	return (0);
+	info->amb.color = rt_set_color(param[2]);
 }
 
-int	rt_set_camera(t_rt_info *info, char **param)
+void	rt_set_camera(t_rt_info *info, char **param)
 {
 	int		param_count;
 
@@ -110,54 +101,47 @@ int	rt_set_camera(t_rt_info *info, char **param)
 	while (param[param_count])
 		param_count++;
 	if (param_count != 4)
-		return (rt_print_err_msg("invalid camera data"));
-	info->cam.origin = rt_parse_coordinate(param[1]);
-	info->cam.direction = rt_parse_vector(param[2]);
-	info->cam.fov = ft_atoi(param[3]);
-	return (0);
+		exit(rt_print_err_msg("invalid camera data"));
+	info->cam.orig = rt_set_coordinate(param[1]);
+	info->cam.direction = rt_set_vector(param[2]);
 }
 
-int	rt_set_light(t_rt_info *info, char **param)
+void	rt_set_light(t_rt_info *info, char **param)
 {
 	int		param_count;
 
+	printf("This is light setting \n\n");
 	param_count = 0;
 	while (param[param_count])
 		param_count++;
 	if (param_count != 3 && param_count != 4)
-		return (rt_print_err_msg("invalid light data"));
-	info->light.orig = rt_parse_coordinate(param[1]);
+		exit(rt_print_err_msg("invalid light data"));
+	info->light.orig = rt_set_coordinate(param[1]);
 	info->light.bright = rt_strtod(param[2]);
-	info->light.color = rt_parse_color(param[3]);
-	return (0);
 }
 
-bool	rt_split_and_identify_line(char *line, t_rt_info *info)
+void	rt_split_and_identify_line(char *line, t_rt_info *info)
 {
-	bool	invalid;
 	char	**split;
 
 	rt_tab_to_space(line);
 	split = ft_split(line, ' ');
-	invalid = 1;
 	if (!split)
-		invalid = rt_print_err_msg("Split failure.");
+		exit(rt_print_err_msg("Split failure."));
 	else if (!rt_strcmp(split[0], "A"))
-		invalid = rt_set_ambient(info, split);
+		rt_set_ambient(info, split);
 	else if (!rt_strcmp(split[0], "C"))
-		invalid = rt_set_camera(info, split);
+		rt_set_camera(info, split);
 	else if (!rt_strcmp(split[0], "L"))
-		invalid = rt_set_light(info, split);
+		rt_set_light(info, split);
 	else if (!rt_strcmp(split[0], "sp"))
-		invalid = rt_init_object(info, SPHERE, split);
+		rt_init_object(info, SPHERE, split);
 	else if (!rt_strcmp(split[0], "pl"))
-		invalid = rt_init_object(info, PLANE, split);
+		rt_init_object(info, PLANE, split);
 	else if (!rt_strcmp(split[0], "cy"))
-		invalid = rt_init_object(info, CYLINDER, split);
-	else
-		invalid = rt_print_err_msg("Unknown identifier.");
+		rt_init_object(info, CYLINDER, split);
 	rt_free_split(split);
-	return (invalid);
+	exit(rt_print_err_msg("Unknown identifier."));
 }
 
 char	*rt_strjoin_and_free(char *s1, char *s2)
@@ -176,33 +160,6 @@ char	*rt_strjoin_and_free(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (new_string);
-}
-
-int	rt_is_comma_or_period(char c)
-{
-	return (c == '.' || c == ',');
-}
-
-void	rt_check_numbers_in_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (rt_is_comma_or_period(line[i]))
-		{
-			i++;
-			if (line[i] == '-' || line[i] == '+')
-				i++;
-			if (!ft_isdigit(line[i]))
-			{
-				free(line);
-				exit(rt_print_err_msg("Invalid numbers found."));
-			}
-		}
-		i++;
-	}
 }
 
 char	**rt_gnl_and_split(char *file)
@@ -224,7 +181,6 @@ char	**rt_gnl_and_split(char *file)
 		line = rt_strjoin_and_free(line, buf);
 	}
 	rt_tab_to_space(line);
-	rt_check_numbers_in_line(line);
 	split = ft_split(line, '\n');
 	free(line);
 	return (split);
@@ -232,26 +188,22 @@ char	**rt_gnl_and_split(char *file)
 
 void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
 {
-	bool	invalid;
 	int		i;
 	char	**split;
 
+	printf("%s\n", file);
 	if (!rt_valid_file_format(file))
 		exit(rt_print_err_msg("Wrong file format."));
 	split = rt_gnl_and_split(file);
 	if (!split)
 		exit(rt_print_err_msg("Split failure."));
-	i = 0;
-	while (split[i])
+	i = 0;           
+	for (int i = 0; i < 6; i++)
+		printf("%s\n", split[i]);
+	while (!split[i])
 	{
-		invalid = rt_split_and_identify_line(split[i], info);
-		if (invalid)
-		{
-			rt_free_obj(info);
-			rt_free_split(split);
-			exit (1);
-		}
+		rt_split_and_identify_line(split[i], info);
 		i++;
 	}
-	rt_free_split(split);
 }
+//gnl 다 붙이고 개행 단위로 split해서 파싱해보기

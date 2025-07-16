@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_scene.h                                         :+:      :+:    :+:   */
+/*   rt_parse.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 21:39:01 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/28 15:45:45 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_SCENE_H
-# define RT_SCENE_H
+#ifndef RT_PARSE_H
+# define RT_PARSE_H
 
-# include "libft.h"
-# include "rt_struct.h"
-# include "rt_utils_vector.h"
+# define SPHERE		1
+# define PLANE		2
+# define CYLINDER	3
 
-t_canvas    rt_init_canvas(int  width, int height);
-void    rt_init_camera(t_canvas *canvas, t_point orig, double fov, t_camera *cam);
+# include "../libft/libft.h"
+#include "rt_struct.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+t_point	rt_parse_coordinate(char *param);
+t_vec	rt_parse_vector(char *param);
+t_color	rt_parse_color(char *value);
+
+double	rt_strtod(char *str);
+
+int		rt_valid_file_format(char *file);
+void	rt_file_validate_and_save_data(char *file, t_rt_info *info);
 
 #endif

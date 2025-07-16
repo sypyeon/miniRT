@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_minirt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 03:58:29 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 21:44:44 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/06/03 05:20:35 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 #ifndef RT_MINIRT_H
 # define RT_MINIRT_H
 
-# define KEY_PRESS	2
-# define ON_DESTROY	17
-
-# define WIN_WIDTH	900
-# define WIN_HEIGHT	600
-
-# include <X11/keysym.h>
-# include "rt_struct.h"
-# include "rt_parse.h"
-# include "rt_scene.h"
-# include "rt_trace.h"
-# include "rt_keybind.h"
-# include "rt_utils.h"
-# include "rt_utils_vector.h"
-# include "rt_utils_color.h"
+#include "rt_struct.h"
+#include "rt_parse.h"
+#include "rt_utils.h"
+#include "rt_vec_utils.h"
 
 #endif
