@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 22:00:11 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 22:35:31 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:58:23 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void rt_init_camera(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
 	cam->axis = rt_init_axis(cam->direction);
 }
 
-t_scene *scene_init(t_object *light)
+t_scene *scene_init(t_light *light)
 {
     t_scene		*scene;
     double		ka; // 8.4 에서 설명

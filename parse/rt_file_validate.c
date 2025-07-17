@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 20:30:33 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 18:18:33 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	rt_set_light(t_rt_info *info, char **param)
 		param_count++;
 	if (param_count != 3 && param_count != 4)
 		return (rt_print_err_msg("invalid light data"));
-	info->light.orig = rt_parse_coordinate(param[1]);
+	info->light.origin = rt_parse_coordinate(param[1]);
 	info->light.bright = rt_strtod(param[2]);
 	info->light.color = rt_parse_color(param[3]);
 	return (0);

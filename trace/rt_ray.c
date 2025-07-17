@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:48:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 22:37:10 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 20:15:10 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_color	rt_ray_color(t_rt_info *info)
     info->rec.tmax = INFINITY;
     t = 0.5 * (info->ray.direction.y + 1.0);
     if (rt_hit(info->obj_lst.head, &info->ray, &info->rec))
+        // return (phong_lighting(info->scene, &info->light));
         return (rt_color_mult(rt_color_plus_color(rt_vtoc(info->rec.normal), rt_init_color(1, 1, 1)), 0.5));
     else
         return (rt_init_color(0, 0, 0));

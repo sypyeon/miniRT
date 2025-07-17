@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 20:05:20 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:58:46 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 #define bool _Bool
 
 typedef struct s_vec t_point;
+
+enum e_current
+{
+	CAMERA,
+	AMBIENT,
+	LIGHT,
+	OBJECT
+};
 
 typedef struct s_vec
 {
@@ -80,7 +88,7 @@ typedef struct s_canvas
 typedef struct s_light
 {
 	double	bright;
-	t_point	orig;
+	t_point	origin;
 	t_color	color;
 }	t_light;
 
@@ -115,7 +123,7 @@ typedef	struct  s_scene
 	t_canvas		canvas;
 	t_camera		camera;
 	t_object		*world;
-	t_object		*light;
+	t_light			*light;
 	t_color			ambient; // 8.4에서 설명할 요소
 	t_ray			ray;
 	t_hit_record	rec;
@@ -123,6 +131,7 @@ typedef	struct  s_scene
 
 typedef struct s_rt_info
 {
+	t_scene			*scene;
 	t_hit_record	rec;
 	t_ray			ray;
 	t_ambient		amb;

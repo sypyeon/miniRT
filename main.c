@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:08:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 20:29:40 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 20:15:28 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,9 @@ void	rt_display_info(t_mrt *mrt, void *mlx, void *win, int current)
 	else if (current == LIGHT)
 	{
 		mlx_string_put(mlx, win, 10, 10, WHITE, "Light: ");
-		mlx_string_put(mlx, win, 150, 10, WHITE, rt_dtostr(mrt->info.light.orig.x));
-		mlx_string_put(mlx, win, 150, 30, WHITE, rt_dtostr(mrt->info.light.orig.y));
-		mlx_string_put(mlx, win, 150, 50, WHITE, rt_dtostr(mrt->info.light.orig.z));
+		mlx_string_put(mlx, win, 150, 10, WHITE, rt_dtostr(mrt->info.light.origin.x));
+		mlx_string_put(mlx, win, 150, 30, WHITE, rt_dtostr(mrt->info.light.origin.y));
+		mlx_string_put(mlx, win, 150, 50, WHITE, rt_dtostr(mrt->info.light.origin.z));
 	}
 	else if (current == OBJECT)
 	{
@@ -152,6 +152,7 @@ int	rt_mrt_drawing(t_mrt *mrt)
 	mrt->info.cam.axis = rt_init_axis(mrt->info.cam.direction);
 	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
 	rt_init_camera(&canvas, mrt->info.cam.origin, mrt->info.cam.fov, &mrt->info.cam);
+	// mrt->info.scene = scene_init(&mrt->info.light);
 	rt_display_info(mrt, mrt->mlx, mrt->win, mrt->info.current);
 	if (mrt->img.ptr != NULL)
 		mlx_destroy_image(mrt->mlx, mrt->img.ptr);

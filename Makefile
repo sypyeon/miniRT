@@ -26,7 +26,7 @@ SCENE_SRC	=	rt_scene.c
 SCENE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(SCENE_SRC:.c=.o))
 
 TRACE_DIR	=	./trace
-TRACE_SRC	=	rt_ray.c	rt_hit_sphere.c
+TRACE_SRC	=	rt_ray.c	rt_hit_sphere.c		rt_phong_light.c
 TRACE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(TRACE_SRC:.c=.o))
 
 V_UTIL_DIR	=	./utils_vector

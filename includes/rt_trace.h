@@ -6,16 +6,17 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:44:48 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/16 20:04:31 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/17 19:48:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_TRACE_H
 # define RT_TRACE_H
 
-# define SPHERE		1
-# define PLANE		2
-# define CYLINDER	3
+# define SPHERE			1
+# define PLANE			2
+# define CYLINDER		3
+# define LIGHT_POINT	4
 
 # include "libft.h"
 # include "rt_struct.h"
@@ -30,5 +31,7 @@ t_color	rt_ray_color(t_rt_info *info);
 bool	rt_hit(t_object *obj, t_ray *ray, t_hit_record *rec);
 bool	rt_hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec);
 bool	rt_hit_sphere(t_object *sp, t_ray *ray, t_hit_record *rec);
+
+t_color	phong_lighting(t_scene *scene, t_light *light);
 
 #endif
