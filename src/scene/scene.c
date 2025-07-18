@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:51:51 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:19 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:44:48 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#include "../../includes/scene.h"
 
 t_camera    camera(t_canvas *canvas, t_point orig)
 {

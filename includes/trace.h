@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trace.h                                            :+:      :+:    :+:   */
+/*   ../includes/trace.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:42:21 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TRACE_H
 # define TRACE_H
 
-# include "structures.h"
-# include "utils.h"
+# include "../includes/structures.h"
+# include "../includes/utils.h"
 
 t_ray       ray(t_point orig, t_vec dir);
 t_point    ray_at(t_ray *ray, double t);

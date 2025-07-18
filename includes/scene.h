@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   ../includes/scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:51:16 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:42:21 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
-# include "structures.h"
-# include "utils.h"
+# include "../includes/structures.h"
+# include "../includes/utils.h"
 
 t_canvas	canvas(int  width, int height);
 t_camera	camera(t_canvas *canvas, t_point origin);

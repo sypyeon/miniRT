@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.h                                        :+:      :+:    :+:   */
+/*   mlx_../includes/utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 # define MLX_UTILS_H
 
 # include "mlx.h"
-# include "structures.h"
+# include "../includes/structures.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, t_color color);
 

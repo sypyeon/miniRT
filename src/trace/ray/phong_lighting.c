@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:43:51 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "trace.h"
+#include "../../../includes/trace.h"
 
 t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 {

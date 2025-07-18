@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   ../includes/structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:56:13 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:35:47 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,19 @@ typedef struct  s_sphere
 	double	radius2;
 }	t_sphere;
 
+typedef struct  s_cylinder
+{
+	t_point	center;
+	double	radius;
+	double	radius2;
+}	t_cylinder;
+
 typedef struct	s_object
 {
     t_object_type	type;
     void			*element;
-    void			*next;
     t_color			albedo;
+    struct s_object	*next;
 }	t_object;
 
 typedef struct	s_light

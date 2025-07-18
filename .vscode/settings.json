@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"random": "cpp",
+		"../includes/trace.h": "c",
+		"../includes/utils.h": "c",
+		"../includes/structures.h": "c",
+		"utils.h": "c",
+		"print.h": "c",
+		"../includes/scene.h": "c"
+	}
+}

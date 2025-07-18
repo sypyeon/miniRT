@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:45:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:44:52 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "print.h"
+#include "../../includes/print.h"
 
 // [0,1] 로 되어있는 rgb 값을 각각 [0,255]에 맵핑 해서 출력.
 void    write_color(t_color pixel_color)

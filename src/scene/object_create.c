@@ -6,12 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:07:17 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 17:55:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:44:42 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "scene.h"
+#include "../../includes/scene.h"
 
 t_object    *object(t_object_type type, void *element, t_color albedo)
 {

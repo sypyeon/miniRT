@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:58:20 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 18:07:57 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:47:47 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_utils.h"
+#include "../../includes/mlx_utils.h"
 
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
 {

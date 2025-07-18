@@ -6,11 +6,11 @@ INCLUDES	=	-I./includes -I./libft -I./minilibx-linux
 
 OBJS_DIR	=	./obj
 OBJS		=	$(MAIN_OBJ) \
-			$(UTILS_OBJ) \
-			$(SCENE_OBJ) \
-			$(PRINT_OBJ) \
-			$(HIT_OBJ)	\
-			$(RAY_OBJ)
+				$(UTILS_OBJ) \
+				$(SCENE_OBJ) \
+				$(PRINT_OBJ) \
+				$(HIT_OBJ)	\
+				$(RAY_OBJ)
 
 MAIN_DIR	=	./src
 MAIN_SRC	= 	main.c

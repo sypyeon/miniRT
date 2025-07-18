@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:55:33 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 15:55:39 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:44:08 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "trace.h"
+#include "../../../includes/trace.h"
 
 void    set_face_normal(t_ray *r, t_hit_record *rec)
 {

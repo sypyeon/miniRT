@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "structures.h"
-#include "utils.h"
-#include "print.h"
-#include "scene.h"
-#include "trace.h"
+#include "../includes/structures.h"
+#include "../includes/utils.h"
+#include "../includes/print.h"
+#include "../includes/scene.h"
+#include "../includes/trace.h"
 
 t_scene *scene_init(void)
 {

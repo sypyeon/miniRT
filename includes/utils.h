@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ../includes/utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,7 +16,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "structures.h"
+# include "../includes/structures.h"
 
 t_vec      vec3(double x, double y, double z);
 t_point    point3(double x, double y, double z);

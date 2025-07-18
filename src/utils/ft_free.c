@@ -6,12 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:12:02 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:13:03 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:42:21 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "structures.h"
+#include "../includes/utils.h"
+#include "../includes/structures.h"
 
 void	rt_free_split(char **split)
 {
