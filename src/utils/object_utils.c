@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:41:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:41:52 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:57:59 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 void        obj_add(t_object **list, t_object *new)
 {

@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:09:28 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:41:52 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:57:05 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 char	*ft_fill_buf(char *str, int i, int int_part, int frac_part)
 {

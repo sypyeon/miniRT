@@ -6,11 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:49:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:41:52 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:58:05 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 //벡터3 생성자
 t_vec      vec3(double x, double y, double z)

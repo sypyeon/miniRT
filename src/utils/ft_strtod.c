@@ -6,12 +6,12 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 01:52:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:41:52 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 20:57:53 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
-#include "libft.h"
+#include "../../includes/utils.h"
+#include "../../libft/libft.h"
 
 static double	ft_strtod_integer(char *str)
 {

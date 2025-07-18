@@ -6,6 +6,7 @@
 		"../includes/structures.h": "c",
 		"utils.h": "c",
 		"print.h": "c",
-		"../includes/scene.h": "c"
+		"../includes/scene.h": "c",
+		"parse.h": "c"
 	}
 }

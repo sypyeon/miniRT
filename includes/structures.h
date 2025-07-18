@@ -103,7 +103,7 @@ typedef struct  s_scene
 {
     t_canvas		canvas;
     t_camera		camera;
-    t_object		*world;
+    t_object		*object;
     t_object		*light;
     t_color			ambient; // 8.4에서 설명할 요소
     t_ray			ray;
