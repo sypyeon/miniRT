@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt_file_format.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:46:55 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 22:04:14 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
