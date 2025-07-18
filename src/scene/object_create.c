@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:07:17 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:44:42 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 21:25:38 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_light     *light_point(t_point light_origin, t_color light_color, double brigh
     if(!(light = (t_light *)malloc(sizeof(t_light))))
         return (NULL);
     light->origin = light_origin;
-    light->light_color = light_color;
+    light->color = light_color;
     light->bright_ratio = bright_ratio;
     return (light);
 }

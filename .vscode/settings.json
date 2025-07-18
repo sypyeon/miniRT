@@ -7,6 +7,7 @@
 		"utils.h": "c",
 		"print.h": "c",
 		"../includes/scene.h": "c",
-		"parse.h": "c"
+		"parse.h": "c",
+		"structures.h": "c"
 	}
 }

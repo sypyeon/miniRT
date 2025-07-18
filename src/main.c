@@ -21,7 +21,7 @@ t_scene *scene_init(void)
     obj_add(&world, object(SP, sphere(point3(0, -1000, 0), 995), color3(1, 1, 1))); // world 에 구3 추가
     obj_add(&world, object(SP, sphere(point3(2, 0, -5), 2), color3(0, 0.5, 0))); // world 에 구2 추가
     obj_add(&world, object(SP, sphere(point3(0, -2000, 0), 999), color3(1, 1, 1))); // world 에 구3 추가
-    scene->world = world;
+    scene->object = world;
     lights = object(LIGHT_POINT, light_point(point3(0, 20, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
     lights = object(LIGHT_POINT, light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
     scene->light = lights;

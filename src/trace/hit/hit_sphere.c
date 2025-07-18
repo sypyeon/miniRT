@@ -6,13 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:09:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:43:58 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 21:05:43 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-t_bool      hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
+bool      hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
 {
     t_sphere    *sp;
 	t_vec  oc;

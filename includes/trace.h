@@ -23,12 +23,12 @@ void        set_face_normal(t_ray *r, t_hit_record *rec);
 t_color    ray_color(t_scene *scene);
 
 // trace/hit/
-t_bool      hit(t_object *obj, t_ray *ray, t_hit_record *rec);
-t_bool      hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec);
-t_bool      hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec);
+bool      hit(t_object *obj, t_ray *ray, t_hit_record *rec);
+bool      hit_obj(t_object *obj, t_ray *ray, t_hit_record *rec);
+bool      hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec);
 
 t_color	phong_lighting(t_scene *scene);
-t_bool      in_shadow(t_object *objs, t_ray light_ray, double light_len);
+bool      in_shadow(t_object *objs, t_ray light_ray, double light_len);
 t_color	point_light_get(t_scene *scene, t_light *light);
 
 #endif

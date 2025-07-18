@@ -6,13 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:43:51 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 21:10:04 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
+bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 {
     t_hit_record rec;
 
@@ -25,29 +25,28 @@ t_bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 
 t_vec          reflect(t_vec v, t_vec n)
 {
-    //v - 2 * dot(v, n) * n;
     return (vminus(v, vmult(n, vdot(v, n) * 2)));
 }
 
 t_color        point_light_get(t_scene *scene, t_light *light)
 {
-    t_color    diffuse;
-    t_vec      light_dir;
-    double      kd; // diffuse의 강도
-    t_color    specular;
-    double      light_len;
-    t_ray       light_ray;
-    t_vec      view_dir;
-    t_vec      reflect_dir;
-    double      spec;
-    double      ksn;
-    double      ks;
-    double      brightness;
+    t_color diffuse;
+    t_vec   light_dir;
+    double  kd; // diffuse의 강도
+    t_color specular;
+    double  light_len;
+    t_ray   light_ray;
+    t_vec   view_dir;
+    t_vec   reflect_dir;
+    double  spec;
+    double  ksn;
+    double  ks;
+    double  brightness;
 	
     light_dir = vminus(light->origin, scene->rec.p);
     light_len = vlength(light_dir);
     light_ray = ray(vplus(scene->rec.p, vmult(scene->rec.normal, EPSILON)), light_dir);
-    if (in_shadow(scene->world, light_ray, light_len))
+    if (in_shadow(scene->object, light_ray, light_len))
         return (color3(0,0,0));
     light_dir = vunit(light_dir);
     kd = fmax(vdot(scene->rec.normal, light_dir), 0.0);// (교점에서 출발하여 광원을 향하는 벡터)와 (교점에서의 법선벡터)의 내적값.

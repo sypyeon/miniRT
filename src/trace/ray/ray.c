@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:43:32 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 21:06:02 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_color    ray_color(t_scene *scene)
 
     //광선이 구에 적중하면(광선과 구가 교점이 있고, 교점이 카메라 앞쪽이라면!)
     scene->rec = record_init();
-    if (hit(scene->world, &scene->ray, &scene->rec))
+    if (hit(scene->object, &scene->ray, &scene->rec))
         return (phong_lighting(scene)); //phong_lighting 함수는 8.4에서 설명한다. 이제 법선 벡터를 매핑해서 얻은 색이 아닌, 앞으로 작성할 phong_lighting 함수의 결과값을 반환한다!
     else
     {

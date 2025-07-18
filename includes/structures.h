@@ -13,20 +13,20 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-typedef struct s_vec t_point;
-typedef struct s_vec t_color;
-
-typedef int             t_bool;
-
 # define FALSE 0
 # define TRUE 1
 
-typedef int             t_object_type;
 # define SP 0
 # define LIGHT_POINT 1
 
 # define EPSILON 1e-6 // 0.000001
 # define LUMEN 3  // 이 값을 조절하여 장면의 밝기를 조절할 수 있다.
+
+typedef int		t_object_type;
+typedef struct s_vec t_point;
+typedef struct s_vec t_color;
+
+# include <stdbool.h>
 
 typedef struct s_vec
 {
@@ -46,33 +46,46 @@ typedef struct  s_sphere
 	t_point	center;
 	double	radius;
 	double	radius2;
+	t_color	color;
 }	t_sphere;
+
+typedef struct  s_plane
+{
+	t_point	center;
+    t_vec   vector;
+	t_color	color;
+}	t_plane;
 
 typedef struct  s_cylinder
 {
 	t_point	center;
+    t_vec   vector;
 	double	radius;
 	double	radius2;
+    double  height;
+	t_color	color;
 }	t_cylinder;
 
 typedef struct	s_object
 {
     t_object_type	type;
+	t_color			albedo;
     void			*element;
-    t_color			albedo;
     struct s_object	*next;
 }	t_object;
 
 typedef struct	s_light
 {
     t_point	origin;
-    t_color	light_color;
+    t_color	color;
     double	bright_ratio;
 }	t_light;
 
 typedef struct  s_camera
 {
     t_point	orig;  // 카메라 원점(위치)
+    t_vec   direction;
+    int     fov;
     double	viewport_h; // 뷰포트 세로길이
     double	viewport_w; // 뷰포트 가로길이
     t_vec	horizontal; // 수평길이 벡터
@@ -95,9 +108,16 @@ typedef struct s_hit_record
     double	tmin;
     double	tmax;
     double	t;
-    t_bool	front_face;
+    bool	front_face;
     t_color	albedo;
 }	t_hit_record;
+
+typedef struct s_ambient
+{
+    t_color color;
+    double  ratio;
+}   t_ambient;
+
 
 typedef struct  s_scene
 {
@@ -105,7 +125,7 @@ typedef struct  s_scene
     t_camera		camera;
     t_object		*object;
     t_object		*light;
-    t_color			ambient; // 8.4에서 설명할 요소
+    t_ambient		amb; // 8.4에서 설명할 요소
     t_ray			ray;
     t_hit_record	rec;
 }	t_scene;
