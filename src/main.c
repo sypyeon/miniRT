@@ -1,94 +1,63 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:40:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/29 22:29:34 by sipyeon          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdio.h>
+#include "structures.h"
+#include "utils.h"
+#include "print.h"
+#include "scene.h"
+#include "trace.h"
 
-#include "rt_minirt.h"
-#include "../minilibx-linux/mlx.h"
-
-void	check_parse_data(t_rt_info *info);
-
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+t_scene *scene_init(void)
 {
-	return (*(int *)(unsigned char [4]){b, g, r, t});
+    t_scene     *scene;
+    t_object    *world;
+    t_object    *lights;
+    double      ka; // 8.4 에서 설명
+
+    // malloc 할당 실패 시, 실습에서는 return NULL로 해두었지만, 적절한 에러 처리가 필요하다.
+    if(!(scene = (t_scene *)malloc(sizeof(t_scene))))
+        return (NULL);
+    scene->canvas = canvas(400, 300);
+    scene->camera = camera(&scene->canvas, point3(0, 0, 0));
+    world = object(SP, sphere(point3(-2, 0, -5), 2), color3(0.5, 0, 0)); // world 에 구1 추가
+    obj_add(&world, object(SP, sphere(point3(0, -1000, 0), 995), color3(1, 1, 1))); // world 에 구3 추가
+    obj_add(&world, object(SP, sphere(point3(2, 0, -5), 2), color3(0, 0.5, 0))); // world 에 구2 추가
+    obj_add(&world, object(SP, sphere(point3(0, -2000, 0), 999), color3(1, 1, 1))); // world 에 구3 추가
+    scene->world = world;
+    lights = object(LIGHT_POINT, light_point(point3(0, 20, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
+    lights = object(LIGHT_POINT, light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
+    scene->light = lights;
+    ka = 0.1; // 8.4 에서 설명
+    scene->ambient = vmult(color3(1,1,1), ka); // 8.4 에서 설명
+    return (scene);
 }
 
-unsigned int	rt_convert_color(t_color color)
+int	main(void)
 {
-	unsigned int	converted;
+	int			i;
+	int			j;
+	double      u;
+	double		v;
+	t_color	pixel_color;
+	t_scene     *scene;
 
-	converted = create_trgb(0, (int)(255.999 * color.r),\
-							(int)(255.999 * color.g),	\
-							(int)(255.999 * color.b));
-	return (converted);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, t_color color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = rt_convert_color(color);
-}
-
-int	rt_mrt_drawing(t_mrt *mrt)
-{
-	int     	i;
-    int     	j;
-    double  	u;
-    double  	v;
-	t_color		pixel_color;
-	t_canvas	canvas;
-	t_ray		ray;
-	t_obj		*obj = mrt->info.obj.head;
-
-	canvas = rt_init_canvas(WIN_WIDTH, WIN_HEIGHT);
-	rt_init_camera(&canvas, mrt->info.cam.origin, mrt->info.cam.fov, &mrt->info.cam);
-	printf("%lf %lf %lf\n", mrt->info.cam.direction.x, mrt->info.cam.direction.y, mrt->info.cam.direction.z);
-	mrt->img.ptr = mlx_new_image(mrt->mlx, canvas.width, canvas.height);
-	mrt->img.addr = mlx_get_data_addr(mrt->img.ptr, &mrt->img.bits_per_pixel,
-								&mrt->img.line_length, &mrt->img.endian);
-    j = canvas.height - 1;
-    while (j >= 0)
-    {
+	scene = scene_init();
+	// 랜더링
+	// P3 는 색상값이 아스키코드라는 뜻, 그리고 다음 줄은 캔버스의 가로, 세로 픽셀 수, 마지막은 사용할 색상값
+	printf("P3\n%d %d\n255\n", scene->canvas.width, scene->canvas.height);
+	j = scene->canvas.height - 1;
+	while (j >= 0)
+	{
         i = 0;
-        while (i < canvas.width)
-        {
-            u = (double)i / (canvas.width - 1);
-            v = (double)j / (canvas.height - 1);
-			ray = rt_ray_primary(&mrt->info.cam, u, v);
-			pixel_color = rt_ray_color(&ray, obj);
-			my_mlx_pixel_put(&mrt->img, i, j, pixel_color);
-        ++i;
-        }
-    --j;
-    }
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img.ptr, 0, 0);
-	return (0);
-}
-
-int	main(int ac, char **av)
-{
-	t_mrt	mrt;
-
-	(void)av;
-	if (ac != 2)
-		return (rt_print_err_msg("Input argument error."));
-	ft_bzero(&mrt, sizeof(t_mrt));
-	rt_file_validate_and_save_data(av[1], &mrt.info);
-	// check_parse_data(&mrt.info);
-	mrt.mlx = mlx_init();
-	mrt.win = mlx_new_window(mrt.mlx, WIN_WIDTH, WIN_HEIGHT, "miniRT");
-	mlx_hook(mrt.win, KEY_PRESS, 1, rt_keybind, &mrt);
-	mlx_hook(mrt.win, ON_DESTROY, 0, close_mrt, &mrt);
-	mlx_loop_hook(mrt.mlx, rt_mrt_drawing, &mrt);
-	mlx_loop(mrt.mlx);
+        while (i < scene->canvas.width)
+		{
+			u = (double)i / (scene->canvas.width - 1);
+			v = (double)j / (scene->canvas.height - 1);
+			//ray from camera origin to pixel
+			scene->ray = ray_primary(&scene->camera, u, v);
+			pixel_color = ray_color(scene);
+			write_color(pixel_color);
+		++i;
+		}
+	--j;
+	}
 	return (0);
 }
