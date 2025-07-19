@@ -16,6 +16,6 @@
 # include "../minilibx-linux/mlx.h"
 # include "../includes/structures.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, t_color color);
+void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
 
 #endif

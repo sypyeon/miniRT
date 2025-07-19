@@ -6,12 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 08:24:35 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/19 08:59:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+# include "../ft_printf/src/ft_printf.h"
 # define LUMEN 3
 
 typedef enum e_obj_type

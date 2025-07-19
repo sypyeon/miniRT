@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 08:25:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/19 09:01:02 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_color		rt_parse_color(char *value);
 double		ft_strtod(char *str);
 
 int			rt_valid_file_format(char *file);
-void		rt_file_validate_and_save_data(char *file, t_rt_info *info);
+void		rt_file_validate_and_save_data(char *file, t_rt *info);
 
-int			rt_init_object(t_rt_info *info, int type, char **param, t_color albedo);
+int			rt_init_object(t_rt *info, int type, char **param, t_color albedo);
 
 #endif
