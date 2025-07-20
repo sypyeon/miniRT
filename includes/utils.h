@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:48:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 09:05:19 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:25:30 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ double		ft_strtod(char *str);
 void		rt_free_split(char **split);
 void		rt_free_obj(t_object *obj);
 int			print_err_msg(const char *msg);
+
+double		ft_strtod(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 08:59:35 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:25:28 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ typedef struct s_ray
 	t_vec3		dir;
 }	t_ray;
 
-typedef struct s_sphere
+typedef struct s_axis
+{
+	t_vec	x;
+	t_vec	y;
+	t_vec	z;
+}	t_axis;
+
+
+typedef struct  s_sphere
 {
 	t_point3	center;
 	double		radius;
@@ -56,28 +64,16 @@ typedef struct s_light
 
 typedef struct s_obj
 {
-	t_obj_type		type;
-	union u_mat
-	{
-		t_sphere	sp;
-		t_cylinder	cy;
-		t_plane		pl;
-		t_light		light;
-	}	mat;
-	t_color			color;
-	t_color			albedo;
-	struct s_obj	*next;
-}	t_obj;
-
-typedef struct s_camera
-{
-	t_point3	orig;
-	double		viewport_h;
-	double		viewport_w;
-	t_vec3		horiz;
-	t_vec3		vert;
-	double		focal_len;
-	t_point3	left_bottom;
+    t_point	orig;  // 카메라 원점(위치)
+    t_vec   direction;
+    int     fov;
+    double	viewport_h; // 뷰포트 세로길이
+    double	viewport_w; // 뷰포트 가로길이
+    t_vec	horizontal; // 수평길이 벡터
+    t_vec	vertical; // 수직길이 벡터
+    double	focal_len; // focal length
+    t_point	left_bottom; // 왼쪽 아래 코너점
+	t_axis	axis;
 }	t_camera;
 
 typedef struct s_canvas
@@ -100,12 +96,21 @@ typedef struct s_hit_record
 
 typedef struct s_scene
 {
-	t_canvas		canvas;
-	t_camera		camera;
-	t_obj			*objs;
-	t_color			ambient;
-	t_ray			ray;
-	t_hit_record	rec;
+    t_color color;
+    double  ratio;
+}   t_ambient;
+
+
+typedef struct  s_scene
+{
+    t_canvas		canvas;
+    t_camera		camera;
+    t_object        *current;
+    t_object		*object;
+    t_object		*light;
+    t_ambient		amb; // 8.4에서 설명할 요소
+    t_ray			ray;
+    t_hit_record	rec;
 }	t_scene;
 
 typedef struct s_image
