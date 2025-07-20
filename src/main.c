@@ -26,7 +26,7 @@ t_scene *scene_init(void)
     lights = object(LIGHT_POINT, light_point(point3(0, 5, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
     scene->light = lights;
     ka = 0.1; // 8.4 에서 설명
-    scene->ambient = vmult(color3(1,1,1), ka); // 8.4 에서 설명
+    scene->amb = vmult(color3(1,1,1), ka); // 8.4 에서 설명
     return (scene);
 }
 
