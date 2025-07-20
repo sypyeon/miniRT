@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_file_format.c                                   :+:      :+:    :+:   */
+/*   file_fmt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 19:25:46 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:19:22 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 
-static int	rt_str_is_rt(char *format, int i)
+static int	is_rt(char *format, int i)
 {
 	if (format[i] != '.')
 		return (0);
@@ -41,5 +41,5 @@ int	valid_file_format(char *file)
 		i++;
 	if (!file[i])
 		return (0);
-	return (rt_str_is_rt(file, i));
+	return (is_rt(file, i));
 }

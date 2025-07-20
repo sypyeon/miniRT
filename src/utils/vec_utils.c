@@ -6,13 +6,13 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:49:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 00:56:46 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:18:45 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
 
-t_vec	vec3(double x, double y, double z)
+t_vec	vec(double x, double y, double z)
 {
 	t_vec	vec;
 
@@ -22,7 +22,7 @@ t_vec	vec3(double x, double y, double z)
 	return (vec);
 }
 
-t_point	point3(double x, double y, double z)
+t_point	point(double x, double y, double z)
 {
 	t_point	point;
 
@@ -32,7 +32,7 @@ t_point	point3(double x, double y, double z)
 	return (point);
 }
 
-t_point	color3(double r, double g, double b)
+t_point	color(double r, double g, double b)
 {
 	t_color	color;
 
@@ -42,14 +42,12 @@ t_point	color3(double r, double g, double b)
 	return (color);
 }
 
-void	vset(t_vec *vec, double x, double y, double z)
-{
-	vec->x = x;
-	vec->y = y;
-	vec->z = z;
-}
-
 double	vlength2(t_vec vec)
 {
 	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+}
+
+double	vlength(t_vec vec)
+{
+	return (sqrt(vlength2(vec)));
 }

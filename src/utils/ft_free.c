@@ -6,14 +6,14 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:12:02 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 01:26:17 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:06:03 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/structures.h"
+#include "../../includes/utils.h"
 
-void	rt_free_split(char **split)
+void	free_split(char **split)
 {
 	int	i;
 
@@ -28,9 +28,9 @@ void	rt_free_split(char **split)
 	free(split);
 }
 
-void	rt_free_obj(t_object *obj)
+void	free_obj(t_obj *obj)
 {
-	t_object	*to_free;
+	t_obj	*to_free;
 
 	if (obj == NULL)
 		return ;

@@ -6,18 +6,18 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/19 09:03:34 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:21:19 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TRACE_H
 # define TRACE_H
 
-# include "structures.h"
 # include "utils.h"
+# include <float.h>
 
-t_ray		ray(t_point3 orig, t_vec dir);
-t_point3	ray_at(t_ray *ray, double t);
+t_ray		ray(t_point orig, t_vec dir);
+t_point		ray_at(t_ray *ray, double t);
 t_ray		ray_primary(t_camera *cam, double u, double v);
 void		set_face_normal(t_ray *r, t_hit_record *rec);
 t_color		ray_color(t_scene *scene);

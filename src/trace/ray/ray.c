@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 18:43:42 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:00:08 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_hit_record	record_init(void)
 {
 	t_hit_record	record;
 
-	record.tmin = EPSILON;
+	record.tmin = DBL_EPSILON;
 	record.tmax = INFINITY;
 	return (record);
 }
@@ -34,7 +34,7 @@ t_point	ray_at(t_ray *ray, double t)
 {
 	t_point	at;
 
-	at = vplus(ray->orig, vmult(ray->dir, t));
+	at = vplus(ray->orig, vscale(ray->dir, t));
 	return (at);
 }
 
@@ -44,7 +44,7 @@ t_ray	ray_primary(t_camera *cam, double u, double v)
 
 	ray.orig = cam->orig;
 	ray.dir = vunit(vminus(vplus(vplus(cam->left_bottom,
-						vmult(cam->horizontal, u)), vmult(cam->vertical, v)),
+						vscale(cam->horizontal, u)), vscale(cam->vertical, v)),
 				cam->orig));
 	return (ray);
 }
@@ -53,15 +53,13 @@ t_color	ray_color(t_scene *scene)
 {
 	double	t;
 
-    //광선이 구에 적중하면(광선과 구가 교점이 있고, 교점이 카메라 앞쪽이라면!)
-    scene->rec = record_init();
-    if (hit(scene->object, &scene->ray, &scene->rec))
-        return (phong_lighting(scene)); //phong_lighting 함수는 8.4에서 설명한다. 이제 법선 벡터를 매핑해서 얻은 색이 아닌, 앞으로 작성할 phong_lighting 함수의 결과값을 반환한다!
-    else
-    {
-        //ray의 방향벡터의 y 값을 기준으로 그라데이션을 주기 위한 계수.
-        t = 0.5 * (scene->ray.dir.y + 1.0);
-        // (1-t) * 흰색 + t * 하늘색
-        return (vplus(vmult(color3(1, 1, 1), 1.0 - t), vmult(color3(0.5, 0.7, 1.0), t)));
-    }
+	scene->rec = record_init();
+	if (hit(scene->obj, &scene->ray, &scene->rec))
+		return (phong_lighting(scene));
+	else
+	{
+		t = 0.5 * (scene->ray.dir.y + 1.0);
+		return (vplus(vscale(color(1, 1, 1), 1.0 - t),
+				vscale(color(0.5, 0.7, 1.0), t)));
+	}
 }

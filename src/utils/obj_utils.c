@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   obj_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 13:45:44 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 22:19:08 by jaehylee         ###   ########.fr       */
+/*   Created: 2025/07/18 14:41:35 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/21 01:10:10 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/print.h"
+#include "../../includes/utils.h"
 
-// [0,1] 로 되어있는 rgb 값을 각각 [0,255]에 맵핑 해서 출력.
-void	write_color(t_color pixel_color)
+void	obj_add(t_obj **list, t_obj *new)
 {
-	printf("%d %d %d\n", (int)(255.999 * pixel_color.x),
-		(int)(255.999 * pixel_color.y),
-		(int)(255.999 * pixel_color.z));
+	t_obj	*cur;
+
+	if (*list == NULL)
+	{
+		*list = new;
+		return ;
+	}
+	cur = *list;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
+}
+
+t_obj	*obj_last(t_obj *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
 }

@@ -6,27 +6,38 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 19:25:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/20 22:34:53 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-# include "../ft_printf/src/ft_printf.h"
+# include "../libft/libft.h"
 # define LUMEN 3
+
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_vec;
+
+typedef struct s_vec	t_point;
+typedef struct s_vec	t_color;
 
 typedef enum e_obj_type
 {
 	SPHERE,
 	CYLINDER,
 	PLANE,
-	LIGHT
+	LIGHT,
+	CAMERA
 }	t_obj_type;
 
 typedef struct s_ray
 {
-	t_point3	orig;
-	t_vec3		dir;
+	t_point	orig;
+	t_vec	dir;
 }	t_ray;
 
 typedef struct s_axis
@@ -36,45 +47,59 @@ typedef struct s_axis
 	t_vec	z;
 }	t_axis;
 
-
-typedef struct  s_sphere
+typedef struct s_sphere
 {
-	t_point3	center;
-	double		radius;
+	t_point	center;
+	double	radius;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_point3	base;
-	double		radius;
-	t_vec3		height_norm;
+	t_point	base;
+	double	radius;
+	t_vec	height_norm;
 }	t_cylinder;
 
 typedef struct s_plane
 {
-	t_point3	base;
-	t_vec3		norm;
+	t_point	base;
+	t_vec	norm;
 }	t_plane;
 
 typedef struct s_light
 {
-	t_point3	origin;
-	double		bright_ratio;
+	t_point	orig;
+	double	bright_ratio;
 }	t_light;
+
+typedef struct s_camera
+{
+	t_point	orig;
+	t_vec	dir;
+	int		fov;
+	double	viewport_h;
+	double	viewport_w;
+	t_vec	horizontal;
+	t_vec	vertical;
+	double	focal_len;
+	t_point	left_bottom;
+	t_axis	axis;
+}	t_camera;
 
 typedef struct s_obj
 {
-    t_point	orig;  // 카메라 원점(위치)
-    t_vec   direction;
-    int     fov;
-    double	viewport_h; // 뷰포트 세로길이
-    double	viewport_w; // 뷰포트 가로길이
-    t_vec	horizontal; // 수평길이 벡터
-    t_vec	vertical; // 수직길이 벡터
-    double	focal_len; // focal length
-    t_point	left_bottom; // 왼쪽 아래 코너점
-	t_axis	axis;
-}	t_camera;
+	t_obj_type		type;
+	union u_obj_data
+	{
+		t_sphere		sp;
+		t_cylinder		cy;
+		t_plane			pl;
+		t_light			light;
+		t_camera		cam;
+	}	data;
+	t_color			color;
+	struct s_obj	*next;
+}	t_obj;
 
 typedef struct s_canvas
 {
@@ -85,32 +110,31 @@ typedef struct s_canvas
 
 typedef struct s_hit_record
 {
-	t_point3	p;
-	t_vec3		norm;
-	double		tmin;
-	double		tmax;
-	double		t;
-	_Bool		front_face;
-	t_color		albedo;
+	t_point	p;
+	t_vec	norm;
+	double	tmin;
+	double	tmax;
+	double	t;
+	_Bool	front_face;
+	t_color	albedo;
 }	t_hit_record;
+
+typedef struct s_ambient
+{
+	t_color	color;
+	double	ratio;
+}	t_ambient;
 
 typedef struct s_scene
 {
-    t_color color;
-    double  ratio;
-}   t_ambient;
-
-
-typedef struct  s_scene
-{
-    t_canvas		canvas;
-    t_camera		camera;
-    t_object        *current;
-    t_object		*object;
-    t_object		*light;
-    t_ambient		amb; // 8.4에서 설명할 요소
-    t_ray			ray;
-    t_hit_record	rec;
+	t_canvas		canv;
+	t_camera		cam;
+	t_obj			*curr;
+	t_obj			*obj;
+	t_obj			*light;
+	t_ambient		amb;
+	t_ray			ray;
+	t_hit_record	rec;
 }	t_scene;
 
 typedef struct s_image
@@ -118,7 +142,7 @@ typedef struct s_image
 	void	*ptr;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_length;
+	int		line_len;
 	int		endian;
 }	t_image;
 

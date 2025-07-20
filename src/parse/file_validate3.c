@@ -6,27 +6,25 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 22:15:49 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/19 01:27:50 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:49:18 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libft/libft.h"
-#include "../../includes/structures.h"
 #include "../../includes/parse.h"
 
-int	rt_is_comma_or_period(char c)
+int	is_punc(char c)
 {
 	return (c == '.' || c == ',');
 }
 
-void	rt_check_numbers_in_line(char *line)
+void	check_ln_nums(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (rt_is_comma_or_period(line[i]))
+		if (is_punc(line[i]))
 		{
 			i++;
 			if (line[i] == '-' || line[i] == '+')
@@ -34,14 +32,14 @@ void	rt_check_numbers_in_line(char *line)
 			if (!ft_isdigit(line[i]))
 			{
 				free(line);
-				exit(rt_print_err_msg("Invalid numbers found."));
+				return (print_err_ln("Invalid numbers found."));
 			}
 		}
 		i++;
 	}
 }
 
-char	**rt_gnl_and_split(char *file)
+char	**gnl_split(char *file)
 {
 	int		fd;
 	char	*buf;
@@ -50,45 +48,45 @@ char	**rt_gnl_and_split(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit(rt_print_err_msg("open failure."));
+		return (print_err_ln("open failure."), NULL);
 	line = ft_strdup("");
 	while (1)
 	{
 		buf = get_next_line(fd);
 		if (!buf)
 			break ;
-		line = rt_strjoin_and_free(line, buf);
+		line = ft_strjoin_(line, buf);
 	}
-	rt_tab_to_space(line);
-	rt_check_numbers_in_line(line);
+	ft_tab_to_space(line);
+	check_ln_nums(line);
 	split = ft_split(line, '\n');
 	free(line);
 	return (split);
 }
 
-void	rt_file_validate_and_save_data(char *file, t_rt_info *info)
+void	fvalidate_save(char *file, t_scene *info)
 {
-	t_bool	invalid;
+	_Bool	invalid;
 	int		i;
 	char	**split;
 
-	if (!rt_valid_file_format(file))
-		exit(rt_print_err_msg("Wrong file format."));
-	split = rt_gnl_and_split(file);
+	if (!valid_file_fmt(file))
+		return (print_err_ln("Wrong file format."));
+	split = gnl_split(file);
 	if (!split)
-		exit(rt_print_err_msg("Split failure."));
+		return (print_err_ln("Split failure."));
 	i = 0;
 	while (split[i])
 	{
-		invalid = rt_split_and_identify_line(split[i], info);
+		invalid = split_identify_line(split[i], info);
 		if (invalid)
 		{
-			rt_free_obj(info);
-			rt_free_split(split);
-			exit (1);
+			free_obj(info);
+			free_split(split);
+			return ;
 		}
 		i++;
 	}
-	rt_free_split(split);
-	info->current_obj = info->obj_lst.head;
+	free_split(split);
+	info->curr = info->obj_lst.head;
 }

@@ -6,12 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 01:52:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 19:26:51 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:07:33 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
-#include "../../libft/libft.h"
 
 static double	ft_strtod_integer(char *str)
 {
@@ -65,6 +64,6 @@ double	ft_strtod(char *str)
 		result = ft_strtod_integer(split[0]);
 	if (split[1])
 		result = result + ft_strtod_decimal(split[1]);
-	rt_free_split(split);
+	free_split(split);
 	return (result * sign);
 }
