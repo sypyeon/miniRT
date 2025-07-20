@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 22:34:53 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 06:55:04 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ typedef struct s_vec	t_color;
 
 typedef enum e_obj_type
 {
-	SPHERE,
-	CYLINDER,
-	PLANE,
+	AMBIENT,
+	CAMERA,
 	LIGHT,
-	CAMERA
+	SPHERE,
+	PLANE,
+	CYLINDER,
 }	t_obj_type;
 
 typedef struct s_ray
@@ -77,8 +78,6 @@ typedef struct s_camera
 	t_point	orig;
 	t_vec	dir;
 	int		fov;
-	double	viewport_h;
-	double	viewport_w;
 	t_vec	horizontal;
 	t_vec	vertical;
 	double	focal_len;
@@ -96,6 +95,7 @@ typedef struct s_obj
 		t_plane			pl;
 		t_light			light;
 		t_camera		cam;
+		double			amb_ratio;
 	}	data;
 	t_color			color;
 	struct s_obj	*next;
@@ -119,20 +119,14 @@ typedef struct s_hit_record
 	t_color	albedo;
 }	t_hit_record;
 
-typedef struct s_ambient
-{
-	t_color	color;
-	double	ratio;
-}	t_ambient;
-
 typedef struct s_scene
 {
 	t_canvas		canv;
-	t_camera		cam;
-	t_obj			*curr;
-	t_obj			*obj;
-	t_obj			*light;
-	t_ambient		amb;
+	size_t			cam;
+	size_t			curr;
+	t_obj			*objs;
+	size_t			light;
+	size_t			amb;
 	t_ray			ray;
 	t_hit_record	rec;
 }	t_scene;

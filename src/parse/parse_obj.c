@@ -1,18 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_vec2.c                                       :+:      :+:    :+:   */
+/*   parse_obj.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 02:03:16 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 02:05:06 by jaehylee         ###   ########.fr       */
+/*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/21 07:06:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
-
-t_color	nan_color(void)
-{
-	return ((t_color){.x = NAN, .y = NAN, .z = NAN});
-}

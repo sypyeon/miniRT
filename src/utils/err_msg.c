@@ -6,12 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:36:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 01:03:25 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 06:22:10 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
-#include <unistd.h>
 
 void	print_err_ln(const char *msg)
 {

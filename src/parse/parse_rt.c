@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_fmt.c                                         :+:      :+:    :+:   */
+/*   parse_rt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/20 23:19:22 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 07:04:47 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 
-static int	is_rt(char *format, int i)
+_Bool	valid_file_fmt(char *file)
 {
-	if (format[i] != '.')
-		return (0);
-	i++;
-	if (format[i] != 'r')
-		return (0);
-	i++;
-	if (format[i] != 't')
-		return (0);
-	i++;
-	if (format[i] == '\0')
-		return (1);
-	return (0);
-}
-
-int	valid_file_format(char *file)
-{
-	int	i;
+	size_t	i;
+	char	**pieces;
+	_Bool	res;
 
 	i = 0;
-	if (!file)
+	if (!file || file[0] == '.' || !ft_strchr(file, '.'))
 		return (0);
-	if (file[0] == '.')
+	pieces = ft_split(file, '.');
+	if (!pieces)
 		return (0);
-	while (file[i] && file[i] != '.')
+	while (pieces[i])
 		i++;
-	if (!file[i])
-		return (0);
-	return (is_rt(file, i));
+	if (i == 0)
+		return (free_split(pieces), 0);
+	res = ft_strcmp(pieces[i - 1], "rt") == 0;
+	return (free_split(pieces), res);
 }

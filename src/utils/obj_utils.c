@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:41:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 01:10:10 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 06:28:02 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,18 @@ t_obj	*obj_last(t_obj *list)
 	while (list->next)
 		list = list->next;
 	return (list);
+}
+
+void	free_obj(t_obj *obj)
+{
+	t_obj	*to_free;
+
+	if (obj == NULL)
+		return ;
+	while (obj)
+	{
+		to_free = obj;
+		obj = obj->next;
+		free(to_free);
+	}
 }
