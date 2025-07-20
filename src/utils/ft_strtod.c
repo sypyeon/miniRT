@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 01:52:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:57:53 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:43:11 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ double	ft_strtod(char *str)
 		result = ft_strtod_integer(split[0]);
 	if (split[1])
 		result = result + ft_strtod_decimal(split[1]);
-	ft_free_split(split);
+	rt_free_split(split);
 	return (result * sign);
 }

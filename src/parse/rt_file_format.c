@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:46:55 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:06:23 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	rt_str_is_rt(char *format, int i)
 	return (0);
 }
 
-int	rt_valid_file_format(char *file)
+int	valid_file_format(char *file)
 {
 	int	i;
 

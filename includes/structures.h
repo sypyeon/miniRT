@@ -41,6 +41,14 @@ typedef struct  s_ray
     t_vec	dir;
 }	t_ray;
 
+typedef struct s_axis
+{
+	t_vec	x;
+	t_vec	y;
+	t_vec	z;
+}	t_axis;
+
+
 typedef struct  s_sphere
 {
 	t_point	center;
@@ -92,6 +100,7 @@ typedef struct  s_camera
     t_vec	vertical; // 수직길이 벡터
     double	focal_len; // focal length
     t_point	left_bottom; // 왼쪽 아래 코너점
+	t_axis	axis;
 }	t_camera;
 
 typedef struct  s_canvas
@@ -123,6 +132,7 @@ typedef struct  s_scene
 {
     t_canvas		canvas;
     t_camera		camera;
+    t_object        *current;
     t_object		*object;
     t_object		*light;
     t_ambient		amb; // 8.4에서 설명할 요소

@@ -46,4 +46,6 @@ void		rt_free_split(char **split);
 void		rt_free_obj(t_object *obj);
 int			print_err_msg(const char *msg);
 
+double		ft_strtod(char *str);
+
 #endif

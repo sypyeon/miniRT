@@ -31,12 +31,21 @@ HIT_SRC		=	hit_sphere.c hit.c normal.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
-UTILS_SRC	=	vec_utils.c object_utils.c
+UTILS_SRC	=	vec_utils.c object_utils.c err_msg.c ft_dtostr.c ft_free.c \
+				ft_strcmp.c ft_strtod.c ft_tab_to_space.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
 PRINT_DIR	=	$(MAIN_DIR)/print
 PRINT_SRC	=	print.c
 PRINT_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PRINT_SRC:.c=.o))
+
+PARSE_DIR	=	$(MAIN_DIR)/parse
+PARSE_SRC	=	rt_file_format.c	rt_file_validate.c	rt_parse_vector.c
+PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
+
+MLX_U_DIR	=	$(MAIN_DIR)/mlx_utils
+MLX_U_SRC	=	mlx_key_binding.c my_mlx_pixel_put.c
+MLX_U_OBJ	=	$(addprefix $(OBJS_DIR)/, $(MLX_U_SRC:.c=.o))
 
 MLXDIR		=	./minilibx-linux
 MLX			=	$(MLXDIR)/libmlx.a
@@ -45,7 +54,7 @@ LIBFTDIR	=	./libft
 LIBFT		=	$(LIBFTDIR)/libft.a
 
 vpath %.c	$(UTILS_DIR) $(SCENE_DIR) $(TRACE_DIR) $(PRINT_DIR) $(MAIN_DIR)	\
-			$(HIT_DIR)	$(RAY_DIR)
+			$(HIT_DIR)	$(RAY_DIR)	$(PARSE_DIR)
 
 all : $(NAME)
 

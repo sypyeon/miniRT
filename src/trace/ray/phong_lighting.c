@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 21:10:04 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 16:15:56 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_color        point_light_get(t_scene *scene, t_light *light)
     double  spec;
     double  ksn;
     double  ks;
-    double  brightness;
 	
     light_dir = vminus(light->origin, scene->rec.p);
     light_len = vlength(light_dir);
@@ -50,15 +49,14 @@ t_color        point_light_get(t_scene *scene, t_light *light)
         return (color3(0,0,0));
     light_dir = vunit(light_dir);
     kd = fmax(vdot(scene->rec.normal, light_dir), 0.0);// (교점에서 출발하여 광원을 향하는 벡터)와 (교점에서의 법선벡터)의 내적값.
-    diffuse = vmult(light->light_color, kd);
+    diffuse = vmult(light->color, kd);
     view_dir = vunit(vmult(scene->ray.dir, -1));
     reflect_dir = reflect(vmult(light_dir, -1), scene->rec.normal);
     ksn = 64; // shininess value
     ks = 0.5; // specular strength
     spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
-    specular = vmult(vmult(light->light_color, ks), spec);
-    brightness = light->bright_ratio * LUMEN; // 기준 광속/광량을 정의한 매크로
-    return (vmult(vplus(diffuse, specular), brightness));
+    specular = vmult(vmult(light->color, ks), spec);
+    return (vmult(vplus(diffuse, specular), light->bright_ratio * LUMEN));
 }
 
 t_color        phong_lighting(t_scene *scene)
@@ -74,7 +72,7 @@ t_color        phong_lighting(t_scene *scene)
             light_color = vplus(light_color, point_light_get(scene, lights->element));
         lights = lights->next;
     }
-    light_color = vplus(light_color, scene->ambient);
+    light_color = vplus(light_color, scene->amb.color);
     return (vmin(vmult_(light_color, scene->rec.albedo), color3(1, 1, 1)));
     //모든 광원에 의한 빛의 양을 구한 후, 오브젝트의 반사율과 곱해준다. 그 값이 (1, 1, 1)을 넘으면 (1, 1, 1)을 반환한다.
 }

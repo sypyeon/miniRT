@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 21:53:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:13:09 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ bool	rt_set_sphere_data(t_sphere *sp, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(print_err_msg("invalid sphere data."));
-	sp->center = rt_parse_coordinate(param[1]);
+	sp->center = parse_coordinate(param[1]);
 	sp->radius = rt_strtod(param[2]) / 2;
 	sp->radius2 = sp->radius * sp->radius;
-	sp->color = rt_parse_color(param[3]);
+	sp->color = parse_color(param[3]);
 	return (0);
 }
 
@@ -31,9 +31,9 @@ bool	rt_set_plane_data(t_plane *pl, char **param, int param_count)
 {
 	if (param_count != 4)
 		return(print_err_msg("invalid plane data."));
-	pl->center = rt_parse_coordinate(param[1]);
-	pl->vector = rt_parse_vector(param[2]);
-	pl->color = rt_parse_color(param[3]);
+	pl->center = parse_coordinate(param[1]);
+	pl->vector = parse_vector(param[2]);
+	pl->color = parse_color(param[3]);
 	return (0);
 }
 
@@ -41,12 +41,12 @@ int	rt_set_cylinder_data(t_cylinder *cy, char **param, int param_count)
 {
 	if (param_count != 6)
 		return(print_err_msg("invalid cylinder data."));
-	cy->center = rt_parse_coordinate(param[1]);
-	cy->vector = rt_parse_vector(param[2]);
+	cy->center = parse_coordinate(param[1]);
+	cy->vector = parse_vector(param[2]);
 	cy->radius = rt_strtod(param[3]) / 2;
 	cy->radius2 = cy->radius * cy->radius;
 	cy->height = rt_strtod(param[4]);
-	cy->color = rt_parse_color(param[5]);
+	cy->color = parse_color(param[5]);
 	return (0);
 }
 
@@ -66,7 +66,7 @@ void	rt_obj_add_back(t_object *obj, t_object *new)
 	new->next = NULL;
 }
 
-int	rt_init_object(t_scene *scene, int type, char **param, t_color albedo)
+int	rt_init_object(t_scene *scene, int type, char **param)
 {
 	int		valid;
 	int		param_count;
@@ -86,7 +86,6 @@ int	rt_init_object(t_scene *scene, int type, char **param, t_color albedo)
 		valid = rt_set_plane_data(obj, param, param_count);
 	else if (type == CYLINDER)
 		valid = rt_set_cylinder_data(obj, param, param_count);
-	obj->albedo = albedo;
 	rt_obj_add_back(scene->object, obj);
 	return (valid);
 }
@@ -101,7 +100,7 @@ int	rt_set_ambient(t_scene *scene, char **param)
 	if (param_count != 3)
 		return(print_err_msg("invalid ambient data"));
 	scene->amb.ratio = rt_strtod(param[1]);
-	scene->amb.color = rt_parse_color(param[2]);
+	scene->amb.color = parse_color(param[2]);
 	return (0);
 }
 
@@ -114,8 +113,8 @@ int	rt_set_camera(t_scene *scene, char **param)
 		param_count++;
 	if (param_count != 4)
 		return (print_err_msg("invalid camera data"));
-	scene->camera.orig = rt_parse_coordinate(param[1]);
-	scene->camera.direction = rt_parse_vector(param[2]);
+	scene->camera.orig = parse_coordinate(param[1]);
+	scene->camera.direction = parse_vector(param[2]);
 	scene->camera.fov = ft_atoi(param[3]);
 	return (0);
 }
@@ -123,15 +122,16 @@ int	rt_set_camera(t_scene *scene, char **param)
 int	rt_set_light(t_scene *scene, char **param)
 {
 	int		param_count;
+	t_light	light;
 
 	param_count = 0;
 	while (param[param_count])
 		param_count++;
 	if (param_count != 3 && param_count != 4)
 		return (print_err_msg("invalid light data"));
-	scene->light.origin = rt_parse_coordinate(param[1]);
-	scene->light.bright = rt_strtod(param[2]);
-	scene->light.color = rt_parse_color(param[3]);
+	light.origin = parse_coordinate(param[1]);
+	light.bright_ratio = rt_strtod(param[2]);
+	light.color = parse_color(param[3]);
 	return (0);
 }
 
@@ -152,18 +152,18 @@ bool	rt_split_and_identify_line(char *line, t_scene *scene)
 	else if (!rt_strcmp(split[0], "L"))
 		invalid = rt_set_light(scene, split);
 	else if (!rt_strcmp(split[0], "sp"))
-		invalid = rt_init_object(scene, SPHERE, split, vec3(1, 1, 1));
+		invalid = rt_init_object(scene, SPHERE, split);
 	else if (!rt_strcmp(split[0], "pl"))
-		invalid = rt_init_object(scene, PLANE, split, vec3(1, 1, 1));
+		invalid = rt_init_object(scene, PLANE, split);
 	else if (!rt_strcmp(split[0], "cy"))
-		invalid = rt_init_object(scene, CYLINDER, split, vec3(1, 1, 1));
+		invalid = rt_init_object(scene, CYLINDER, split);
 	else
 		invalid = print_err_msg("Unknown type.");
 	rt_free_split(split);
 	return (invalid);
 }
 
-char	*rt_strjoin_and_free(char *s1, char *s2)
+char	*strjoin_and_free(char *s1, char *s2)
 {
 	size_t	total_len;
 	char	*new_string;
@@ -181,7 +181,7 @@ char	*rt_strjoin_and_free(char *s1, char *s2)
 	return (new_string);
 }
 
-int	rt_is_comma_or_period(char c)
+int	ft_is_comma_or_period(char c)
 {
 	return (c == '.' || c == ',');
 }
@@ -233,13 +233,13 @@ char	**rt_gnl_and_split(char *file)
 	return (split);
 }
 
-void	rt_file_validate_and_save_data(char *file, t_scene *scene)
+void	file_validate_and_save_data(char *file, t_scene *scene)
 {
 	bool	invalid;
 	int		i;
 	char	**split;
 
-	if (!rt_valid_file_format(file))
+	if (!valid_file_format(file))
 		exit(print_err_msg("Wrong file format."));
 	split = rt_gnl_and_split(file);
 	if (!split)
@@ -257,5 +257,4 @@ void	rt_file_validate_and_save_data(char *file, t_scene *scene)
 		i++;
 	}
 	rt_free_split(split);
-	scene->current_obj = scene->obj_lst.head;
 }
