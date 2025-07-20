@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   rt_file_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 21:53:18 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:43:02 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 #include "../../includes/structures.h"
-#include "../../includes/utils.h"
-#include "../../libft/libft.h"
 #include <fcntl.h>
  
 bool	rt_set_sphere_data(t_sphere *sp, char **param, int param_count)
@@ -68,8 +66,8 @@ void	rt_obj_add_back(t_object *obj, t_object *new)
 
 int	rt_init_object(t_scene *scene, int type, char **param, t_color albedo)
 {
-	int		valid;
-	int		param_count;
+	int			valid;
+	int			param_count;
 	t_object	*obj;
 
 	valid = 1;

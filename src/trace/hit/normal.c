@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:55:33 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:44:08 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 22:35:42 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-void    set_face_normal(t_ray *r, t_hit_record *rec)
+void	set_face_normal(t_ray *r, t_hit_record *rec)
 {
-    // 광선의 방향벡터와 교점의 법선벡터의 내적이 음수이면 광선은 앞면(객체의)에 hit 한 것이다
-    rec->front_face = vdot(r->dir, rec->normal) < 0;
-    // 광선의 앞면에 hit 면 그대로 아니면 법선을 반대로 뒤집는다. (항상 광선 방향벡터와 법선 벡터를 반대인 상태로 사용하기위해)
-    rec->normal = (rec->front_face) ? rec->normal : vmult(rec->normal, -1);
+	rec->front_face = vdot(r->dir, rec->normal) < 0;
+	if (!rec->front_face)
+		rec->normal = vmult(rec->normal, -1);
 }

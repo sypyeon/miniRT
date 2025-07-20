@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 21:10:04 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:43:30 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 bool	in_shadow(t_object *objs, t_ray light_ray, double light_len)
 {
-    t_hit_record rec;
+	t_hit_record	rec;
 
-    rec.tmin = 0;
-    rec.tmax = light_len;
-    if (hit(objs, &light_ray, &rec))
-        return (TRUE);
-    return (FALSE);
+	rec.tmin = 0;
+	rec.tmax = light_len;
+	if (hit(objs, &light_ray, &rec))
+		return (TRUE);
+	return (FALSE);
 }
 
-t_vec          reflect(t_vec v, t_vec n)
+t_vec	reflect(t_vec v, t_vec n)
 {
     return (vminus(v, vmult(n, vdot(v, n) * 2)));
 }
 
-t_color        point_light_get(t_scene *scene, t_light *light)
+t_color	point_light_get(t_scene *scene, t_light *light)
 {
     t_color diffuse;
     t_vec   light_dir;
@@ -61,20 +61,20 @@ t_color        point_light_get(t_scene *scene, t_light *light)
     return (vmult(vplus(diffuse, specular), brightness));
 }
 
-t_color        phong_lighting(t_scene *scene)
+t_color	phong_lighting(t_scene *scene)
 {
-    t_color    light_color;
-    t_object    *lights;
+	t_color		light_color;
+	t_object	*lights;
 
-    light_color = color3(0, 0, 0); //광원이 하나도 없다면, 빛의 양은 (0, 0, 0)일 것이다.
-    lights = scene->light;
-    while (lights) //여러 광원에서 나오는 모든 빛에 대해 각각 diffuse, specular 값을 모두 구해줘야 한다
-    {
-        if (lights->type == LIGHT_POINT)
-            light_color = vplus(light_color, point_light_get(scene, lights->element));
-        lights = lights->next;
-    }
-    light_color = vplus(light_color, scene->ambient);
-    return (vmin(vmult_(light_color, scene->rec.albedo), color3(1, 1, 1)));
-    //모든 광원에 의한 빛의 양을 구한 후, 오브젝트의 반사율과 곱해준다. 그 값이 (1, 1, 1)을 넘으면 (1, 1, 1)을 반환한다.
+	light_color = color3(0, 0, 0);
+	lights = scene->light;
+	while (lights)
+	{
+		if (lights->type == LIGHT_POINT)
+			light_color = vplus(light_color,
+					point_light_get(scene, lights->element));
+		lights = lights->next;
+	}
+	light_color = vplus(light_color, scene->ambient);
+	return (vmin(vmult_(light_color, scene->rec.albedo), color3(1, 1, 1)));
 }

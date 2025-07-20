@@ -3,59 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 21:06:02 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:43:42 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-t_hit_record record_init(void)
+t_hit_record	record_init(void)
 {
-    t_hit_record    record;
+	t_hit_record	record;
 
-    record.tmin = EPSILON;
-    record.tmax = INFINITY;
-    return (record);
+	record.tmin = EPSILON;
+	record.tmax = INFINITY;
+	return (record);
 }
 
-//ray 생성자(정규화 된 ray)
-t_ray       ray(t_point orig, t_vec dir)
+t_ray	ray(t_point orig, t_vec dir)
 {
-    t_ray ray;
+	t_ray	ray;
 
-    ray.orig = orig;
-    ray.dir = vunit(dir);
-    return (ray);
+	ray.orig = orig;
+	ray.dir = vunit(dir);
+	return (ray);
 }
 
-//ray origin point 부터 방향벡터 ray dir * t 만큼 떨어진 점.
-t_point    ray_at(t_ray *ray, double t)
+t_point	ray_at(t_ray *ray, double t)
 {
-    t_point at;
+	t_point	at;
 
-    at = vplus(ray->orig, vmult(ray->dir, t));
-    return (at);
+	at = vplus(ray->orig, vmult(ray->dir, t));
+	return (at);
 }
 
-//primary_ray 생성자
-t_ray       ray_primary(t_camera *cam, double u, double v)
+t_ray	ray_primary(t_camera *cam, double u, double v)
 {
-    t_ray   ray;
+	t_ray	ray;
 
-    ray.orig = cam->orig;
-    // left_bottom + u * horizontal + v * vertical - origin 의 단위 벡터.
-    ray.dir = vunit(vminus(vplus(vplus(cam->left_bottom, vmult(cam->horizontal, u)), vmult(cam->vertical, v)), cam->orig));
-    return (ray);
+	ray.orig = cam->orig;
+	ray.dir = vunit(vminus(vplus(vplus(cam->left_bottom,
+						vmult(cam->horizontal, u)), vmult(cam->vertical, v)),
+				cam->orig));
+	return (ray);
 }
 
-//광선이 최종적으로 얻게된 픽셀의 색상 값을 리턴.
-t_color    ray_color(t_scene *scene)
+t_color	ray_color(t_scene *scene)
 {
-    double          t;
-    // t_vec          n;
+	double	t;
 
     //광선이 구에 적중하면(광선과 구가 교점이 있고, 교점이 카메라 앞쪽이라면!)
     scene->rec = record_init();

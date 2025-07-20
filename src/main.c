@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
+/*   Updated: 2025/07/19 01:24:12 by jaehylee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include "../includes/structures.h"
 #include "../includes/utils.h"
@@ -5,12 +17,12 @@
 #include "../includes/scene.h"
 #include "../includes/trace.h"
 
-t_scene *scene_init(void)
+t_scene	*scene_init(void)
 {
-    t_scene     *scene;
-    t_object    *world;
-    t_object    *lights;
-    double      ka; // 8.4 에서 설명
+	t_scene		*scene;
+	t_object	*world;
+	t_object	*lights;
+	double		ka;
 
     // malloc 할당 실패 시, 실습에서는 return NULL로 해두었지만, 적절한 에러 처리가 필요하다.
     if(!(scene = (t_scene *)malloc(sizeof(t_scene))))
@@ -32,32 +44,27 @@ t_scene *scene_init(void)
 
 int	main(void)
 {
-	int			i;
-	int			j;
-	double      u;
-	double		v;
+	int		i;
+	int		j;
 	t_color	pixel_color;
-	t_scene     *scene;
+	t_scene	*scene;
 
 	scene = scene_init();
-	// 랜더링
-	// P3 는 색상값이 아스키코드라는 뜻, 그리고 다음 줄은 캔버스의 가로, 세로 픽셀 수, 마지막은 사용할 색상값
 	printf("P3\n%d %d\n255\n", scene->canvas.width, scene->canvas.height);
 	j = scene->canvas.height - 1;
 	while (j >= 0)
 	{
-        i = 0;
-        while (i < scene->canvas.width)
+		i = 0;
+		while (i < scene->canvas.width)
 		{
-			u = (double)i / (scene->canvas.width - 1);
-			v = (double)j / (scene->canvas.height - 1);
-			//ray from camera origin to pixel
-			scene->ray = ray_primary(&scene->camera, u, v);
+			scene->ray = ray_primary(&scene->camera,
+					(double)i / (scene->canvas.width - 1),
+					(double)j / (scene->canvas.height - 1));
 			pixel_color = ray_color(scene);
 			write_color(pixel_color);
-		++i;
+			++i;
 		}
-	--j;
+		--j;
 	}
 	return (0);
 }

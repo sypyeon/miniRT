@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_parse_vector.c                                    :+:      :+:    :+:   */
+/*   rt_parse_vector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:04:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/06/25 20:52:51 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/18 22:10:29 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_point	rt_parse_coordinate(char *param)
 {
-	char 	**split;
+	char	**split;
 	int		split_len;
 	t_point	coordinate;
 
@@ -37,7 +37,7 @@ t_point	rt_parse_coordinate(char *param)
 
 t_vec	rt_parse_vector(char *param)
 {
-	char 	**split;
+	char	**split;
 	int		split_len;
 	t_vec	vector;
 
@@ -58,7 +58,7 @@ t_vec	rt_parse_vector(char *param)
 
 t_color	rt_parse_color(char *value)
 {
-	char 	**split;
+	char	**split;
 	int		split_len;
 	t_color	color;
 

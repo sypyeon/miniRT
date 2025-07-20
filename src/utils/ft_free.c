@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:12:02 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:57:13 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/19 01:26:17 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include <stdlib.h>
 #include "../../includes/structures.h"
 
 void	rt_free_split(char **split)
