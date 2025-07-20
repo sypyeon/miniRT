@@ -5,34 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 18:09:28 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/18 20:57:05 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/07/20 18:24:47 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/20 18:27:36 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
 
-char	*ft_fill_buf(char *str, int i, int int_part, int frac_part)
+static void	ft_int_to_str(char *str, int *i, int num)
 {
-    int len = 0;
-    char buf[12];
-    if (int_part == 0)
+    char	buf[12];
+    int		len;
+    int		j;
+
+    len = 0;
+    if (num == 0)
         buf[len++] = '0';
     else
     {
-        while (int_part > 0)
+        while (num > 0)
         {
-            buf[len++] = (int_part % 10) + '0';
-            int_part /= 10;
+            buf[len++] = (num % 10) + '0';
+            num /= 10;
         }
     }
-    for (int j = len - 1; j >= 0; --j)
-        str[i++] = buf[j];
-    str[i++] = '.';
-    str[i++] = (frac_part / 10) + '0';
-    str[i++] = (frac_part % 10) + '0';
-    str[i] = '\0';
-    return (str);
+    j = len - 1;
+    while (j >= 0)
+        str[(*i)++] = buf[j--];
 }
 
 char	*ft_dtostr(double num)
@@ -54,24 +53,10 @@ char	*ft_dtostr(double num)
     i = 0;
     if (neg)
         str[i++] = '-';
-    int tmp = int_part;
-    int len = 0;
-    char buf[12];
-    if (tmp == 0)
-        buf[len++] = '0';
-    else
-    {
-        while (tmp > 0)
-        {
-            buf[len++] = (tmp % 10) + '0';
-            tmp /= 10;
-        }
-    }
-    for (int j = len - 1; j >= 0; --j)
-        str[i++] = buf[j];
+    ft_int_to_str(str, &i, int_part);
     str[i++] = '.';
     str[i++] = (frac_part / 10) + '0';
     str[i++] = (frac_part % 10) + '0';
     str[i] = '\0';
-    return (ft_fill_buf(str, i, int_part, frac_part));
+    return (str);
 }
