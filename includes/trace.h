@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 06:01:33 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/22 07:06:31 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ _Bool		hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec);
 _Bool		hit_sphere(t_obj *world, t_ray *ray, t_hit_record *rec);
 
 t_color		phong_lighting(t_scene *scene);
-_Bool		in_shadow(t_obj *objs, t_ray light_ray, double light_len);
+_Bool		in_shadow(t_scene *scene, t_vec light_dir);
 t_color		point_light_get(t_scene *scene, t_obj *light);
 
 #endif

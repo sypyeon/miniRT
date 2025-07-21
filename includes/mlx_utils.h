@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 22:56:55 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/22 07:55:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@
 void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
 int		rt_keybind(int keycode, t_rt *rt);
 int		close_rt(t_rt *rt);
+// int		rt_drawing(t_rt *rt);
 
 #endif

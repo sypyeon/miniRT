@@ -9,15 +9,12 @@ OBJS		=	$(MAIN_OBJ) \
 				$(UTILS_OBJ) \
 				$(SCENE_OBJ) \
 				$(HIT_OBJ)	\
-				$(RAY_OBJ)
+				$(RAY_OBJ)	\
+				$(MLX_U_OBJ)
 
 MAIN_DIR	=	./src
 MAIN_SRC	= 	main.c
 MAIN_OBJ	=	$(addprefix $(OBJS_DIR)/, $(MAIN_SRC:.c=.o))
-
-SCENE_DIR	=	$(MAIN_DIR)/scene
-SCENE_SRC	=	scene.c
-SCENE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(SCENE_SRC:.c=.o))
 
 TRACE_DIR	=	$(MAIN_DIR)/trace
 
@@ -30,7 +27,7 @@ HIT_SRC		=	hit_sphere.c hit.c normal.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
-UTILS_SRC	=	err_msg.c  ft_convert.c  ft_str.c  obj_utils.c vec_utils2.c	\
+UTILS_SRC	=	err_msg.c  ft_convert.c  ft_str.c vec_utils2.c	\
 				vec_utils3.c  vec_utils.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
@@ -49,7 +46,7 @@ LIBFTDIR	=	./libft
 LIBFT		=	$(LIBFTDIR)/libft.a
 
 vpath %.c	$(UTILS_DIR) $(SCENE_DIR) $(TRACE_DIR) $(MAIN_DIR)	$(HIT_DIR)	\
-			$(RAY_DIR)	$(PARSE_DIR)
+			$(RAY_DIR)	$(PARSE_DIR) $(MLX_U_DIR)
 
 all : $(NAME)
 

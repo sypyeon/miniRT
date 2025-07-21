@@ -6,14 +6,14 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 23:44:58 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/22 08:07:44 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 # include "../libft/libft.h"
-# define LUMEN 3
+# define LUMEN 1
 
 typedef struct s_vec
 {

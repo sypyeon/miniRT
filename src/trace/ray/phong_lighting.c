@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 06:36:20 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/22 07:08:05 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ _Bool	in_shadow(t_scene *scene, t_vec light_dir)
 			light_dir);
 	rec.tmin = 0;
 	rec.tmax = light_len;
-	return (hit(scene->objs.ptr, &light_ray, &rec));
+	return (hit(&scene->objs, &light_ray, &rec));
 }
 
 t_vec	reflect(t_vec v, t_vec n)
@@ -55,7 +55,7 @@ t_color	point_light_get(t_scene *scene, t_obj *light)
 	double	brightness;
 
 	light_dir = vminus(light->origin, scene->rec.p);
-	if (in_shadow(&scene->objs, light_dir))
+	if (in_shadow(scene, light_dir))
 		return (color(0, 0, 0));
 	light_dir = vunit(light_dir);
 	diffuse = vscale(light->color, fmax(vdot(scene->rec.norm, light_dir), 0.0));
@@ -99,12 +99,13 @@ t_color	point_light_get(t_scene *scene, t_obj *light)
 
 t_color	phong_lighting(t_scene *scene)
 {
-	int		i;
+	size_t	i;
 	t_obj	*lights;
 	t_color	light_color;
 
 	light_color = color(0, 0, 0);
-	lights = scene->light;
+	lights = &scene->objs.ptr[scene->light];
+	i = 0;
 	while (scene->objs.size > i)
 	{
 		if (lights->type == LIGHT)

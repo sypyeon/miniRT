@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:09:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 05:33:08 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/22 07:05:56 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
 	double		discriminant;
 	double		root;
 
-	sp = &sp_obj->data;
+	sp = &sp_obj->data.sp;
 	oc = vminus(ray->orig, sp_obj->origin);
 	discriminant = vdot(oc, ray->dir) * vdot(oc, ray->dir) - vlength2(ray->dir)
 		* (vlength2(oc) - pow(sp->radius, 2));
