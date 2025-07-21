@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 01:52:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 02:38:04 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 03:21:02 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ ssize_t	ft_dots(const char *str)
 	size_t	i;
 	ssize_t	n;
 
-	if (str[0] == '.')
+	if (str[0] == '.' || ((str[0] == '+' || str[0] == '-') && str[1] == '.'))
 		return (-1);
 	i = 0;
 	n = 0;

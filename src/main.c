@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/22 02:39:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 02:52:00 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	char 	*pos;
+	char	*pos;
 	double	d;
 	size_t	i;
 
