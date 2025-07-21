@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 18:25:04 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:55:29 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,15 @@ void	init_cam(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
 	cam->axis = init_axis(cam->dir);
 }
 
-void	prepare_to_draw(t_rt *rt, t_camera *cam, t_canvas canvas)
+void	prepare_to_draw(t_rt *rt, t_camera *cam)
 {
+	cam->axis = init_axis(cam->dir);
+	init_cam(&canv, scene.cam.orig, scene.cam.fov, &scene.cam);
+	if (rt->img.ptr != NULL)
+		mlx_destroy_image(rt->mlx, rt->img.ptr);
+	rt->img.ptr = mlx_new_image(rt->mlx, WIN_WIDTH, WIN_HEIGHT);
+	rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bits_per_pixel,
+			&rt->img.line_len, &rt->img.endian);
 	
 }
 
@@ -88,7 +95,6 @@ int	rt_drawing(t_rt *rt, t_scene *scene)
 	int			j;
 	double		u;
 	double		v;
-	t_canvas	canv;
 
 	prepare_to_draw(rt, &scene->objs[scene->cam].data.cam, canvas(WIN_WIDTH, WIN_HEIGHT));
 	scene->objs[scene->cam].data.cam.axis = init_axis(scene->objs[scene->cam].data.cam.dir);
