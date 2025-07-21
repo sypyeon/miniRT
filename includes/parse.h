@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 18:20:45 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 04:11:05 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "utils.h"
 
-t_vec	parse_vec(char *param);
+t_vec	parse_vec(char *str);
 t_vec	nan_vec(void);
+_Bool	is_nanv(t_vec *v);
 
 _Bool	valid_file_fmt(char *file);
 

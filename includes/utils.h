@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:48:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 02:23:02 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 04:46:56 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ char		*ft_strjoin_(char *s1, char *s2);
 void		free_split(char **split);
 
 double		ft_strtod(const char *str, char **str_end);
-char		*ft_dtostr(double d);
-ssize_t		ft_digits(const char *str);
-ssize_t		ft_signs(const char *str);
-ssize_t		ft_dots(const char *str);
-double		ft_exp(const char *str);
+char		*ft_dtostr(double d); // TODO
 
 void		print_err_ln(const char *msg);
 

@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/22 02:52:00 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 05:58:23 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 int	main(int ac, char **av)
 {
-	char	*pos;
-	double	d;
-	size_t	i;
+	t_vec	v;
 
-	pos = NULL;
 	if (ac != 2)
 		return (1);
-	d = ft_strtod(av[1], &pos);
-	i = 0;
-	while (av[1][i])
-		i++;
-	if (av[1] + i != pos)
+	v = parse_vec(av[1]);
+	if (is_nanv(&v))
 		return (printf("parse error\n"), 1);
-	printf("%.15f\n", d);
+	printf("vec { x: %.15f, y: %.15f, z: %.15f }\n", v.x, v.y, v.z);
 	return (0);
 }
