@@ -30,7 +30,7 @@ HIT_SRC		=	hit_sphere.c hit.c normal.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
-UTILS_SRC	=	err_msg.c  ft_convert.c  ft_str.c  obj_utils.c vec_utils2.c	\
+UTILS_SRC	=	err_msg.c  ft_strtod.c  ft_str.c  obj_utils.c vec_utils2.c	\
 				vec_utils3.c  vec_utils.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
