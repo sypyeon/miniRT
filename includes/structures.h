@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 06:55:04 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:22:01 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,16 @@ typedef struct s_sphere
 {
 	t_point	center;
 	double	radius;
+	double	radius2;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
 	t_point	base;
 	double	radius;
-	t_vec	height_norm;
+	double	radius2;
+	double	height;
+	t_vec	norm;
 }	t_cylinder;
 
 typedef struct s_plane
@@ -90,16 +93,22 @@ typedef struct s_obj
 	t_obj_type		type;
 	union u_obj_data
 	{
-		t_sphere		sp;
-		t_cylinder		cy;
-		t_plane			pl;
-		t_light			light;
-		t_camera		cam;
 		double			amb_ratio;
+		t_camera		cam;
+		t_light			light;
+		t_sphere		sp;
+		t_plane			pl;
+		t_cylinder		cy;
 	}	data;
 	t_color			color;
-	struct s_obj	*next;
 }	t_obj;
+
+typedef struct s_objs
+{
+	t_obj	*ptr;
+	size_t	size;
+	size_t	cap;
+}	t_objs;
 
 typedef struct s_canvas
 {
@@ -124,7 +133,7 @@ typedef struct s_scene
 	t_canvas		canv;
 	size_t			cam;
 	size_t			curr;
-	t_obj			*objs;
+	t_objs			objs;
 	size_t			light;
 	size_t			amb;
 	t_ray			ray;
