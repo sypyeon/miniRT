@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 18:55:29 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/21 19:54:48 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,42 @@ t_axis	init_axis(t_vec direction)
 	return (axis);
 }
 
-void	init_cam(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
+void	init_cam(double aspect_ratio, t_point orig, double fov, t_camera *cam)
 {
 	t_vec	right;
-	double	focal_len;
-	double	fov_rad;
 	t_vec	world_up;
+	double	fov_rad;
 
 	world_up = cam->axis.y;
-	focal_len = 1.0;
 	cam->orig = orig;
 	fov_rad = fov * 3.141592 / 180.0;
-	cam->viewport_h = 2.0 * tan(fov_rad / 2.0) * focal_len;
-	cam->viewport_w = cam->viewport_h * canvas->aspect_ratio;
-	cam->focal_len = focal_len;
+	cam->focal_len = 1.0;
+	cam->viewport_h = 2.0 * tan(fov_rad / 2.0) * cam->focal_len;
+	cam->viewport_w = cam->viewport_h * aspect_ratio;
 	right = vunit(vcross(cam->dir, world_up));
 	cam->horizontal = vscale(right, cam->viewport_w);
 	cam->vertical = vscale(vunit(vcross(right, cam->dir)), cam->viewport_h);
 	cam->left_bottom = vminus(vminus(vminus(cam->orig,
 					vscale(cam->horizontal, 0.5)), vscale(cam->vertical, 0.5)),
 			cam->dir);
-	printf("cam->left_bottom: %f, %f, %f\n", cam->left_bottom.x, cam->left_bottom.y,
-		cam->left_bottom.z);
+	printf("cam->left_bottom: %f, %f, %f\n", cam->left_bottom.x, cam->left_bottom.y, cam->left_bottom.z);
 	cam->axis = init_axis(cam->dir);
 }
 
 void	prepare_to_draw(t_rt *rt, t_camera *cam)
 {
+	double	w;
+	double	h;
+
+	w = WIN_WIDTH;
+	h = WIN_HEIGHT;
 	cam->axis = init_axis(cam->dir);
-	init_cam(&canv, scene.cam.orig, scene.cam.fov, &scene.cam);
+	init_cam(w / h, cam->orig, cam->fov, cam);
 	if (rt->img.ptr != NULL)
 		mlx_destroy_image(rt->mlx, rt->img.ptr);
 	rt->img.ptr = mlx_new_image(rt->mlx, WIN_WIDTH, WIN_HEIGHT);
 	rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bits_per_pixel,
 			&rt->img.line_len, &rt->img.endian);
-	
 }
 
 int	rt_drawing(t_rt *rt, t_scene *scene)
@@ -96,15 +97,7 @@ int	rt_drawing(t_rt *rt, t_scene *scene)
 	double		u;
 	double		v;
 
-	prepare_to_draw(rt, &scene->objs[scene->cam].data.cam, canvas(WIN_WIDTH, WIN_HEIGHT));
-	scene->objs[scene->cam].data.cam.axis = init_axis(scene->objs[scene->cam].data.cam.dir);
-	canv = canvas(WIN_WIDTH, WIN_HEIGHT);
-	init_cam(&canv, scene.cam.orig, scene.cam.fov, &scene.cam);
-	if (rt->img.ptr != NULL)
-		mlx_destroy_image(rt->mlx, rt->img.ptr);
-	rt->img.ptr = mlx_new_image(rt->mlx, canv.width, canv.height);
-	rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bits_per_pixel,
-			&rt->img.line_len, &rt->img.endian);
+	prepare_to_draw(rt, &scene->objs.ptr[scene->cam].data.cam);
 	j = WIN_HEIGHT - 1;
 	while (j >= 0)
 	{
@@ -113,7 +106,8 @@ int	rt_drawing(t_rt *rt, t_scene *scene)
 		{
 			u = (double)i / (WIN_WIDTH - 1);
 			v = (double)j / (WIN_HEIGHT - 1);
-			scene.ray = ray_primary(&scene.cam, u, v);
+			scene->ray = ray_primary(&scene->objs.ptr[scene->cam].data.cam,\
+					(double)i / (WIN_WIDTH - 1), (double)j / (WIN_HEIGHT - 1));
 			my_mlx_pixel_put(&rt->img, i, j, ray_color(&scene));
 			++i;
 		}
