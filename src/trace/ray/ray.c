@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 01:00:08 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 06:36:43 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ t_point	ray_at(t_ray *ray, double t)
 	return (at);
 }
 
-t_ray	ray_primary(t_camera *cam, double u, double v)
+t_ray	ray_primary(t_obj *cam, double u, double v)
 {
 	t_ray	ray;
 
-	ray.orig = cam->orig;
-	ray.dir = vunit(vminus(vplus(vplus(cam->left_bottom,
-						vscale(cam->horizontal, u)), vscale(cam->vertical, v)),
-				cam->orig));
+	ray.orig = cam->origin;
+	ray.dir = vunit(vminus(vplus(vplus(cam->data.cam.left_bottom,
+						vscale(cam->data.cam.horizontal, u)),
+					vscale(cam->data.cam.vertical, v)), cam->origin));
 	return (ray);
 }
 
@@ -54,7 +54,7 @@ t_color	ray_color(t_scene *scene)
 	double	t;
 
 	scene->rec = record_init();
-	if (hit(scene->obj, &scene->ray, &scene->rec))
+	if (hit(&scene->objs, &scene->ray, &scene->rec))
 		return (phong_lighting(scene));
 	else
 	{

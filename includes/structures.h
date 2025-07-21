@@ -6,11 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/07/21 18:37:26 by sipyeon          ###   ########.fr       */
-=======
-/*   Updated: 2025/07/21 18:39:10 by jaehylee         ###   ########.fr       */
->>>>>>> a5cf3c1431869d13ef49e5b5ead75029f67c81d8
+/*   Updated: 2025/07/21 23:44:58 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +50,12 @@ typedef struct s_axis
 
 typedef struct s_sphere
 {
-	t_point	center;
 	double	radius;
 	double	radius2;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_point	base;
 	double	radius;
 	double	radius2;
 	double	height;
@@ -70,19 +64,16 @@ typedef struct s_cylinder
 
 typedef struct s_plane
 {
-	t_point	base;
 	t_vec	norm;
 }	t_plane;
 
 typedef struct s_light
 {
-	t_point	orig;
 	double	bright_ratio;
 }	t_light;
 
 typedef struct s_camera
 {
-	t_point	orig;
 	t_vec	dir;
 	int		fov;
 	t_vec	horizontal;
@@ -95,6 +86,7 @@ typedef struct s_camera
 typedef struct s_obj
 {
 	t_obj_type		type;
+	t_point			origin;
 	union u_obj_data
 	{
 		double			amb_ratio;
@@ -127,9 +119,9 @@ typedef struct s_hit_record
 
 typedef struct s_scene
 {
+	t_objs			objs;
 	size_t			cam;
 	size_t			curr;
-	t_objs			objs;
 	size_t			light;
 	size_t			amb;
 	t_ray			ray;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 02:07:56 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 22:56:55 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define WHITE	0xFFFFFF
 # define BLACK	0x000000
+
+# define ROTATE_ANGLE	0.1
 
 void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
 int		rt_keybind(int keycode, t_rt *rt);

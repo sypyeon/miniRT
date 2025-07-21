@@ -3,41 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:39:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 02:14:49 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 05:37:59 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-_Bool	hit(t_obj *world, t_ray *ray, t_hit_record *rec)
+_Bool	is_object(t_obj obj)
 {
+	return (obj.type == SPHERE || obj.type == CYLINDER || obj.type == PLANE);
+}
+
+_Bool	hit(t_objs *objs, t_ray *ray, t_hit_record *rec)
+{
+	int				i;
 	_Bool			hit_anything;
 	t_hit_record	temp_rec;
 
 	temp_rec = *rec;
 	hit_anything = 0;
-	while (world)
+	i = 0;
+	while (objs->size > i && is_object(objs->ptr[i]))
 	{
-		if (hit_obj(world, ray, &temp_rec))
+		if (hit_obj(&objs->ptr[i], ray, &temp_rec))
 		{
 			hit_anything = 1;
 			temp_rec.tmax = temp_rec.t;
 			*rec = temp_rec;
 		}
-		world = world->next;
+		i++;
 	}
 	return (hit_anything);
 }
 
-_Bool	hit_obj(t_obj *world, t_ray *ray, t_hit_record *rec)
+_Bool	hit_obj(t_obj *objs, t_ray *ray, t_hit_record *rec)
 {
 	_Bool	hit_result;
 
 	hit_result = 0;
-	if (world->type == SPHERE)
-		hit_result = hit_sphere(world, ray, rec);
+	if (objs->type == SPHERE)
+		hit_result = hit_sphere(objs, ray, rec);
 	return (hit_result);
 }

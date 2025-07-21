@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:09:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 00:31:56 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 05:33:08 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
 	double		discriminant;
 	double		root;
 
-	sp = &sp_obj->data.sp;
-	oc = vminus(ray->orig, sp->center);
+	sp = &sp_obj->data;
+	oc = vminus(ray->orig, sp_obj->origin);
 	discriminant = vdot(oc, ray->dir) * vdot(oc, ray->dir) - vlength2(ray->dir)
 		* (vlength2(oc) - pow(sp->radius, 2));
 	if (discriminant < 0)
@@ -34,8 +34,8 @@ _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
 	}
 	rec->t = root;
 	rec->p = ray_at(ray, root);
-	rec->norm = vscale(vminus(rec->p, sp->center), 1 / sp->radius);
+	rec->norm = vscale(vminus(rec->p, sp_obj->origin), 1 / sp->radius);
 	set_face_normal(ray, rec);
-	rec->albedo = sp_obj->albedo;
+	rec->albedo = sp_obj->color;
 	return (1);
 }
