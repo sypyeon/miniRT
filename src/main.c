@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 01:38:59 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:25:04 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ void	init_cam(t_canvas *canvas, t_point orig, double fov, t_camera *cam)
 	cam->axis = init_axis(cam->dir);
 }
 
-int	rt_drawing(t_rt *rt)
+void	prepare_to_draw(t_rt *rt, t_camera *cam, t_canvas canvas)
+{
+	
+}
+
+int	rt_drawing(t_rt *rt, t_scene *scene)
 {
 	int			i;
 	int			j;
@@ -85,24 +90,25 @@ int	rt_drawing(t_rt *rt)
 	double		v;
 	t_canvas	canv;
 
-	rt->scene.cam.axis = init_axis(rt->scene.cam.dir);
+	prepare_to_draw(rt, &scene->objs[scene->cam].data.cam, canvas(WIN_WIDTH, WIN_HEIGHT));
+	scene->objs[scene->cam].data.cam.axis = init_axis(scene->objs[scene->cam].data.cam.dir);
 	canv = canvas(WIN_WIDTH, WIN_HEIGHT);
-	init_cam(&canv, rt->scene.cam.orig, rt->scene.cam.fov, &rt->scene.cam);
+	init_cam(&canv, scene.cam.orig, scene.cam.fov, &scene.cam);
 	if (rt->img.ptr != NULL)
 		mlx_destroy_image(rt->mlx, rt->img.ptr);
 	rt->img.ptr = mlx_new_image(rt->mlx, canv.width, canv.height);
 	rt->img.addr = mlx_get_data_addr(rt->img.ptr, &rt->img.bits_per_pixel,
 			&rt->img.line_len, &rt->img.endian);
-	j = rt->scene.canv.height - 1;
+	j = WIN_HEIGHT - 1;
 	while (j >= 0)
 	{
 		i = 0;
-		while (i < rt->scene.canv.width)
+		while (i < WIN_WIDTH)
 		{
-			u = (double)i / (rt->scene.canv.width - 1);
-			v = (double)j / (rt->scene.canv.height - 1);
-			rt->scene.ray = ray_primary(&rt->scene.cam, u, v);
-			my_mlx_pixel_put(&rt->img, i, j, ray_color(&rt->scene));
+			u = (double)i / (WIN_WIDTH - 1);
+			v = (double)j / (WIN_HEIGHT - 1);
+			scene.ray = ray_primary(&scene.cam, u, v);
+			my_mlx_pixel_put(&rt->img, i, j, ray_color(&scene));
 			++i;
 		}
 		--j;
