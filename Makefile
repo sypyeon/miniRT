@@ -8,7 +8,6 @@ OBJS_DIR	=	./obj
 OBJS		=	$(MAIN_OBJ) \
 				$(UTILS_OBJ) \
 				$(SCENE_OBJ) \
-				$(PRINT_OBJ) \
 				$(HIT_OBJ)	\
 				$(RAY_OBJ)
 
@@ -17,7 +16,7 @@ MAIN_SRC	= 	main.c
 MAIN_OBJ	=	$(addprefix $(OBJS_DIR)/, $(MAIN_SRC:.c=.o))
 
 SCENE_DIR	=	$(MAIN_DIR)/scene
-SCENE_SRC	=	canvas.c scene.c obj_create.c
+SCENE_SRC	=	scene.c
 SCENE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(SCENE_SRC:.c=.o))
 
 TRACE_DIR	=	$(MAIN_DIR)/trace
@@ -31,13 +30,9 @@ HIT_SRC		=	hit_sphere.c hit.c normal.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
-UTILS_SRC	=	vec_utils.c obj_utils.c err_msg.c ft_dtostr.c ft_free.c \
-				ft_strcmp.c ft_strtod.c ft_tab_to_space.c
+UTILS_SRC	=	err_msg.c  ft_convert.c  ft_str.c  obj_utils.c vec_utils2.c	\
+				vec_utils3.c  vec_utils.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
-
-PRINT_DIR	=	$(MAIN_DIR)/print
-PRINT_SRC	=	print.c
-PRINT_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PRINT_SRC:.c=.o))
 
 PARSE_DIR	=	$(MAIN_DIR)/parse
 PARSE_SRC	=	file_fmt.c	file_validate.c	parse_vec.c
@@ -53,8 +48,8 @@ MLX			=	$(MLXDIR)/libmlx.a
 LIBFTDIR	=	./libft
 LIBFT		=	$(LIBFTDIR)/libft.a
 
-vpath %.c	$(UTILS_DIR) $(SCENE_DIR) $(TRACE_DIR) $(PRINT_DIR) $(MAIN_DIR)	\
-			$(HIT_DIR)	$(RAY_DIR)	$(PARSE_DIR)
+vpath %.c	$(UTILS_DIR) $(SCENE_DIR) $(TRACE_DIR) $(MAIN_DIR)	$(HIT_DIR)	\
+			$(RAY_DIR)	$(PARSE_DIR)
 
 all : $(NAME)
 
