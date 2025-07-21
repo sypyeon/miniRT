@@ -5,3 +5,4 @@ libft/.vscode/
 **/*.a
 obj/
 miniRT
+.idea/
