@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 18:22:01 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:39:10 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,6 @@ typedef struct s_objs
 	size_t	cap;
 }	t_objs;
 
-typedef struct s_canvas
-{
-	int		width;
-	int		height;
-	double	aspect_ratio;
-}	t_canvas;
-
 typedef struct s_hit_record
 {
 	t_point	p;
@@ -130,7 +123,6 @@ typedef struct s_hit_record
 
 typedef struct s_scene
 {
-	t_canvas		canv;
 	size_t			cam;
 	size_t			curr;
 	t_objs			objs;
