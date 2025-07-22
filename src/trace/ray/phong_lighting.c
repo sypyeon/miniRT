@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 04:38:36 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 05:01:46 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_color	point_light_get(t_scene *scene, t_obj *light)
 	return (vscale(vplus(diffuse, specular), brightness * LUMEN));
 }
 
-#include <stdio.h>
 t_color	phong_lighting(t_scene *scene)
 {
 	size_t	i;

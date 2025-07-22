@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/23 04:42:40 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 05:33:16 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define KEY_PRESS	2
 # define ON_DESTROY	17
 
-# define WIN_WIDTH	90
-# define WIN_HEIGHT	60
+# define WIN_WIDTH	900
+# define WIN_HEIGHT	600
 
 # define WHITE	0xFFFFFF
 # define BLACK	0x000000

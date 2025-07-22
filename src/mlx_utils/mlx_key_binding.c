@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 08:04:39 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 06:11:54 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ void	move_coord(t_point *orig, t_axis axis, int keycode)
     else if (keycode == XK_s)
         *orig = vminus(*orig, vscale(axis.z, move_speed));
     else if (keycode == XK_d)
-        *orig = vminus(*orig, vscale(axis.x, move_speed));
+		*orig = vplus(*orig, vscale(axis.x, move_speed));
     else if (keycode == XK_a)
-        *orig = vplus(*orig, vscale(axis.x, move_speed));
+		*orig = vminus(*orig, vscale(axis.x, move_speed));
     else if (keycode == XK_q)
         *orig = vplus(*orig, vscale(axis.y, move_speed));
     else if (keycode == XK_e)

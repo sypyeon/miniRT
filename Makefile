@@ -23,7 +23,7 @@ RAY_SRC		=	ray.c phong_lighting.c
 RAY_OBJ		=	$(addprefix $(OBJS_DIR)/, $(RAY_SRC:.c=.o))
 
 HIT_DIR		=	$(TRACE_DIR)/hit
-HIT_SRC		=	hit_sphere.c hit.c normal.c
+HIT_SRC		=	hit.c normal.c hit_sphere.c hit_plane.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils

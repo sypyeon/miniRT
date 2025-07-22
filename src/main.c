@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/23 04:39:53 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 07:39:16 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_cam(double aspect_ratio, t_point origin, double fov, t_camera *cam)
 	cam->horizontal = vscale(right, view_w);
 	cam->vertical = vscale(vunit(vcross(right, cam->dir)), view_h);
 	vp_center = vplus(origin, vscale(cam->dir, cam->focal_len));
-	cam->left_bottom = vminus(vminus(vp_center, 
+	cam->left_bottom = vminus(vminus(vp_center, \
 		vscale(cam->horizontal, 0.5)), vscale(cam->vertical, 0.5));
 	cam->axis = init_axis(cam->dir);
 }
@@ -93,7 +93,7 @@ int	rt_drawing(t_rt *rt)
 		while (i < WIN_WIDTH)
 		{
 			u = (double)i / (WIN_WIDTH - 1);
-			v = (double)j / (WIN_HEIGHT - 1);
+			v = 1.0 - (double)j / (WIN_HEIGHT - 1);
             scene->ray = ray_primary(&scene->objs.ptr[scene->cam], u, v);
             my_mlx_pixel_put(&rt->img, i, j, ray_color(scene));
             ++i;
@@ -110,8 +110,8 @@ void	init_world(t_rt *rt)
 	rt->scene.amb = 0;
 	rt->scene.cam = 1;
 	rt->scene.light = 2;
-	rt->scene.objs.size = 5;
-	rt->scene.objs.ptr = (t_obj*)calloc(sizeof(t_obj), 5);
+	rt->scene.objs.size = 7;
+	rt->scene.objs.ptr = (t_obj*)calloc(sizeof(t_obj), 10);
 	rt->scene.objs.ptr[0].type = AMBIENT;
 	rt->scene.objs.ptr[0].data.amb_ratio = 0.2;
 	rt->scene.objs.ptr[0].color = vscale(color(1, 1, 1), 0.2);
@@ -119,15 +119,15 @@ void	init_world(t_rt *rt)
 	
 	rt->scene.objs.ptr[1].type = CAMERA;
 	rt->scene.objs.ptr[1].color = vec(0,0,0);
-	rt->scene.objs.ptr[1].origin = vec(0,0,30);
-	rt->scene.objs.ptr[1].data.cam.dir = vec(0,0,-1);
+	rt->scene.objs.ptr[1].origin = vec(0,0,-30);
+	rt->scene.objs.ptr[1].data.cam.dir = vec(0,0,1);
 	rt->scene.objs.ptr[1].data.cam.axis = init_axis(rt->scene.objs.ptr[1].data.cam.dir);
 	rt->scene.objs.ptr[1].data.cam.focal_len = 1;
 	rt->scene.objs.ptr[1].data.cam.fov = 70;
 	
 	rt->scene.objs.ptr[2].type = LIGHT;
 	rt->scene.objs.ptr[2].color = vec(1,1,1);
-	rt->scene.objs.ptr[2].origin = vec(0, -30, 0);
+	rt->scene.objs.ptr[2].origin = vec(-5, 30, 0);
 	rt->scene.objs.ptr[2].data.light.bright_ratio = 0.6;
 
 	rt->scene.objs.ptr[3].type = SPHERE;
@@ -138,9 +138,19 @@ void	init_world(t_rt *rt)
 	
 	rt->scene.objs.ptr[4].type = SPHERE;
 	rt->scene.objs.ptr[4].color = vec(1,0.5,0.3);
-	rt->scene.objs.ptr[4].origin = vec(0, 0, 0);
+	rt->scene.objs.ptr[4].origin = vec(-5, 0, 0);
 	rt->scene.objs.ptr[4].data.sp.radius = 1;
 	rt->scene.objs.ptr[4].data.sp.radius2 = 1 * 1;
+
+	rt->scene.objs.ptr[5].type = PLANE;
+	rt->scene.objs.ptr[5].color = vec(1,0.5,0.3);
+	rt->scene.objs.ptr[5].origin = vec(0, -30, 0);
+	rt->scene.objs.ptr[5].data.pl.norm = vec(0,1,0);
+	
+	rt->scene.objs.ptr[6].type = LIGHT;
+	rt->scene.objs.ptr[6].color = vec(1,1,1);
+	rt->scene.objs.ptr[6].origin = vec(5, 30, 0);
+	rt->scene.objs.ptr[6].data.light.bright_ratio = 0.6;
 }
 
 int	main(int ac, char **av)

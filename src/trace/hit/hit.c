@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:39:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 04:54:44 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 07:17:05 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ _Bool	hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	hit_result = 0;
 	if (obj->type == SPHERE)
 		hit_result = hit_sphere(obj, ray, rec);
+	if (obj->type == PLANE)
+		hit_result = hit_plane(obj, ray, rec);
 	return (hit_result);
 }
