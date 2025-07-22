@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 02:21:55 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 03:53:38 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,8 @@ _Bool	parse_sphere(char **toks, t_obj *sp)
 
 _Bool	parse_plane(char **toks, t_obj *pl)
 {
-	char	*pos;
-
 	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "pl"))
 		return (0);
-	pos = NULL;
 	pl->type = PLANE;
 	pl->data.pl.base = parse_vec(toks[1]);
 	if (is_nanv(&pl->data.pl.base))
@@ -101,4 +98,33 @@ _Bool	parse_plane(char **toks, t_obj *pl)
 	if (is_nanv(&pl->color) || !is_color(&pl->color))
 		return (0);
 	return (1);
+}
+
+_Bool	parse_cylinder(char **toks, t_obj *cy)
+{
+	char	*pos;
+
+	if (split_len((const char **)toks) != 6 || ft_strcmp(toks[0], "cy"))
+		return (0);
+	cy->type = CYLINDER;
+	cy->data.cy.base = parse_vec(toks[1]);
+	if (is_nanv(&cy->data.cy.base))
+		return (0);
+	cy->data.cy.norm = parse_vec(toks[2]);
+	if (is_nanv(&cy->data.cy.norm) || fabs(cy->data.cy.norm.x) > 1
+		|| fabs(cy->data.cy.norm.y) > 1 || fabs(cy->data.cy.norm.z) > 1)
+		return (0);
+	cy->data.cy.radius = ft_strtod(toks[3], &pos);
+	if (toks[3] + ft_strlen(toks[3]) != pos || cy->data.cy.radius < 0
+		|| cy->data.cy.radius < 2 * DBL_EPSILON)
+		return (0);
+	cy->data.cy.radius /= 2;
+	cy->data.cy.radius2 = cy->data.cy.radius * cy->data.cy.radius;
+	if (cy->data.cy.radius2 < 1e-15)
+		return (0);
+	cy->data.cy.height = ft_strtod(toks[4], &pos);
+	if (toks[4] + ft_strlen(toks[4]) != pos || cy->data.cy.height <= 0)
+		return (0);
+	cy->color = parse_vec(toks[5]);
+	return (finish_parse_cy(cy));
 }

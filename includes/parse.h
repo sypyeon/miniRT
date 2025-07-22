@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 01:41:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 03:53:24 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ _Bool	parse_cam(double aspect_ratio, char **toks, t_obj *cam);
 _Bool	parse_light(char **toks, t_obj *light);
 _Bool	parse_sphere(char **toks, t_obj *sp);
 _Bool	parse_plane(char **toks, t_obj *pl);
-t_obj	parse_cylinder(char **toks);
+_Bool	parse_cylinder(char **toks, t_obj *cy);
+_Bool	finish_parse_cy(t_obj *cy);
 
 _Bool	parse_objs(t_objs *objs, t_scene *s, char **lines);
 _Bool	parse_rt(t_scene *s, char *file);
