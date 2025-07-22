@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:39:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 07:21:11 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 04:54:44 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ _Bool	hit(t_objs *objs, t_ray *ray, t_hit_record *rec)
 	i = 0;
 	while (objs->size > i)
 	{
-		if (hit_obj(&objs->ptr[i], ray, &temp_rec) && is_object(objs->ptr[i]))
+		if (hit_obj(&objs->ptr[i], ray, &temp_rec))
 		{
 			hit_anything = 1;
 			temp_rec.tmax = temp_rec.t;
@@ -39,12 +39,12 @@ _Bool	hit(t_objs *objs, t_ray *ray, t_hit_record *rec)
 	return (hit_anything);
 }
 
-_Bool	hit_obj(t_obj *objs, t_ray *ray, t_hit_record *rec)
+_Bool	hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
 {
 	_Bool	hit_result;
 
 	hit_result = 0;
-	if (objs->type == SPHERE)
-		hit_result = hit_sphere(objs, ray, rec);
+	if (obj->type == SPHERE)
+		hit_result = hit_sphere(obj, ray, rec);
 	return (hit_result);
 }

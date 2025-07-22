@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 06:36:43 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/23 02:24:02 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,11 @@ t_ray	ray_primary(t_obj *cam, double u, double v)
 
 t_color	ray_color(t_scene *scene)
 {
-	double	t;
-
 	scene->rec = record_init();
 	if (hit(&scene->objs, &scene->ray, &scene->rec))
 		return (phong_lighting(scene));
 	else
 	{
-		t = 0.5 * (scene->ray.dir.y + 1.0);
-		return (vplus(vscale(color(1, 1, 1), 1.0 - t),
-				vscale(color(0.5, 0.7, 1.0), t)));
+		return (color(0.5, 0.7, 1.0));
 	}
 }
