@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 01:28:07 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 02:21:55 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,27 @@ _Bool	parse_sphere(char **toks, t_obj *sp)
 		return (0);
 	sp->color = parse_vec(toks[3]);
 	if (is_nanv(&sp->color) || !is_color(&sp->color))
+		return (0);
+	return (1);
+}
+
+_Bool	parse_plane(char **toks, t_obj *pl)
+{
+	char	*pos;
+
+	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "pl"))
+		return (0);
+	pos = NULL;
+	pl->type = PLANE;
+	pl->data.pl.base = parse_vec(toks[1]);
+	if (is_nanv(&pl->data.pl.base))
+		return (0);
+	pl->data.pl.norm = parse_vec(toks[2]);
+	if (is_nanv(&pl->data.pl.norm) || fabs(pl->data.pl.norm.x) > 1
+		|| fabs(pl->data.pl.norm.y) > 1 || fabs(pl->data.pl.norm.z) > 1)
+		return (0);
+	pl->color = parse_vec(toks[3]);
+	if (is_nanv(&pl->color) || !is_color(&pl->color))
 		return (0);
 	return (1);
 }
