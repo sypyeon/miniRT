@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 14:04:19 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 06:03:18 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 21:32:37 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ t_vec	nan_vec(void)
 _Bool	is_nanv(t_vec *v)
 {
 	return (isnan(v->x) && isnan(v->y) && isnan(v->z));
+}
+
+_Bool	is_color(t_color *c)
+{
+	return (!(c->x < 0 || c->x > 255
+			|| c->y < 0 || c->y > 255
+			|| c->z < 0 || c->z > 255));
 }

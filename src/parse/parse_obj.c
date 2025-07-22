@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 21:13:59 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 01:28:07 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ _Bool	parse_amb(char **toks, t_obj *amb)
 		|| amb->data.amb_ratio > 1)
 		return (0);
 	amb->color = parse_vec(toks[2]);
-	if (is_nanv(&amb->color) || amb->color.x < 0 || amb->color.x > 255
-		|| amb->color.y < 0 || amb->color.y > 255
-		|| amb->color.z < 0 || amb->color.z > 255)
+	if (is_nanv(&amb->color) || !is_color(&amb->color))
 		return (0);
 	return (1);
 }
@@ -54,9 +52,32 @@ _Bool	parse_light(char **toks, t_obj *light)
 	if (len == 3)
 		return (1);
 	light->color = parse_vec(toks[3]);
-	if (is_nanv(&light->color) || light->color.x < 0 || light->color.x > 255
-		|| light->color.y < 0 || light->color.y > 255
-		|| light->color.z < 0 || light->color.z > 255)
+	if (is_nanv(&light->color) || !is_color(&light->color))
+		return (0);
+	return (1);
+}
+
+_Bool	parse_sphere(char **toks, t_obj *sp)
+{
+	char	*pos;
+
+	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "sp"))
+		return (0);
+	pos = NULL;
+	sp->type = SPHERE;
+	sp->data.sp.center = parse_vec(toks[1]);
+	if (is_nanv(&sp->data.sp.center))
+		return (0);
+	sp->data.sp.radius = ft_strtod(toks[2], &pos);
+	if (toks[2] + ft_strlen(toks[2]) != pos || sp->data.sp.radius < 0
+		|| sp->data.sp.radius < 2 * DBL_EPSILON)
+		return (0);
+	sp->data.sp.radius /= 2;
+	sp->data.sp.radius2 = sp->data.sp.radius * sp->data.sp.radius;
+	if (sp->data.sp.radius2 < 1e-15)
+		return (0);
+	sp->color = parse_vec(toks[3]);
+	if (is_nanv(&sp->color) || !is_color(&sp->color))
 		return (0);
 	return (1);
 }
