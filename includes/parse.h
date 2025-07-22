@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 06:56:11 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:53:55 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ t_vec	parse_vec(char *str);
 t_vec	nan_vec(void);
 _Bool	is_nanv(t_vec *v);
 
-_Bool	valid_file_fmt(char *file);
-
 _Bool	parse_amb(char **toks, t_obj *amb);
-t_obj	parse_cam(t_scene *s, char **toks);
-t_obj	parse_light(char **toks);
+_Bool	parse_cam(double aspect_ratio, char **toks, t_obj *cam);
+_Bool	parse_light(char **toks, t_obj *light);
 t_obj	parse_sphere(char **toks);
 t_obj	parse_plane(char **toks);
 t_obj	parse_cylinder(char **toks);

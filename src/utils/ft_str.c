@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:10:58 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 06:28:53 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 20:45:47 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+size_t	split_len(const char **split)
+{
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
 }

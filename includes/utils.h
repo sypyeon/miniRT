@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:48:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 04:46:56 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:55:14 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_vec		vmin(t_vec vec1, t_vec vec2);
 int			ft_strcmp(const char *str, const char *cmp);
 char		*ft_strjoin_(char *s1, char *s2);
 void		free_split(char **split);
+size_t		split_len(const char **split);
 
 double		ft_strtod(const char *str, char **str_end);
 char		*ft_dtostr(double d); // TODO
