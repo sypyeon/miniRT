@@ -7,9 +7,10 @@ INCLUDES	=	-I./includes -I./libft -I./minilibx-linux
 OBJS_DIR	=	./obj
 OBJS		=	$(MAIN_OBJ) \
 				$(UTILS_OBJ) \
-				$(SCENE_OBJ) \
-				$(HIT_OBJ)	\
-				$(RAY_OBJ)
+				$(PARSE_OBJ) \
+				$(SCENE_OBJ)
+				# $(RAY_OBJ)
+				# $(HIT_OBJ)
 
 MAIN_DIR	=	./src
 MAIN_SRC	= 	main.c
@@ -35,7 +36,7 @@ UTILS_SRC	=	err_msg.c  ft_strtod.c  ft_str.c  obj_utils.c vec_utils2.c	\
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
 PARSE_DIR	=	$(MAIN_DIR)/parse
-PARSE_SRC	=	file_fmt.c	file_validate.c	parse_vec.c
+PARSE_SRC	=	parse_vec.c parse_obj.c parse_rt.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
 MLX_U_DIR	=	$(MAIN_DIR)/mlx_utils
@@ -54,7 +55,7 @@ vpath %.c	$(UTILS_DIR) $(SCENE_DIR) $(TRACE_DIR) $(MAIN_DIR)	$(HIT_DIR)	\
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) -o $@ $^ $(MLXLIB)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(MLXLIB)
 
 $(OBJS_DIR)/%.o : %.c
 	@mkdir -p $(OBJS_DIR)

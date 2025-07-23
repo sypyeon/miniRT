@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:48:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 17:55:14 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 06:22:34 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ double		ft_strtod(const char *str, char **str_end);
 char		*ft_dtostr(double d); // TODO
 
 void		print_err_ln(const char *msg);
+
+t_obj		*obj_to_push(t_objs *objs);
 
 #endif

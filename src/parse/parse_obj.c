@@ -6,29 +6,11 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 03:53:38 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 05:46:31 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
-
-_Bool	parse_amb(char **toks, t_obj *amb)
-{
-	char	*pos;
-
-	if (split_len((const char **)toks) != 3 || ft_strcmp(toks[0], "A"))
-		return (0);
-	pos = NULL;
-	amb->type = AMBIENT;
-	amb->data.amb_ratio = ft_strtod(toks[1], &pos);
-	if (toks[1] + ft_strlen(toks[1]) != pos || amb->data.amb_ratio < 0
-		|| amb->data.amb_ratio > 1)
-		return (0);
-	amb->color = parse_vec(toks[2]);
-	if (is_nanv(&amb->color) || !is_color(&amb->color))
-		return (0);
-	return (1);
-}
 
 _Bool	parse_light(char **toks, t_obj *light)
 {
@@ -97,6 +79,15 @@ _Bool	parse_plane(char **toks, t_obj *pl)
 	pl->color = parse_vec(toks[3]);
 	if (is_nanv(&pl->color) || !is_color(&pl->color))
 		return (0);
+	return (1);
+}
+
+static _Bool	finish_parse_cy(t_obj *cy)
+{
+	if (is_nanv(&cy->color) || !is_color(&cy->color))
+		return (0);
+	cy->data.cy.base = vminus(cy->data.cy.base,
+			vscale(vunit(cy->data.cy.norm), cy->data.cy.height / 2));
 	return (1);
 }
 

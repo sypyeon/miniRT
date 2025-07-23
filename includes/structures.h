@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:47:01 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/21 18:39:10 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 07:47:56 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURES_H
 # include "../libft/libft.h"
 # define LUMEN 3
+# define MINI_RT "miniRT"
 
 typedef struct s_vec
 {
