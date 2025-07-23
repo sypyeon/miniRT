@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 06:31:40 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/23 07:40:25 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:32:07 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static _Bool	objalloc(t_objs *objs)
 	newp = (t_obj *)ft_calloc(objs->cap * 2, sizeof(t_obj));
 	if (!newp)
 		return (0);
-	ft_memmove(newp, objs->ptr, objs->cap);
+	ft_memmove(newp, objs->ptr, objs->cap * sizeof(t_obj));
 	objs->cap *= 2;
 	free(objs->ptr);
 	objs->ptr = newp;

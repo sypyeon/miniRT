@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_obj2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/23 20:18:24 by jaehylee          #+#    #+#             */
+/*   Updated: 2025/07/23 21:59:48 by jaehylee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/parse.h"
+
+_Bool	parse_cam(char **toks, t_obj *cam)
+{
+	char	*pos;
+	double	fov;
+
+	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "C"))
+		return (0);
+	cam->type = CAMERA;
+	cam->data.cam.orig = parse_vec(toks[1]);
+	if (is_nanv(&cam->data.cam.orig))
+		return (0);
+	cam->data.cam.dir = parse_vec(toks[2]);
+	if (is_nanv(&cam->data.cam.dir) || fabs(cam->data.cam.dir.x) > 1
+		|| fabs(cam->data.cam.dir.y) > 1 || fabs(cam->data.cam.dir.z) > 1)
+		return (0);
+	pos = NULL;
+	fov = ft_strtod(toks[3], &pos);
+	if (toks[3] + ft_strlen(toks[3]) != pos || fmod(fov, 1) != 0
+		|| fov > 180 || fov < 0)
+		return (0);
+	cam->data.cam.fov = fov;
+	return (1);
+}
+
+_Bool	parse_amb(char **toks, t_obj *amb)
+{
+	char	*pos;
+
+	if (split_len((const char **)toks) != 3 || ft_strcmp(toks[0], "A"))
+		return (0);
+	pos = NULL;
+	amb->type = AMBIENT;
+	amb->data.amb_ratio = ft_strtod(toks[1], &pos);
+	if (toks[1] + ft_strlen(toks[1]) != pos || amb->data.amb_ratio < 0
+		|| amb->data.amb_ratio > 1)
+		return (0);
+	amb->color = parse_vec(toks[2]);
+	if (is_nanv(&amb->color) || !is_color(&amb->color))
+		return (0);
+	return (1);
+}

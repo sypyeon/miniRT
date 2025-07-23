@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 12:55:29 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/23 22:21:24 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,33 @@ static _Bool	valid_file_fmt(char *file)
 	return (free_split(pieces), res);
 }
 
-_Bool	parse_amb(char **toks, t_obj *amb)
+static char	*get_trim_line(int fd)
 {
-	char	*pos;
+	char	*str;
+	char	*str2;
 
-	if (split_len((const char **)toks) != 3 || ft_strcmp(toks[0], "A"))
-		return (0);
-	pos = NULL;
-	amb->type = AMBIENT;
-	amb->data.amb_ratio = ft_strtod(toks[1], &pos);
-	if (toks[1] + ft_strlen(toks[1]) != pos || amb->data.amb_ratio < 0
-		|| amb->data.amb_ratio > 1)
-		return (0);
-	amb->color = parse_vec(toks[2]);
-	if (is_nanv(&amb->color) || !is_color(&amb->color))
-		return (0);
-	return (1);
+	str = get_next_line(fd);
+	if (!str)
+		return (str);
+	while (str && !ft_strcmp(str, "\n"))
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
+	if (str && ft_strchr(str, '\n'))
+	{
+		str2 = ft_strtrim(str, "\n");
+		free(str);
+		return (str2);
+	}
+	return (str);
 }
 
 static _Bool	parse_obj(char **toks, t_objs *objs)
 {
 	t_obj	*obj;
 
-	if (!split_len(toks) == 0)
+	if (split_len((const char **)toks) == 0)
 		return (0);
 	obj = obj_to_push(objs);
 	if (!obj)
@@ -100,7 +104,6 @@ _Bool	parse_rt(t_scene *s, char *file)
 {
 	int		fd;
 	char	*line;
-	char	*ln_trim;
 	char	**toks;
 
 	if (!s || !valid_file_fmt(file))
@@ -109,17 +112,16 @@ _Bool	parse_rt(t_scene *s, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (perror(MINI_RT), 0);
-	line = get_next_line(fd);
+	line = get_trim_line(fd);
 	while (line)
 	{
-		ln_trim = ft_strtrim(line, "\n");
-		toks = ft_split(ln_trim, ' ');
+		toks = ft_split(line, ' ');
 		if (!toks)
-			return (free(ln_trim), free(line), 0);
+			return (free(line), 0);
 		if (!parse_obj(toks, &s->objs))
-			return (free_split(toks), free(ln_trim), free(line), 0);
-		(free_split(toks), free(ln_trim), free(line));
-		line = get_next_line(fd);
+			return (free_split(toks), free(line), 0);
+		(free_split(toks), free(line));
+		line = get_trim_line(fd);
 	}
 	return (set_index(s), 1);
 }

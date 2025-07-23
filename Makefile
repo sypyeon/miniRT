@@ -36,7 +36,7 @@ UTILS_SRC	=	err_msg.c  ft_strtod.c  ft_str.c  obj_utils.c vec_utils2.c	\
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 
 PARSE_DIR	=	$(MAIN_DIR)/parse
-PARSE_SRC	=	parse_vec.c parse_obj.c parse_rt.c
+PARSE_SRC	=	parse_vec.c parse_obj.c parse_obj2.c parse_rt.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
 MLX_U_DIR	=	$(MAIN_DIR)/mlx_utils
