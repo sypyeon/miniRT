@@ -79,4 +79,7 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+test: $(MAIN_OBJ) $(UTILS_OBJ) $(PARSE_OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) -lm -o $@ $^
+
+.PHONY : all clean fclean re test
