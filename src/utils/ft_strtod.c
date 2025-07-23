@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 01:52:03 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/22 04:55:12 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/24 01:18:20 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ static ssize_t	ft_digits(const char *str)
 
 static ssize_t	ft_signs(const char *str)
 {
-	size_t	i;
 	ssize_t	n;
 
-	i = 0;
 	if (ft_isdigit(str[0]))
 		n = 0;
 	else if (str[0] == '+' || str[0] == '-')
