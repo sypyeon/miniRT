@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:45:55 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 03:30:37 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 07:49:50 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,29 @@ void	prepare_to_draw(t_rt *rt, t_camera *cam)
 
 int	rt_drawing(t_rt *rt)
 {
-    int		i;
-    int		j;
-    double	u;
-    double	v;
+	int		i;
+	int		j;
+	double	u;
+	double	v;
 	t_scene	*scene;
 
 	scene = &rt->scene;
-    prepare_to_draw(rt, &scene->objs.ptr[scene->cam].data.cam);
-	j = 0;                    // 아래에서부터 시작
-	while (j < WIN_HEIGHT)    // 위로 증가
+	prepare_to_draw(rt, &scene->objs.ptr[scene->cam].data.cam);
+	j = 0;
+	while (j < WIN_HEIGHT)
 	{
 		i = 0;
 		while (i < WIN_WIDTH)
 		{
 			u = (double)i / (WIN_WIDTH - 1);
 			v = 1.0 - (double)j / (WIN_HEIGHT - 1);
-            scene->ray = ray_primary(&scene->objs.ptr[scene->cam], u, v);
-            my_mlx_pixel_put(&rt->img, i, j, ray_color(scene));
-            ++i;
-        }
-        ++j;
-    }
-    mlx_put_image_to_window(rt->mlx, rt->win, rt->img.ptr, 0, 0);
+			scene->ray = ray_primary(&scene->objs.ptr[scene->cam], u, v);
+			my_mlx_pixel_put(&rt->img, i, j, ray_color(scene));
+			++i;
+		}
+		++j;
+	}
+	mlx_put_image_to_window(rt->mlx, rt->win, rt->img.ptr, 0, 0);
 	mlx_display_info(rt, rt->mlx, rt->win, rt->scene.curr);
 	return (0);
 }

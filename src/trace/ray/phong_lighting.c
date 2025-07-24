@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phong_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 04:33:40 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 07:44:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,21 @@ t_color	point_light_get(t_scene *scene, t_obj *light)
 
 t_color	phong_lighting(t_scene *scene)
 {
-    size_t	i;
-    t_color	light_color;
-    t_color	ambient;
+	size_t	i;
+	t_color	light_color;
+	t_color	ambient;
 
-    light_color = color(0, 0, 0);
-    i = 0;
-    while (i < scene->objs.size)
-    {
-        if (scene->objs.ptr[i].type == LIGHT)
-            light_color = vplus(light_color, 
-                point_light_get(scene, &scene->objs.ptr[i]));
-        i++;
-    }
-    ambient = vscale(scene->objs.ptr[scene->amb].color, 
-                    scene->objs.ptr[scene->amb].data.amb_ratio);
-    light_color = vplus(light_color, ambient);
-    return (vmin(vmult(light_color, scene->rec.albedo), color(1, 1, 1)));
+	light_color = color(0, 0, 0);
+	i = 0;
+	while (i < scene->objs.size)
+	{
+		if (scene->objs.ptr[i].type == LIGHT)
+			light_color = vplus(light_color,
+					point_light_get(scene, &scene->objs.ptr[i]));
+		i++;
+	}
+	ambient = vscale(scene->objs.ptr[scene->amb].color,
+			scene->objs.ptr[scene->amb].data.amb_ratio);
+	light_color = vplus(light_color, ambient);
+	return (vmin(vmult(light_color, scene->rec.albedo), color(1, 1, 1)));
 }

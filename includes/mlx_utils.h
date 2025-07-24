@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/25 01:29:04 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/07/18 21:00:42 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/25 07:57:19 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,11 @@ void	mlx_display_cylinder_info(t_rt *rt, t_obj cy, void *mlx, void *win);
 int		rt_drawing(t_rt *rt);
 void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
 void	mlx_display_info(t_rt *rt, void *mlx, void *win, int curr);
+void	increase_angle(t_vec *dir, t_vec axis, int type);
+void	decrease_angle(t_vec *dir, t_vec axis, int type);
+void	rotate_cam(t_camera *cam, int keycode);
+void	rotate_plane(t_obj *obj, int keycode);
+void	rotate_obj(t_obj *obj, int keycode);
+void	current_control(t_scene *scene, int keycode);
 
 #endif
