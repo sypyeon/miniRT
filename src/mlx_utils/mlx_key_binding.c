@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 03:07:53 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 04:25:41 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_near_world_up(t_vec dir)
     return (fabs(dot_product) > threshold);
 }
 
-void	increase_angle(t_vec *dir, t_vec axis)
+void	increase_angle(t_vec *dir, t_vec axis, int type)
 {
 	t_vec	v;
 	t_vec	k;
@@ -40,13 +40,15 @@ void	increase_angle(t_vec *dir, t_vec axis)
 	term3 = vscale(k, vdot(k, v) * (1 - cos(ROTATE_ANGLE)));
 	if (is_near_world_up(vunit(vplus(vplus(term1, term2), term3))))
 	{
+		if (type == CAMERA)
+			return ;
 		k.z *= -1;
 		k.y -= 0.02;
 	}
 	*dir = vunit(vplus(vplus(term1, term2), term3));
 }
 
-void	decrease_angle(t_vec *dir, t_vec axis)
+void	decrease_angle(t_vec *dir, t_vec axis, int type)
 {
 	t_vec	v;
 	t_vec	k;
@@ -61,8 +63,10 @@ void	decrease_angle(t_vec *dir, t_vec axis)
 	term3 = vscale(k, vdot(k, v) * (1 - cos(-ROTATE_ANGLE)));
 	if (is_near_world_up(vunit(vplus(vplus(term1, term2), term3))))
 	{
+		if (type == CAMERA)
+			return ;
 		k.z *= -1;
-		k.y -= 0.02;
+		k.y += 0.02;
 	}
 	*dir = vunit(vplus(vplus(term1, term2), term3));
 }
@@ -70,49 +74,49 @@ void	decrease_angle(t_vec *dir, t_vec axis)
 void	rotate_cam(t_camera *cam, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&cam->dir, cam->axis.x);
+		increase_angle(&cam->dir, cam->axis.x, CAMERA);
 	else if (keycode == XK_k)
-		decrease_angle(&cam->dir, cam->axis.x);
+		decrease_angle(&cam->dir, cam->axis.x, CAMERA);
 	else if (keycode == XK_j)
-		increase_angle(&cam->dir, cam->axis.y);
+		increase_angle(&cam->dir, cam->axis.y, CAMERA);
 	else if (keycode == XK_l)
-		decrease_angle(&cam->dir, cam->axis.y);
+		decrease_angle(&cam->dir, cam->axis.y, CAMERA);
 	else if (keycode == XK_u)
-		increase_angle(&cam->dir, cam->axis.z);
+		increase_angle(&cam->dir, cam->axis.z, CAMERA);
 	else if (keycode == XK_o)
-		decrease_angle(&cam->dir, cam->axis.z);
+		decrease_angle(&cam->dir, cam->axis.z, CAMERA);
 }
 
 void	rotate_plane(t_obj *obj, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&obj->data.pl.norm, vec(1, 0, 0));
+		increase_angle(&obj->data.pl.norm, vec(1, 0, 0), PLANE);
 	else if (keycode == XK_k)
-		decrease_angle(&obj->data.pl.norm, vec(1, 0, 0));
+		decrease_angle(&obj->data.pl.norm, vec(1, 0, 0), PLANE);
 	else if (keycode == XK_j)
-		increase_angle(&obj->data.pl.norm, vec(0, 1, 0));
+		increase_angle(&obj->data.pl.norm, vec(0, 1, 0), PLANE);
 	else if (keycode == XK_l)
-		decrease_angle(&obj->data.pl.norm, vec(0, 1, 0));
+		decrease_angle(&obj->data.pl.norm, vec(0, 1, 0), PLANE);
 	else if (keycode == XK_u)
-		increase_angle(&obj->data.pl.norm, vec(0, 0, 1));
+		increase_angle(&obj->data.pl.norm, vec(0, 0, 1), PLANE);
 	else if (keycode == XK_o)
-		decrease_angle(&obj->data.pl.norm, vec(0, 0, 1));
+		decrease_angle(&obj->data.pl.norm, vec(0, 0, 1), PLANE);
 }
 
 void	rotate_cylinder(t_obj *obj, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&obj->data.cy.norm, vec(1, 0, 0));
+		increase_angle(&obj->data.cy.norm, vec(1, 0, 0), CYLINDER);
 	else if (keycode == XK_k)
-		decrease_angle(&obj->data.cy.norm, vec(1, 0, 0));
+		decrease_angle(&obj->data.cy.norm, vec(1, 0, 0), CYLINDER);
 	else if (keycode == XK_j)
-		increase_angle(&obj->data.cy.norm, vec(0, 1, 0));
+		increase_angle(&obj->data.cy.norm, vec(0, 1, 0), CYLINDER);
 	else if (keycode == XK_l)
-		decrease_angle(&obj->data.cy.norm, vec(0, 1, 0));
+		decrease_angle(&obj->data.cy.norm, vec(0, 1, 0), CYLINDER);
 	else if (keycode == XK_u)
-		increase_angle(&obj->data.cy.norm, vec(0, 0, 1));
+		increase_angle(&obj->data.cy.norm, vec(0, 0, 1), CYLINDER);
 	else if (keycode == XK_o)
-		decrease_angle(&obj->data.cy.norm, vec(0, 0, 1));
+		decrease_angle(&obj->data.cy.norm, vec(0, 0, 1), CYLINDER);
 }
 
 void	rotate_obj(t_obj *obj, int keycode)
