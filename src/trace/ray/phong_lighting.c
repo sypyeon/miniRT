@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/24 19:39:41 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 04:33:40 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_color	point_light_get(t_scene *scene, t_obj *light)
 	light_dir = vunit(light_dir);
 	diffuse = vscale(light->color, fmax(vdot(scene->rec.norm, light_dir), 0.0));
 	specular = get_specular(scene, light, light_dir);
-	brightness = light->data.light.bright_ratio;
+	brightness = light->data.light.bright_ratio / 4;
 	return (vscale(vplus(diffuse, specular), brightness * LUMEN));
 }
 

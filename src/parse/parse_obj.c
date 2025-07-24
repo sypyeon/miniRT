@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/24 20:31:37 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 01:57:27 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ _Bool	parse_light(char **toks, t_obj *light)
 	light->color = nan_vec();
 	if (len == 3)
 		return (1);
-	light->color = vdiv(parse_vec(toks[3]), 255);
+	light->color = vdiv(parse_vec(toks[3]), 255.999);
 	if (is_nanv(&light->color) || !is_color(&light->color))
 		return (0);
 	return (1);
@@ -58,7 +58,7 @@ _Bool	parse_sphere(char **toks, t_obj *sp)
 	sp->data.sp.radius2 = sp->data.sp.radius * sp->data.sp.radius;
 	if (sp->data.sp.radius2 < 1e-15)
 		return (0);
-	sp->color = vdiv(parse_vec(toks[3]), 255);
+	sp->color = vdiv(parse_vec(toks[3]), 255.999);
 	if (is_nanv(&sp->color) || !is_color(&sp->color))
 		return (0);
 	return (1);
@@ -76,7 +76,7 @@ _Bool	parse_plane(char **toks, t_obj *pl)
 	if (is_nanv(&pl->data.pl.norm) || fabs(pl->data.pl.norm.x) > 1
 		|| fabs(pl->data.pl.norm.y) > 1 || fabs(pl->data.pl.norm.z) > 1)
 		return (0);
-	pl->color = vdiv(parse_vec(toks[3]), 255);
+	pl->color = vdiv(parse_vec(toks[3]), 255.999);
 	if (is_nanv(&pl->color) || !is_color(&pl->color))
 		return (0);
 	return (1);
@@ -116,6 +116,6 @@ _Bool	parse_cylinder(char **toks, t_obj *cy)
 	cy->data.cy.height = ft_strtod(toks[4], &pos);
 	if (toks[4] + ft_strlen(toks[4]) != pos || cy->data.cy.height <= 0)
 		return (0);
-	cy->color = vdiv(parse_vec(toks[5]), 255);
+	cy->color = vdiv(parse_vec(toks[5]), 255.999);
 	return (finish_parse_cy(cy));
 }
