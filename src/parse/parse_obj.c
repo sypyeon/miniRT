@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 05:46:31 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:28:36 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ _Bool	parse_light(char **toks, t_obj *light)
 		return (0);
 	pos = NULL;
 	light->type = LIGHT;
-	light->data.light.orig = parse_vec(toks[1]);
-	if (is_nanv(&light->data.light.orig))
+	light->origin = parse_vec(toks[1]);
+	if (is_nanv(&light->origin))
 		return (0);
 	light->data.light.bright_ratio = ft_strtod(toks[2], &pos);
 	if (toks[2] + ft_strlen(toks[2]) != pos
@@ -33,7 +33,7 @@ _Bool	parse_light(char **toks, t_obj *light)
 	light->color = nan_vec();
 	if (len == 3)
 		return (1);
-	light->color = parse_vec(toks[3]);
+	light->color = vdiv(parse_vec(toks[3]), 255);
 	if (is_nanv(&light->color) || !is_color(&light->color))
 		return (0);
 	return (1);
@@ -47,8 +47,8 @@ _Bool	parse_sphere(char **toks, t_obj *sp)
 		return (0);
 	pos = NULL;
 	sp->type = SPHERE;
-	sp->data.sp.center = parse_vec(toks[1]);
-	if (is_nanv(&sp->data.sp.center))
+	sp->origin = parse_vec(toks[1]);
+	if (is_nanv(&sp->origin))
 		return (0);
 	sp->data.sp.radius = ft_strtod(toks[2], &pos);
 	if (toks[2] + ft_strlen(toks[2]) != pos || sp->data.sp.radius < 0
@@ -58,7 +58,7 @@ _Bool	parse_sphere(char **toks, t_obj *sp)
 	sp->data.sp.radius2 = sp->data.sp.radius * sp->data.sp.radius;
 	if (sp->data.sp.radius2 < 1e-15)
 		return (0);
-	sp->color = parse_vec(toks[3]);
+	sp->color = vdiv(parse_vec(toks[3]), 255);
 	if (is_nanv(&sp->color) || !is_color(&sp->color))
 		return (0);
 	return (1);
@@ -69,14 +69,14 @@ _Bool	parse_plane(char **toks, t_obj *pl)
 	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "pl"))
 		return (0);
 	pl->type = PLANE;
-	pl->data.pl.base = parse_vec(toks[1]);
-	if (is_nanv(&pl->data.pl.base))
+	pl->origin = parse_vec(toks[1]);
+	if (is_nanv(&pl->origin))
 		return (0);
 	pl->data.pl.norm = parse_vec(toks[2]);
 	if (is_nanv(&pl->data.pl.norm) || fabs(pl->data.pl.norm.x) > 1
 		|| fabs(pl->data.pl.norm.y) > 1 || fabs(pl->data.pl.norm.z) > 1)
 		return (0);
-	pl->color = parse_vec(toks[3]);
+	pl->color = vdiv(parse_vec(toks[3]), 255);
 	if (is_nanv(&pl->color) || !is_color(&pl->color))
 		return (0);
 	return (1);
@@ -86,7 +86,7 @@ static _Bool	finish_parse_cy(t_obj *cy)
 {
 	if (is_nanv(&cy->color) || !is_color(&cy->color))
 		return (0);
-	cy->data.cy.base = vminus(cy->data.cy.base,
+	cy->origin = vminus(cy->origin,
 			vscale(vunit(cy->data.cy.norm), cy->data.cy.height / 2));
 	return (1);
 }
@@ -98,8 +98,8 @@ _Bool	parse_cylinder(char **toks, t_obj *cy)
 	if (split_len((const char **)toks) != 6 || ft_strcmp(toks[0], "cy"))
 		return (0);
 	cy->type = CYLINDER;
-	cy->data.cy.base = parse_vec(toks[1]);
-	if (is_nanv(&cy->data.cy.base))
+	cy->origin = parse_vec(toks[1]);
+	if (is_nanv(&cy->origin))
 		return (0);
 	cy->data.cy.norm = parse_vec(toks[2]);
 	if (is_nanv(&cy->data.cy.norm) || fabs(cy->data.cy.norm.x) > 1

@@ -5,12 +5,13 @@ MLXLIB		=	-Lminilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES	=	-I./includes -I./libft -I./minilibx-linux
 
 OBJS_DIR	=	./obj
-OBJS		=	$(MAIN_OBJ) \
-				$(UTILS_OBJ) \
-				$(PARSE_OBJ) \
-				$(SCENE_OBJ)
-				# $(RAY_OBJ)
-				# $(HIT_OBJ)
+OBJS		=	$(MAIN_OBJ)		\
+				$(UTILS_OBJ)	\
+				$(PARSE_OBJ)	\
+				$(SCENE_OBJ)	\
+				$(RAY_OBJ)		\
+				$(HIT_OBJ)		\
+				$(MLX_U_OBJ)
 
 MAIN_DIR	=	./src
 MAIN_SRC	= 	main.c
@@ -27,7 +28,7 @@ HIT_SRC		=	hit.c normal.c hit_sphere.c hit_plane.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
-UTILS_SRC	=	err_msg.c  ft_strtod.c  ft_str.c  obj_utils.c vec_utils2.c	\
+UTILS_SRC	=	err_msg.c  ft_strtod.c  ft_str.c vec_utils2.c obj_utils.c\
 				vec_utils3.c  vec_utils.c
 UTILS_OBJ	=	$(addprefix $(OBJS_DIR)/, $(UTILS_SRC:.c=.o))
 

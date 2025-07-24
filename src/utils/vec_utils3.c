@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 00:59:27 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/21 01:19:39 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:39:12 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,15 @@ t_vec	vmin(t_vec vec1, t_vec vec2)
 	if (vec1.z > vec2.z)
 		vec1.z = vec2.z;
 	return (vec1);
+}
+
+t_vec	vdiv(t_vec v, double d)
+{
+	if (d == 0)
+		return (vec(0, 0, 0));
+	d = 255.999;
+	v.x /= d;
+	v.y /= d;
+	v.z /= d;
+	return (v);
 }

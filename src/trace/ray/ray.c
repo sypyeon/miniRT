@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:34 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 02:24:02 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/24 15:31:08 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_hit_record	record_init(void)
 {
 	t_hit_record	record;
 
-	record.tmin = DBL_EPSILON;
+	record.tmin = FLT_EPSILON;
 	record.tmax = INFINITY;
 	return (record);
 }

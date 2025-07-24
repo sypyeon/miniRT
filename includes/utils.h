@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:48:13 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 06:22:34 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:18:41 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ double		vdot(t_vec vec, t_vec vec2);
 t_vec		vcross(t_vec vec, t_vec vec2);
 t_vec		vunit(t_vec vec);
 t_vec		vmin(t_vec vec1, t_vec vec2);
+t_vec		vdiv(t_vec v, double d);
 
 int			ft_strcmp(const char *str, const char *cmp);
 char		*ft_strjoin_(char *s1, char *s2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:18:24 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/23 21:59:48 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:25:15 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ _Bool	parse_cam(char **toks, t_obj *cam)
 	if (split_len((const char **)toks) != 4 || ft_strcmp(toks[0], "C"))
 		return (0);
 	cam->type = CAMERA;
-	cam->data.cam.orig = parse_vec(toks[1]);
-	if (is_nanv(&cam->data.cam.orig))
+	cam->origin = parse_vec(toks[1]);
+	if (is_nanv(&cam->origin))
 		return (0);
 	cam->data.cam.dir = parse_vec(toks[2]);
 	if (is_nanv(&cam->data.cam.dir) || fabs(cam->data.cam.dir.x) > 1
@@ -48,7 +48,7 @@ _Bool	parse_amb(char **toks, t_obj *amb)
 	if (toks[1] + ft_strlen(toks[1]) != pos || amb->data.amb_ratio < 0
 		|| amb->data.amb_ratio > 1)
 		return (0);
-	amb->color = parse_vec(toks[2]);
+	amb->color = vdiv(parse_vec(toks[2]),255);
 	if (is_nanv(&amb->color) || !is_color(&amb->color))
 		return (0);
 	return (1);
