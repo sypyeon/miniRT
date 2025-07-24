@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/24 16:28:36 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/24 20:31:37 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ _Bool	parse_cylinder(char **toks, t_obj *cy)
 	cy->data.cy.height = ft_strtod(toks[4], &pos);
 	if (toks[4] + ft_strlen(toks[4]) != pos || cy->data.cy.height <= 0)
 		return (0);
-	cy->color = parse_vec(toks[5]);
+	cy->color = vdiv(parse_vec(toks[5]), 255);
 	return (finish_parse_cy(cy));
 }
