@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/24 20:45:55 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/24 20:45:56 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/07/24 21:25:38 by jaehylee          #+#    #+#             */
+/*   Updated: 2025/07/24 21:28:31 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 20:18:24 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/24 16:25:15 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/07/23 20:18:24 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/24 21:30:27 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ _Bool	parse_amb(char **toks, t_obj *amb)
 	if (toks[1] + ft_strlen(toks[1]) != pos || amb->data.amb_ratio < 0
 		|| amb->data.amb_ratio > 1)
 		return (0);
-	amb->color = vdiv(parse_vec(toks[2]),255);
+	amb->color = vdiv(parse_vec(toks[2]), 255);
 	if (is_nanv(&amb->color) || !is_color(&amb->color))
 		return (0);
 	return (1);
