@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:09:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 05:32:35 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 03:24:13 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,3 @@ _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
 	rec->albedo = sp_obj->color;
 	return (1);
 }
-
-// _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
-// {
-//     t_sphere	*sp;
-//     t_vec		oc;
-//     double		a;
-//     double		half_b;
-//     double		c;
-//     double		discriminant;
-//     double		root;
-
-//     sp = &sp_obj->data.sp;
-//     oc = vminus(ray->orig, sp_obj->origin);
-
-//     a = vlength2(ray->dir);
-//     half_b = vdot(oc, ray->dir);  // b/2
-//     c = vlength2(oc) - sp->radius * sp->radius;
-
-//     discriminant = half_b * half_b - a * c;
-//     if (discriminant < 0)
-//         return (0);
-
-//     root = (-half_b - sqrt(discriminant)) / a;
-//     if (root < rec->tmin || root > rec->tmax)
-//     {
-//         root = (-half_b + sqrt(discriminant)) / a;
-//         if (root < rec->tmin || root > rec->tmax)
-//             return (0);
-//     }
-
-//     rec->t = root;
-//     rec->p = ray_at(ray, root);
-//     rec->norm = vunit(vminus(rec->p, sp_obj->origin));
-//     set_face_normal(ray, rec);
-//     rec->albedo = sp_obj->color;
-//     return (1);
-// }

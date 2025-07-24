@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/23 05:33:16 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 01:29:04 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@
 
 # define ROTATE_ANGLE	0.1
 
-void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
-int		rt_keybind(int keycode, t_rt *rt);
 int		close_rt(t_rt *rt);
-// int		rt_drawing(t_rt *rt);
+int		rt_keybind(int keycode, t_rt *rt);
+
+void	mlx_display_d(t_rt *rt, int x, int y, double value, int color);
+void	mlx_display_camera_info(t_rt *rt, t_obj cam, void *mlx, void *win);
+void	mlx_display_light_info(t_rt *rt, t_obj light, void *mlx, void *win);
+void	mlx_display_sphere_info(t_rt *rt, t_obj sp, void *mlx, void *win);
+void	mlx_display_plane_info(t_rt *rt, t_obj pl, void *mlx, void *win);
+void	mlx_display_cylinder_info(t_rt *rt, t_obj cy, void *mlx, void *win);
+
+int		rt_drawing(t_rt *rt);
+void	my_mlx_pixel_put(t_image *data, int x, int y, t_color color);
+void	mlx_display_info(t_rt *rt, void *mlx, void *win, int curr);
 
 #endif

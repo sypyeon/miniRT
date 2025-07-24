@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 00:59:27 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/24 16:39:12 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/25 01:56:50 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_vec	vdiv(t_vec v, double d)
 {
 	if (d == 0)
 		return (vec(0, 0, 0));
-	d = 255.999;
 	v.x /= d;
 	v.y /= d;
 	v.z /= d;
