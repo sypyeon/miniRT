@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 07:57:19 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/25 21:29:59 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 int		close_rt(t_rt *rt);
 int		rt_keybind(int keycode, t_rt *rt);
 
-void	mlx_display_d(t_rt *rt, int x, int y, double value, int color);
+void	mlx_display_d(t_rt *rt, t_vec xy_val, int color);
 void	mlx_display_camera_info(t_rt *rt, t_obj cam, void *mlx, void *win);
 void	mlx_display_light_info(t_rt *rt, t_obj light, void *mlx, void *win);
 void	mlx_display_sphere_info(t_rt *rt, t_obj sp, void *mlx, void *win);
