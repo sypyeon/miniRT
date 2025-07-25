@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 01:55:41 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/26 06:05:50 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 06:31:57 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ _Bool	hit_cylinder6(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
 	double		t2;
 
 	t2 = (-abc.y - sqrt(abc.y * abc.y - 4 * abc.x * abc.z)) / (2.0 * abc.x);
-	if (t2 >= rec->tmin && t2 <= rec->tmax && t_side < 0
+	if (t2 >= rec->tmin && t2 <= rec->tmax && *t_side < 0
 		&& fabs(vdot(vminus(ray_at(ray, t2), cy_obj->origin),
 				axis)) <= cy_obj->data.cy.height / 2.0)
 	{
