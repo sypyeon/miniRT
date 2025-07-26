@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:50:46 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 07:44:35 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:14:20 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ _Bool	in_shadow(t_scene *scene, t_vec light_dir)
 	light_len = vlength(light_dir);
 	light_ray = ray(vplus(scene->rec.p, vscale(scene->rec.norm, FLT_EPSILON)),
 			light_dir);
+	ft_bzero(&rec, sizeof(t_hit_record));
 	rec.tmin = FLT_EPSILON;
 	rec.tmax = light_len - FLT_EPSILON;
 	return (hit(&scene->objs, &light_ray, &rec));
