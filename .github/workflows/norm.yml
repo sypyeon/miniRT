@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: 42School/norminette@3.3.50
+      - uses: 42School/norminette@3.3.59

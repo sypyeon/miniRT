@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:45:55 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 07:49:50 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 14:15:27 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_cam(double aspect_ratio, t_point origin, double fov, t_camera *cam)
 	cam->horizontal = vscale(right, view_w);
 	cam->vertical = vscale(vunit(vcross(right, cam->dir)), view_h);
 	vp_center = vplus(origin, vscale(cam->dir, cam->focal_len));
-	cam->left_bottom = vminus(vminus(vp_center, \
-		vscale(cam->horizontal, 0.5)), vscale(cam->vertical, 0.5));
+	cam->left_bottom = vminus(vminus(vp_center,
+				vscale(cam->horizontal, 0.5)), vscale(cam->vertical, 0.5));
 	cam->axis = init_axis(cam->dir);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:09:35 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 03:24:13 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/26 14:14:20 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ _Bool	hit_sphere(t_obj *sp_obj, t_ray *ray, t_hit_record *rec)
 
 	sp = &sp_obj->data.sp;
 	oc = vminus(ray->orig, sp_obj->origin);
-	discriminant = vdot(oc, ray->dir) * vdot(oc, ray->dir) - \
-			vlength2(ray->dir) * (vlength2(oc) - pow(sp->radius, 2));
+	discriminant = vdot(oc, ray->dir) * vdot(oc, ray->dir)
+		- vlength2(ray->dir) * (vlength2(oc) - pow(sp->radius, 2));
 	if (discriminant < 0)
 		return (0);
 	root = (-vdot(oc, ray->dir) - sqrt(discriminant)) / vlength2(ray->dir);
