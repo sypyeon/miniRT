@@ -25,7 +25,7 @@ RAY_OBJ		=	$(addprefix $(OBJS_DIR)/, $(RAY_SRC:.c=.o))
 
 HIT_DIR		=	$(TRACE_DIR)/hit
 HIT_SRC		=	hit.c normal.c hit_sphere.c hit_plane.c hit_cylinder.c \
-				hit_cylinder2.c
+				hit_cylinder2.c gpt_cylinder.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils

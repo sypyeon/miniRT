@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trace.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:50:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 19:17:26 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:46:32 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ _Bool	hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec);
 _Bool	hit_sphere(t_obj *world, t_ray *ray, t_hit_record *rec);
 _Bool	hit_plane(t_obj *pl_obj, t_ray *ray, t_hit_record *rec);
 _Bool	hit_cylinder(t_obj *cy, t_ray *ray, t_hit_record *rec);
+_Bool	hit_cylinder_gpt(t_obj *cy, t_ray *ray, t_hit_record *rec);
 _Bool	hit_cylinder5(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
 			double *t_side);
 _Bool	hit_cylinder6(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,

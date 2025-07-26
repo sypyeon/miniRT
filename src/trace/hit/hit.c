@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:39:06 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/24 20:30:39 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/26 19:45:59 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ _Bool	hit_obj(t_obj *obj, t_ray *ray, t_hit_record *rec)
 	else if (obj->type == PLANE)
 		hit_result = hit_plane(obj, ray, rec);
 	else if (obj->type == CYLINDER)
-		hit_result = hit_cylinder(obj, ray, rec);
+		hit_result = hit_cylinder_gpt(obj, ray, rec);
 	return (hit_result);
 }
