@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 01:57:27 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/26 21:16:15 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,6 @@ _Bool	parse_plane(char **toks, t_obj *pl)
 	return (1);
 }
 
-static _Bool	finish_parse_cy(t_obj *cy)
-{
-	if (is_nanv(&cy->color) || !is_color(&cy->color))
-		return (0);
-	cy->origin = vminus(cy->origin,
-			vscale(vunit(cy->data.cy.norm), cy->data.cy.height / 2));
-	return (1);
-}
-
 _Bool	parse_cylinder(char **toks, t_obj *cy)
 {
 	char	*pos;
@@ -117,5 +108,5 @@ _Bool	parse_cylinder(char **toks, t_obj *cy)
 	if (toks[4] + ft_strlen(toks[4]) != pos || cy->data.cy.height <= 0)
 		return (0);
 	cy->color = vdiv(parse_vec(toks[5]), 255.999);
-	return (finish_parse_cy(cy));
+	return (1);
 }
