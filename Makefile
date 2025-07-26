@@ -24,7 +24,8 @@ RAY_SRC		=	ray.c phong_lighting.c
 RAY_OBJ		=	$(addprefix $(OBJS_DIR)/, $(RAY_SRC:.c=.o))
 
 HIT_DIR		=	$(TRACE_DIR)/hit
-HIT_SRC		=	hit.c normal.c hit_sphere.c hit_plane.c hit_cylinder.c
+HIT_SRC		=	hit.c normal.c hit_sphere.c hit_plane.c hit_cylinder.c \
+				hit_cylinder2.c
 HIT_OBJ		=	$(addprefix $(OBJS_DIR)/, $(HIT_SRC:.c=.o))
 
 UTILS_DIR	=	$(MAIN_DIR)/utils
@@ -37,7 +38,8 @@ PARSE_SRC	=	parse_vec.c parse_obj.c parse_obj2.c parse_rt.c
 PARSE_OBJ	=	$(addprefix $(OBJS_DIR)/, $(PARSE_SRC:.c=.o))
 
 MLX_U_DIR	=	$(MAIN_DIR)/mlx_utils
-MLX_U_SRC	=	mlx_key_binding.c my_mlx_pixel_put.c mlx_drawing.c	\
+MLX_U_SRC	=	mlx_key_binding.c mlx_key_binding2.c mlx_key_binding3.c \
+				my_mlx_pixel_put.c mlx_drawing.c	\
 				mlx_display_info.c mlx_obj_info.c
 MLX_U_OBJ	=	$(addprefix $(OBJS_DIR)/, $(MLX_U_SRC:.c=.o))
 
@@ -77,7 +79,4 @@ fclean : clean
 
 re : fclean all
 
-test: $(MAIN_OBJ) $(UTILS_OBJ) $(PARSE_OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ -lm
-
-.PHONY : all clean fclean re test
+.PHONY : all clean fclean re
