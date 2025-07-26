@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:27:40 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 06:01:51 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:17:18 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static _Bool	hit_cylinder2(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
 	return (0);
 }
 
-static _Bool	hit_cylinder5(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
+_Bool	hit_cylinder5(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
 	double *t_side)
 {
 	const t_vec	axis = vunit(cy_obj->data.cy.norm);
@@ -124,11 +124,11 @@ _Bool	hit_cylinder(t_obj *cy, t_ray *ray, t_hit_record *rec)
 	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
 	oc_perp = vminus(vminus(ray->orig, cy->origin), vscale(axis,
 				vdot(vminus(ray->orig, cy->origin), axis)));
-	hit_found = hit_cylinder2(cy, ray, rec, axis);
+	hit_found = 0;
 	if ((pow(2.0 * vdot(ray_perp, oc_perp), 2) - 4 * vlength2(ray_perp)
 			* (vlength2(oc_perp) - cy->data.cy.radius2)) >= 0)
-		hit_found |= (hit_cylinder5(cy, ray, rec, &t_side)
-				|| hit_cylinder6(cy, ray, rec, &t_side));
+		hit_found |= hit_cylinder7(cy, ray, rec, &t_side);
+	hit_found |= hit_cylinder2(cy, ray, rec, axis);
 	if (t_side >= 0 && t_side == rec->tmax)
 	{
 		*rec = (t_hit_record){.t = t_side, .p = ray_at(ray, t_side),

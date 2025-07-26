@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 01:55:41 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/26 06:31:57 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:16:05 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,11 @@ _Bool	hit_cylinder6(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
 		}
 	}
 	return (0);
+}
+
+_Bool	hit_cylinder7(t_obj *cy, t_ray *ray, t_hit_record *rec,
+	double *t_side)
+{
+	return (hit_cylinder5(cy, ray, rec, t_side)
+		|| hit_cylinder6(cy, ray, rec, t_side));
 }
