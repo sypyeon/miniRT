@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:27:40 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 22:26:33 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:51:22 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ static _Bool	hit_cylinder_side(t_obj *cy, t_ray *ray, t_hit_record *rec)
 	t_vec	axis;
 	t_vec	oc;
 	t_vec	ray_perp;
-	t_vec	oc_perp;
 	double	a;
 
 	axis = vunit(cy->data.cy.norm);
 	oc = vminus(ray->orig, cy->origin);
 	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
-	oc_perp = vminus(oc, vscale(axis, vdot(oc, axis)));
 	a = vdot(ray_perp, ray_perp);
 	if (a < FLT_EPSILON)
 		return (0);
