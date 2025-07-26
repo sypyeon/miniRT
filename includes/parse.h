@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 21:59:46 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 22:17:17 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_vec	parse_vec(char *str);
 t_vec	nan_vec(void);
 _Bool	is_nanv(t_vec *v);
 _Bool	is_color(t_color *c);
+size_t	count_obj(t_objs *objs, t_obj_type type);
 
 _Bool	parse_amb(char **toks, t_obj *amb);
 _Bool	parse_cam(char **toks, t_obj *cam);

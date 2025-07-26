@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:18:24 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 07:41:33 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 22:03:29 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,20 @@ _Bool	parse_amb(char **toks, t_obj *amb)
 	if (is_nanv(&amb->color) || !is_color(&amb->color))
 		return (0);
 	return (1);
+}
+
+size_t	count_obj(t_objs *objs, t_obj_type type)
+{
+	size_t	i;
+	size_t	count;
+
+	count = 0;
+	i = 0;
+	while (i < objs->size)
+	{
+		if (objs->ptr[i].type == type)
+			count++;
+		i++;
+	}
+	return (count);
 }

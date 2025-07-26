@@ -6,136 +6,89 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:27:40 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 19:17:18 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 22:26:33 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-static _Bool	hit_cylinder3(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
-	t_vec axis)
+double	get_discriminant_value(t_vec ray_perp, t_vec oc_perp, t_obj *cy)
 {
-	t_point	bottom_center;
-	double	t_bottom;
-	t_point	hit_point;
+	double	a;
+	double	b;
+	double	c;
 
-	bottom_center = vminus(cy_obj->origin,
-			vscale(axis, cy_obj->data.cy.height / 2.0));
-	t_bottom = vdot(vminus(bottom_center, ray->orig),
-			vscale(axis, -1)) / (-vdot(ray->dir, axis));
-	if (t_bottom >= rec->tmin && t_bottom <= rec->tmax)
-	{
-		hit_point = ray_at(ray, t_bottom);
-		if (vlength2(vminus(hit_point, bottom_center))
-			<= pow(cy_obj->data.cy.radius, 2))
-		{
-			if (t_bottom < rec->tmax)
-			{
-				*rec = (t_hit_record){.tmax = t_bottom, .tmin = rec->tmin,
-					.t = t_bottom, .p = hit_point, .norm = vscale(axis, -1),
-					.albedo = cy_obj->color};
-				set_face_normal(ray, rec);
-				return (1);
-			}
-		}
-	}
-	return (0);
+	a = vdot(ray_perp, ray_perp);
+	b = 2.0 * vdot(ray_perp, oc_perp);
+	c = vdot(oc_perp, oc_perp) - cy->data.cy.radius * cy->data.cy.radius;
+	return (b * b - 4 * a * c);
 }
 
-static _Bool	hit_cylinder4(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
-	t_vec axis)
+static double	calculate_discriminant(t_obj *cy, t_ray *ray)
 {
-	t_point	top_center;
-	double	t_top;
-	t_point	hit_point;
+	t_vec	axis;
+	t_vec	oc;
+	t_vec	ray_perp;
+	t_vec	oc_perp;
 
-	top_center = vplus(cy_obj->origin, vscale(axis,
-				cy_obj->data.cy.height / 2.0));
-	t_top = vdot(vminus(top_center, ray->orig), axis) / vdot(ray->dir, axis);
-	if (t_top >= rec->tmin && t_top <= rec->tmax)
-	{
-		hit_point = ray_at(ray, t_top);
-		if (vlength2(vminus(hit_point, top_center))
-			<= pow(cy_obj->data.cy.radius, 2))
-		{
-			if (t_top < rec->tmax)
-			{
-				*rec = (t_hit_record){.tmax = t_top, .tmin = rec->tmin,
-					.t = t_top, .p = hit_point, .norm = axis,
-					.albedo = cy_obj->color};
-				set_face_normal(ray, rec);
-				return (1);
-			}
-		}
-	}
-	return (0);
+	axis = vunit(cy->data.cy.norm);
+	oc = vminus(ray->orig, cy->origin);
+	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
+	oc_perp = vminus(oc, vscale(axis, vdot(oc, axis)));
+	return (get_discriminant_value(ray_perp, oc_perp, cy));
 }
 
-static _Bool	hit_cylinder2(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
-	t_vec axis)
+static _Bool	solve_cylinder_equation(t_obj *cy, t_ray *ray,
+	t_hit_record *rec)
 {
-	if (fabs(vdot(ray->dir, axis)) > FLT_EPSILON)
-	{
-		return (hit_cylinder4(cy_obj, ray, rec, axis)
-			|| hit_cylinder3(cy_obj, ray, rec, axis));
-	}
-	return (0);
+	double	discriminant;
+
+	discriminant = calculate_discriminant(cy, ray);
+	if (discriminant < 0)
+		return (0);
+	return (calculate_roots(cy, ray, rec));
 }
 
-_Bool	hit_cylinder5(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
-	double *t_side)
+static _Bool	hit_cylinder_side(t_obj *cy, t_ray *ray, t_hit_record *rec)
 {
-	const t_vec	axis = vunit(cy_obj->data.cy.norm);
-	const t_vec	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
-	const t_vec	oc_perp = vminus(vminus(ray->orig, cy_obj->origin), vscale(axis,
-				vdot(vminus(ray->orig, cy_obj->origin), axis)));
-	const t_vec	abc = (t_vec){.x = vdot(ray_perp, ray_perp),
-		.y = 2.0 * vdot(ray_perp, oc_perp),
-		.z = vlength2(oc_perp) - cy_obj->data.cy.radius2};
-	double		t1;
+	t_vec	axis;
+	t_vec	oc;
+	t_vec	ray_perp;
+	t_vec	oc_perp;
+	double	a;
 
-	t1 = (-abc.y - sqrt(abc.y * abc.y - 4 * abc.x * abc.z)) / (2.0 * abc.x);
-	if (t1 >= rec->tmin && t1 <= rec->tmax)
-	{
-		if (fabs(vdot(vminus(ray_at(ray, t1), cy_obj->origin), vunit(cy_obj
-						->data.cy.norm))) <= (cy_obj->data.cy.height / 2.0))
-		{
-			*t_side = t1;
-			if (t1 < rec->tmax)
-			{
-				rec->tmax = t1;
-				return (1);
-			}
-		}
-	}
-	return (0);
+	axis = vunit(cy->data.cy.norm);
+	oc = vminus(ray->orig, cy->origin);
+	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
+	oc_perp = vminus(oc, vscale(axis, vdot(oc, axis)));
+	a = vdot(ray_perp, ray_perp);
+	if (a < FLT_EPSILON)
+		return (0);
+	return (solve_cylinder_equation(cy, ray, rec));
 }
 
 _Bool	hit_cylinder(t_obj *cy, t_ray *ray, t_hit_record *rec)
 {
-	t_vec	axis;
-	double	t_side;
-	_Bool	hit_found;
-	t_vec	ray_perp;
-	t_vec	oc_perp;
+	t_hit_record	side_rec;
+	t_hit_record	caps_rec;
+	_Bool			hit_side;
+	_Bool			hit_caps;
 
-	t_side = -1;
-	axis = vunit(cy->data.cy.norm);
-	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
-	oc_perp = vminus(vminus(ray->orig, cy->origin), vscale(axis,
-				vdot(vminus(ray->orig, cy->origin), axis)));
-	hit_found = 0;
-	if ((pow(2.0 * vdot(ray_perp, oc_perp), 2) - 4 * vlength2(ray_perp)
-			* (vlength2(oc_perp) - cy->data.cy.radius2)) >= 0)
-		hit_found |= hit_cylinder7(cy, ray, rec, &t_side);
-	hit_found |= hit_cylinder2(cy, ray, rec, axis);
-	if (t_side >= 0 && t_side == rec->tmax)
+	side_rec = *rec;
+	caps_rec = *rec;
+	hit_side = hit_cylinder_side(cy, ray, &side_rec);
+	hit_caps = hit_cylinder_caps(cy, ray, &caps_rec);
+	if (hit_side && hit_caps)
 	{
-		*rec = (t_hit_record){.t = t_side, .p = ray_at(ray, t_side),
-			.norm = vunit(vminus(rec->p, vplus(cy->origin,
-						vscale(axis, vdot(vminus(rec->p, cy->origin), axis))))),
-			.albedo = cy->color};
-		set_face_normal(ray, rec);
+		if (side_rec.t < caps_rec.t)
+			*rec = side_rec;
+		else
+			*rec = caps_rec;
+		return (1);
 	}
-	return (hit_found);
+	if (hit_side)
+		*rec = side_rec;
+	else if (hit_caps)
+		*rec = caps_rec;
+	return (hit_side || hit_caps);
 }

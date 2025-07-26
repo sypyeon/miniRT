@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/23 22:21:24 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 22:03:51 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static _Bool	parse_obj(char **toks, t_objs *objs)
 	return (0);
 }
 
-static void	set_index(t_scene *scene)
+static _Bool	set_index(t_scene *scene)
 {
 	size_t	i;
 
@@ -98,6 +98,8 @@ static void	set_index(t_scene *scene)
 			scene->light = i;
 		i++;
 	}
+	return (count_obj(&scene->objs, AMBIENT) <= 1
+		&& count_obj(&scene->objs, CAMERA) == 1);
 }
 
 _Bool	parse_rt(t_scene *s, char *file)
@@ -123,5 +125,5 @@ _Bool	parse_rt(t_scene *s, char *file)
 		(free_split(toks), free(line));
 		line = get_trim_line(fd);
 	}
-	return (set_index(s), 1);
+	return (set_index(s));
 }

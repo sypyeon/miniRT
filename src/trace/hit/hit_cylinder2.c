@@ -6,42 +6,54 @@
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 01:55:41 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/26 19:16:05 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 22:15:58 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/trace.h"
 
-_Bool	hit_cylinder6(t_obj *cy_obj, t_ray *ray, t_hit_record *rec,
-	double *t_side)
+static _Bool	check_cylinder_height(t_obj *cy, t_ray *ray, double t)
 {
-	const t_vec	axis = vunit(cy_obj->data.cy.norm);
-	const t_vec	ray_perp = vminus(ray->dir, vscale(axis, vdot(ray->dir, axis)));
-	const t_vec	oc_perp = vminus(vminus(ray->orig, cy_obj->origin), vscale(axis,
-				vdot(vminus(ray->orig, cy_obj->origin), axis)));
-	const t_vec	abc = (t_vec){.x = vdot(ray_perp, ray_perp),
-		.y = 2.0 * vdot(ray_perp, oc_perp),
-		.z = vlength2(oc_perp) - cy_obj->data.cy.radius2};
-	double		t2;
+	t_vec	axis;
+	t_point	hit_point;
+	double	projection;
 
-	t2 = (-abc.y - sqrt(abc.y * abc.y - 4 * abc.x * abc.z)) / (2.0 * abc.x);
-	if (t2 >= rec->tmin && t2 <= rec->tmax && *t_side < 0
-		&& fabs(vdot(vminus(ray_at(ray, t2), cy_obj->origin),
-				axis)) <= cy_obj->data.cy.height / 2.0)
-	{
-		*t_side = t2;
-		if (t2 < rec->tmax)
-		{
-			rec->tmax = t2;
-			return (1);
-		}
-	}
-	return (0);
+	axis = vunit(cy->data.cy.norm);
+	hit_point = ray_at(ray, t);
+	projection = vdot(vminus(hit_point, cy->origin), axis);
+	if (projection < -cy->data.cy.height / 2.0)
+		return (0);
+	if (projection > cy->data.cy.height / 2.0)
+		return (0);
+	return (1);
 }
 
-_Bool	hit_cylinder7(t_obj *cy, t_ray *ray, t_hit_record *rec,
-	double *t_side)
+static _Bool	record_cylinder_hit(t_obj *cy, t_ray *ray, t_hit_record *rec,
+	double t)
 {
-	return (hit_cylinder5(cy, ray, rec, t_side)
-		|| hit_cylinder6(cy, ray, rec, t_side));
+	t_vec	axis;
+	t_point	hit_point;
+	double	projection;
+	t_point	axis_point;
+
+	axis = vunit(cy->data.cy.norm);
+	hit_point = ray_at(ray, t);
+	projection = vdot(vminus(hit_point, cy->origin), axis);
+	axis_point = vplus(cy->origin, vscale(axis, projection));
+	rec->t = t;
+	rec->p = hit_point;
+	rec->norm = vunit(vminus(hit_point, axis_point));
+	rec->albedo = cy->color;
+	set_face_normal(ray, rec);
+	return (1);
+}
+
+_Bool	test_single_root(t_obj *cy, t_ray *ray, t_hit_record *rec,
+	double t)
+{
+	if (t < rec->tmin || t > rec->tmax)
+		return (0);
+	if (!check_cylinder_height(cy, ray, t))
+		return (0);
+	return (record_cylinder_hit(cy, ray, rec, t));
 }
