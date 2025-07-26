@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 23:14:40 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:26:35 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ _Bool	parse_rt(t_scene *s, char *file)
 	lines = get_trim_lines(fd);
 	if (!lines)
 		return (close(fd), 0);
-	parse_each_line(s, lines);
+	if (!parse_each_line(s, lines))
+		return (free_split(lines), 0);
 	free_split(lines);
 	return (set_index(s));
 }

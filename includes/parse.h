@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 20:17:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 23:08:47 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:26:33 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ _Bool	parse_light(char **toks, t_obj *light);
 _Bool	parse_sphere(char **toks, t_obj *sp);
 _Bool	parse_plane(char **toks, t_obj *pl);
 _Bool	parse_cylinder(char **toks, t_obj *cy);
-void	parse_each_line(t_scene *s, char **lines);
+_Bool	parse_each_line(t_scene *s, char **lines);
 _Bool	parse_rt(t_scene *s, char *file);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_each_lines.c                                 :+:      :+:    :+:   */
+/*   parse_each_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 23:06:57 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/26 23:13:19 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:26:36 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static _Bool	parse_obj(char **toks, t_objs *objs)
 	return (0);
 }
 
-void	parse_each_line(t_scene *s, char **lines)
+_Bool	parse_each_line(t_scene *s, char **lines)
 {
 	char	**toks;
 	size_t	i;
@@ -46,10 +46,11 @@ void	parse_each_line(t_scene *s, char **lines)
 	{
 		toks = ft_split(lines[i], ' ');
 		if (!toks)
-			return (free_split(lines));
+			return (0);
 		if (!parse_obj(toks, &s->objs))
-			return (free_split(toks), free_split(lines));
+			return (free_split(toks), 0);
 		free_split(toks);
 		i++;
 	}
+	return (1);
 }
