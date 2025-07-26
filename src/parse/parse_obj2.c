@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:18:24 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 22:03:29 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:28:56 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ _Bool	parse_cam(char **toks, t_obj *cam)
 		|| fov > 180 || fov < 0)
 		return (0);
 	cam->data.cam.fov = fov;
+	if (cam->data.cam.dir.x == 0 && cam->data.cam.dir.z == 0)
+		return (0);
 	return (1);
 }
 

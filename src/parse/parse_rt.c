@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 04:04:47 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 23:26:35 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:29:35 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ _Bool	parse_rt(t_scene *s, char *file)
 	if (!lines)
 		return (close(fd), 0);
 	if (!parse_each_line(s, lines))
-		return (free_split(lines), 0);
+		return (free(s->objs.ptr), free_split(lines), 0);
 	free_split(lines);
 	return (set_index(s));
 }
