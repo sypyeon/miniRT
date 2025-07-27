@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:46:12 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 21:16:15 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/26 23:34:51 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ _Bool	parse_light(char **toks, t_obj *light)
 		|| light->data.light.bright_ratio < 0
 		|| light->data.light.bright_ratio > 1)
 		return (0);
-	light->color = nan_vec();
+	light->color = vec(1, 1, 1);
 	if (len == 3)
 		return (1);
 	light->color = vdiv(parse_vec(toks[3]), 255.999);

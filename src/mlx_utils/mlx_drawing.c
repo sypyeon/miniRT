@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:45:55 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 14:15:27 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:53:03 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/mlx_utils.h"
 #include "../../includes/trace.h"
 
-t_axis	init_axis(t_vec direction)
+t_axis	init_axis(t_vec norm)
 {
-	t_axis	axis;
+    t_axis	axis;
+    t_vec	world_up;
 
-	axis.z = vec(direction.x, direction.y, direction.z);
-	axis.x = vunit(vcross(axis.z, vec(0, 1, 0)));
-	axis.y = vunit(vcross(axis.x, axis.z));
-	return (axis);
+    world_up = vec(0, 1, 0);
+    axis.z = vunit(norm);
+    axis.x = vunit(vcross(world_up, axis.z));
+    axis.y = vunit(vcross(axis.z, axis.x));
+    
+    return (axis);
 }
 
 void	init_cam(double aspect_ratio, t_point origin, double fov, t_camera *cam)
@@ -76,7 +79,7 @@ int	rt_drawing(t_rt *rt)
 		i = 0;
 		while (i < WIN_WIDTH)
 		{
-			u = (double)i / (WIN_WIDTH - 1);
+			u = 1.0 - (double)i / (WIN_WIDTH - 1);
 			v = 1.0 - (double)j / (WIN_HEIGHT - 1);
 			scene->ray = ray_primary(&scene->objs.ptr[scene->cam], u, v);
 			my_mlx_pixel_put(&rt->img, i, j, ray_color(scene));

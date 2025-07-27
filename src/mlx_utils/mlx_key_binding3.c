@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_key_binding3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 07:55:39 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/25 07:56:39 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:55:35 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

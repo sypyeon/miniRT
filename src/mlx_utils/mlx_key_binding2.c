@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_key_binding2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehylee <jaehylee@student.42gyeongsan.kr> +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 07:52:13 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/07/25 07:55:24 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/26 23:56:16 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 void	rotate_cylinder(t_obj *obj, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&obj->data.cy.norm, vec(1, 0, 0), CYLINDER);
-	else if (keycode == XK_k)
 		decrease_angle(&obj->data.cy.norm, vec(1, 0, 0), CYLINDER);
+	else if (keycode == XK_k)
+		increase_angle(&obj->data.cy.norm, vec(1, 0, 0), CYLINDER);
 	else if (keycode == XK_j)
-		increase_angle(&obj->data.cy.norm, vec(0, 1, 0), CYLINDER);
-	else if (keycode == XK_l)
 		decrease_angle(&obj->data.cy.norm, vec(0, 1, 0), CYLINDER);
+	else if (keycode == XK_l)
+		increase_angle(&obj->data.cy.norm, vec(0, 1, 0), CYLINDER);
 	else if (keycode == XK_u)
-		increase_angle(&obj->data.cy.norm, vec(0, 0, 1), CYLINDER);
-	else if (keycode == XK_o)
 		decrease_angle(&obj->data.cy.norm, vec(0, 0, 1), CYLINDER);
+	else if (keycode == XK_o)
+		increase_angle(&obj->data.cy.norm, vec(0, 0, 1), CYLINDER);
 }
 
 void	rotate_obj(t_obj *obj, int keycode)
