@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_key_binding.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 21:02:07 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 07:52:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:21:56 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,31 @@ void	decrease_angle(t_vec *dir, t_vec axis, int type)
 void	rotate_cam(t_camera *cam, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&cam->dir, cam->axis.x, CAMERA);
-	else if (keycode == XK_k)
 		decrease_angle(&cam->dir, cam->axis.x, CAMERA);
+	else if (keycode == XK_k)
+		increase_angle(&cam->dir, cam->axis.x, CAMERA);
 	else if (keycode == XK_j)
-		increase_angle(&cam->dir, cam->axis.y, CAMERA);
-	else if (keycode == XK_l)
 		decrease_angle(&cam->dir, cam->axis.y, CAMERA);
+	else if (keycode == XK_l)
+		increase_angle(&cam->dir, cam->axis.y, CAMERA);
 	else if (keycode == XK_u)
-		increase_angle(&cam->dir, cam->axis.z, CAMERA);
-	else if (keycode == XK_o)
 		decrease_angle(&cam->dir, cam->axis.z, CAMERA);
+	else if (keycode == XK_o)
+		increase_angle(&cam->dir, cam->axis.z, CAMERA);
 }
 
 void	rotate_plane(t_obj *obj, int keycode)
 {
 	if (keycode == XK_i)
-		increase_angle(&obj->data.pl.norm, vec(1, 0, 0), PLANE);
-	else if (keycode == XK_k)
 		decrease_angle(&obj->data.pl.norm, vec(1, 0, 0), PLANE);
+	else if (keycode == XK_k)
+		increase_angle(&obj->data.pl.norm, vec(1, 0, 0), PLANE);
 	else if (keycode == XK_j)
-		increase_angle(&obj->data.pl.norm, vec(0, 1, 0), PLANE);
-	else if (keycode == XK_l)
 		decrease_angle(&obj->data.pl.norm, vec(0, 1, 0), PLANE);
+	else if (keycode == XK_l)
+		increase_angle(&obj->data.pl.norm, vec(0, 1, 0), PLANE);
 	else if (keycode == XK_u)
-		increase_angle(&obj->data.pl.norm, vec(0, 0, 1), PLANE);
-	else if (keycode == XK_o)
 		decrease_angle(&obj->data.pl.norm, vec(0, 0, 1), PLANE);
+	else if (keycode == XK_o)
+		increase_angle(&obj->data.pl.norm, vec(0, 0, 1), PLANE);
 }

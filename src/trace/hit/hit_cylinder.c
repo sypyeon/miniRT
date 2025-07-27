@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/07/27 17:03:03 by sipyeon          ###   ########.fr       */
+/*   Created: 2025/07/27 17:20:59 by sipyeon           #+#    #+#             */
+/*   Updated: 2025/07/27 17:21:04 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../../includes/trace.h"
 

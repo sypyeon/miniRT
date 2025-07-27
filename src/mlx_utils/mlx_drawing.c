@@ -6,7 +6,7 @@
 /*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 20:45:55 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/26 23:53:03 by sipyeon          ###   ########.fr       */
+/*   Updated: 2025/07/27 17:21:24 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 
 t_axis	init_axis(t_vec norm)
 {
-    t_axis	axis;
-    t_vec	world_up;
+	t_axis	axis;
+	t_vec	world_up;
 
-    world_up = vec(0, 1, 0);
-    axis.z = vunit(norm);
-    axis.x = vunit(vcross(world_up, axis.z));
-    axis.y = vunit(vcross(axis.z, axis.x));
-    
-    return (axis);
+	world_up = vec(0, 1, 0);
+	axis.z = vunit(norm);
+	axis.x = vunit(vcross(world_up, axis.z));
+	axis.y = vunit(vcross(axis.z, axis.x));
+	return (axis);
 }
 
 void	init_cam(double aspect_ratio, t_point origin, double fov, t_camera *cam)

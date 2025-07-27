@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sipyeon <sipyeon@student.42gyeongsan.kr>   +#+  +:+       +#+        */
+/*   By: sipyeon <sipyeon@student.42gyeongsan.kr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 21:00:42 by sipyeon           #+#    #+#             */
-/*   Updated: 2025/07/25 21:29:59 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:23:37 by sipyeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define KEY_PRESS	2
 # define ON_DESTROY	17
 
-# define WIN_WIDTH	900
-# define WIN_HEIGHT	600
+# define WIN_WIDTH	450
+# define WIN_HEIGHT	300
 
 # define WHITE	0xFFFFFF
 # define BLACK	0x000000
